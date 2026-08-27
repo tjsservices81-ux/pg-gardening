@@ -489,7 +489,14 @@ strong { font-weight: 700; }
     background: var(--cream-050);
     display: none;
     padding: var(--sp-5);
+    /* The sticky call bar sits on top of this panel, so the last thing in the
+       menu — the quote button — has to be able to scroll clear of it.
+       --callbar-h is 0 above the width where the bar appears. */
+    padding-bottom: calc(var(--sp-5) + var(--callbar-h));
     overflow-y: auto;
+    /* Scrolling to the bottom of the menu must not then start scrolling the
+       page underneath it. This is what the body lock used to be for. */
+    overscroll-behavior: contain;
     border-top: 1px solid var(--line);
   }
   /* Shown by toggling display, so the closed menu is never laid out
@@ -536,7 +543,15 @@ strong { font-weight: 700; }
   .nav__cta { display: none; }
 }
 
-body.nav-open { overflow: hidden; }
+/* The menu used to lock the page with `body { overflow: hidden }`. Do not put
+   that back. Hiding the body's overflow takes the body out of the scrolling
+   picture, and two things follow at once: the browser drops the scroll
+   position to the top, and the sticky header stops sticking — so it snaps back
+   to the top of the document, taking the menu panel anchored beneath it with
+   it. Open the menu half way down a page and the menu was rendering hundreds
+   of pixels above the screen, invisible, while the page jumped to the top.
+   The panel handles its own scrolling and uses overscroll-behavior instead. */
+body.nav-open { overflow: visible; }
 
 /* --------------------------------------------------------------------------
    6. Hero

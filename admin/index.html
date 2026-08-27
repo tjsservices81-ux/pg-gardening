@@ -17,128 +17,263 @@
   }
   .boot {
     max-width: 34rem;
-    margin: 8vh auto;
-    padding: 2rem;
+    margin: 6vh auto;
+    padding: 1.6rem;
     background: #fff;
     border: 1px solid #d3dfd6;
     border-radius: 12px;
     box-shadow: 0 1px 2px rgba(15,58,38,.05), 0 10px 30px rgba(15,58,38,.07);
   }
-  .boot h1 { font-family: Georgia, serif; color: #0f3a26; margin: 0 0 .5rem; font-size: 1.5rem; }
-  .boot h2 { font-family: Georgia, serif; color: #0f3a26; font-size: 1.05rem; margin: 1.5rem 0 .4rem; }
+  .boot h1 { font-family: Georgia, serif; color: #0f3a26; margin: 0 0 .5rem; font-size: 1.4rem; }
+  .boot h2 { font-family: Georgia, serif; color: #0f3a26; font-size: 1.02rem; margin: 1.6rem 0 .4rem; }
   .boot p { color: #35443c; margin: 0 0 .8rem; }
-  .boot ol { color: #35443c; margin: 0 0 .8rem; padding-left: 1.2rem; }
+  .boot ol, .boot ul { color: #35443c; margin: 0 0 .8rem; padding-left: 1.2rem; }
   .boot li { margin-bottom: .35rem; }
   .boot code {
     background: #eaf5ee; padding: .1em .4em; border-radius: 4px;
-    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .88em;
+    overflow-wrap: anywhere;
   }
   .boot a { color: #1b6f42; }
   .btn {
     display: inline-block; border: 0; cursor: pointer;
     background: #1b6f42; color: #fff; font: inherit; font-weight: 700;
-    padding: .7em 1.3em; border-radius: 999px; text-decoration: none;
+    padding: .75em 1.4em; border-radius: 999px; text-decoration: none;
+    min-height: 44px;
   }
   .btn:hover { background: #22804f; }
   .btn--plain { background: transparent; color: #1b6f42; border: 1px solid #c6dbcf; }
-  .row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0 .2rem; }
+  .row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.1rem 0 .2rem; }
+
+  /* The live progress line. It is the whole point of this page when the panel
+     will not start, so it is given more weight than a footnote. */
   .status {
-    margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid #e2eae4;
-    font-size: .88rem; color: #4a5a52;
+    margin-top: 1.3rem; padding: .8rem 1rem;
+    background: #f4f8f5; border: 1px solid #dbe7df; border-radius: 8px;
+    font-size: .92rem; color: #35443c;
   }
   .status b { color: #16241d; }
   .bad { color: #97231d; font-weight: 700; }
   .good { color: #1b6f42; font-weight: 700; }
+  .bar { height: 4px; background: #dbe7df; border-radius: 3px; overflow: hidden; margin-top: .6rem; }
+  .bar i { display: block; height: 100%; width: 30%; background: #1b6f42; border-radius: 3px;
+           animation: slide 1.4s ease-in-out infinite; }
+  @keyframes slide { 0% { margin-left: -30%; } 100% { margin-left: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .bar i { animation: none; width: 100%; } }
+  .hide { display: none; }
 </style>
 </head>
 <body>
 
-<!-- Replaced by the CMS the moment it mounts. Only ever seen when something
-     has stopped it, so it is written to be useful at that point. -->
+<!-- Replaced by the CMS the moment it mounts. Only ever seen while it is
+     loading, or when something has stopped it, so it is written to be useful
+     at both those moments. -->
 <div class="boot" id="boot">
   <h1>Opening the admin panel…</h1>
-  <p>If this message is still here after a few seconds, the panel could not
-     start. The button below opens the login box directly — try that first.</p>
+  <p>The panel is a fairly large download — on mobile data the first visit can
+     take the best part of a minute. The line below says what is actually
+     happening rather than leaving you guessing.</p>
+
+  <div class="status" id="status">
+    Starting…
+    <div class="bar" id="bar"><i></i></div>
+  </div>
 
   <div class="row">
     <button class="btn" type="button" id="login">Log in</button>
     <a class="btn btn--plain" href="/">Back to the website</a>
   </div>
 
-  <h2>If the login box does not appear</h2>
-  <p>It is one of two switches in the Netlify dashboard, and both are one-off:</p>
-  <ol>
-    <li><b>Site configuration → Identity → Enable Identity</b></li>
-    <li><b>Identity → Services → Git Gateway → Enable</b></li>
-  </ol>
+  <div id="help" class="hide">
+    <h2>If the login box does not appear</h2>
+    <p>It is one of two switches in the Netlify dashboard, and both are one-off:</p>
+    <ol>
+      <li><b>Site configuration → Identity → Enable Identity</b></li>
+      <li><b>Identity → Services → Git Gateway → Enable</b></li>
+    </ol>
+
+    <h2>If it will not finish loading</h2>
+    <ul>
+      <li><b>Open it in Safari or Chrome properly.</b> If you came here by
+        tapping a link inside Gmail, Facebook or Messages, you are in a
+        cut-down browser those apps run themselves, and it handles big
+        downloads badly. Tap the <b>⋯</b> or share button and choose
+        <b>Open in Safari</b> / <b>Open in Chrome</b>.</li>
+      <li><b>Get on wi-fi if you can.</b> It only has to download once —
+        after that it is cached.</li>
+      <li><b>Pull down to refresh</b> and give it another go. A half-finished
+        download does not resume; a fresh one usually works.</li>
+    </ul>
+  </div>
 
   <h2>If you clicked an invite email and landed on the ordinary website</h2>
-  <p>That is normal and it is now handled — the site forwards you here
-     automatically. If it happened before this fix, open the email again and
-     click the link a second time, or paste the whole address into the bar
-     including the long <code>#invite_token=…</code> part on the end.</p>
-
-  <div class="status" id="status">Checking…</div>
+  <p>That is Netlify sending its invites to the front page rather than here,
+     and the site now forwards you across automatically. If it happened before
+     that fix went up, open the email again and click the link a second time —
+     or paste the whole address in with <code>/admin/</code> before the
+     <code>#invite_token=…</code> part.</p>
 </div>
 
-<!-- Netlify Identity: handles who is allowed in -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<!-- Decap CMS: the panel itself -->
-<script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
+<script>
+  /* Must come before the tags below. A blocking <script src> fires its onload
+     before the parser reaches the next inline script, so declaring this
+     afterwards would mean the handler ran against an undefined object. */
+  window.__pg = { identity: null, cms: null, source: '' };
+</script>
+
+<!-- Netlify Identity: handles who is allowed in. There is only one source for
+     this one, so it gets a plain tag with a failure flag. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+        onload="window.__pg.identity = true"
+        onerror="window.__pg.identity = false"></script>
+
+<script>
+/* Decap CMS is a ~4 MB bundle. Loading it from a pinned version rather than a
+   semver range skips a redirect, and having a second CDN to fall back to means
+   one of them being slow or down does not leave the owner locked out of their
+   own website. Previously this was a single unpkg tag on a `^` range: no
+   fallback, no timeout, and no way to tell a slow download from a dead one. */
+(function loadCms() {
+  var sources = [
+    'https://cdn.jsdelivr.net/npm/decap-cms@3.15.1/dist/decap-cms.js',
+    'https://unpkg.com/decap-cms@3.15.1/dist/decap-cms.js'
+  ];
+  var i = 0;
+  (function next() {
+    if (i >= sources.length) { window.__pg.cms = false; return; }
+    var url = sources[i++];
+    var s = document.createElement('script');
+    s.src = url;
+    s.onload = function () { window.__pg.cms = true; window.__pg.source = url; };
+    s.onerror = next;
+    document.head.appendChild(s);
+  })();
+})();
+</script>
 
 <script>
 (function () {
   var statusEl = document.getElementById('status');
+  var barEl = document.getElementById('bar');
+  var helpEl = document.getElementById('help');
   var loginBtn = document.getElementById('login');
+  var started = Date.now();
+  var settled = false;
 
-  function say(html) { if (statusEl) statusEl.innerHTML = html; }
+  function say(html, showBar, showHelp) {
+    if (!statusEl) return;
+    statusEl.innerHTML = html;
+    if (showBar) statusEl.appendChild(barEl);
+    if (showHelp && helpEl) helpEl.classList.remove('hide');
+  }
+  function settle(html, showHelp) {
+    settled = true;
+    say(html, false, showHelp);
+  }
 
-  /* The invite link puts its token in the hash. The widget reads it on its own,
-     but saying so out loud stops the page looking inert while it works. */
   var hash = window.location.hash || '';
   var invited = /^#(invite_token|recovery_token|confirmation_token|email_change_token)=/.test(hash);
 
-  if (/^#error=/.test(hash)) {
-    say('<span class="bad">That link did not work.</span> Invite links expire. ' +
-        'Ask for a fresh invite from Netlify → Identity → Invite users.');
-  } else if (invited) {
-    say('Invite recognised — the box to set your password should be open. ' +
-        'If it is not, press <b>Log in</b> above.');
+  function identity() {
+    return window.netlifyIdentity || null;
+  }
+  function currentUser() {
+    try { return identity() && identity().currentUser(); } catch (e) { return null; }
   }
 
   if (loginBtn) {
     loginBtn.addEventListener('click', function () {
-      if (window.netlifyIdentity) window.netlifyIdentity.open();
-      else say('<span class="bad">Netlify Identity did not load.</span> ' +
-               'Check your internet connection, then check Identity is enabled in Netlify.');
-    });
-  }
-
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', function (user) {
-      if (user) {
-        if (!invited) say('Signed in as <b>' + (user.email || 'you') + '</b>. Loading the panel…');
-      } else if (!invited) {
-        say('Not signed in yet. Press <b>Log in</b> above.');
+      var id = identity();
+      if (!id) {
+        settle('<span class="bad">The login code has not downloaded yet.</span> ' +
+               'Give it a moment, or refresh the page.', true);
+        return;
       }
-      // Somebody logging in from the public site ends up here rather than on
-      // the page they happened to be reading.
-      window.netlifyIdentity.on('login', function () {
-        document.location.href = '/admin/';
-      });
+      /* Decap normally calls init() itself. If Decap has not arrived, nothing
+         has, so do it here — otherwise the button does nothing at all. */
+      try { if (window.__pg.cms !== true) id.init({}); } catch (e) {}
+      id.open();
     });
-  } else {
-    say('<span class="bad">Netlify Identity did not load.</span> That is ' +
-        'usually Identity not being enabled on the site yet.');
   }
 
-  // Once the CMS mounts it owns the page, so this panel gets out of the way.
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      var boot = document.getElementById('boot');
-      if (boot && document.querySelector('#nc-root, [class*="AppMainContainer"]')) boot.remove();
-    }, 1200);
-  });
+  /* The CMS replaces the page when it mounts. Watching for that beats the old
+     one-shot timeout, which fired 1.2s after load and then never looked
+     again — so a panel that took longer than that left this card sitting on
+     top of it for ever. */
+  var boot = document.getElementById('boot');
+  function mounted() {
+    var root = document.querySelector('#nc-root, [class*="AppMainContainer"]');
+    return !!(root && root.childElementCount > 0);
+  }
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(function () {
+      if (mounted() && boot && boot.parentNode) { boot.remove(); mo.disconnect(); }
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+  }
+
+  /* One tick, every half second, reporting only what is actually true. */
+  var tick = setInterval(function () {
+    if (mounted()) {
+      if (boot && boot.parentNode) boot.remove();
+      clearInterval(tick);
+      return;
+    }
+    if (settled) return;
+
+    var secs = Math.round((Date.now() - started) / 1000);
+    var id = window.__pg.identity;
+    var cms = window.__pg.cms;
+
+    if (/^#error=/.test(hash)) {
+      return settle('<span class="bad">That link did not work.</span> Invite links ' +
+        'expire. Ask for a fresh one: Netlify → Identity → Invite users.', true);
+    }
+    if (id === false) {
+      return settle('<span class="bad">Could not download the login code.</span> ' +
+        'Either you are offline, or Identity has not been switched on for this ' +
+        'site yet.', true);
+    }
+    if (cms === false) {
+      return settle('<span class="bad">Could not download the panel.</span> Both ' +
+        'sources failed, which is nearly always the connection rather than the ' +
+        'site.', true);
+    }
+
+    var user = currentUser();
+    if (id === true && cms === true) {
+      say((user ? 'Signed in as <b>' + (user.email || 'you') + '</b>. ' : '') +
+          'Everything downloaded. Starting the panel…', true);
+      /* Downloaded but never mounted: that is a real fault, not slowness. */
+      if (secs > 25) {
+        return settle('<span class="bad">Everything downloaded but the panel did ' +
+          'not start.</span> Refresh once. If it happens again, tell me and send ' +
+          'this line.', true);
+      }
+      return;
+    }
+
+    if (invited) {
+      return say('Invite recognised. Waiting for the login box… <b>' + secs + 's</b>', true);
+    }
+
+    var waiting = [];
+    if (id !== true) waiting.push('the login code');
+    if (cms !== true) waiting.push('the panel itself');
+    say('Downloading ' + waiting.join(' and ') + '… <b>' + secs + 's</b>' +
+        (secs > 12 ? '<br>On mobile data this is normal. It only downloads once.' : ''), true);
+
+    if (secs > 60) {
+      return settle('<span class="bad">Still not finished after a minute.</span> ' +
+        'This is almost always a slow or blocked connection rather than the site.', true);
+    }
+  }, 500);
+
+  /* After 8 seconds with nothing mounted, put the troubleshooting on screen
+     rather than making somebody scroll looking for it. */
+  setTimeout(function () {
+    if (!mounted() && helpEl) helpEl.classList.remove('hide');
+  }, 8000);
 })();
 </script>
 </body>
