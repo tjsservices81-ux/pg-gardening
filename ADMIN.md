@@ -36,22 +36,24 @@ only ever has to be done once.
 If the panel ever shows a "could not start" message instead of loading, it is
 almost always one of steps 2 and 4 having been switched off.
 
-### One thing to change when the site goes live
+### Which branch the panel saves to
 
-The panel currently saves to the branch this work was built on. The line is at
-the top of `admin/config.yml`:
+The panel commits to one branch, named at the top of `admin/config.yml`:
 
 ```yaml
 backend:
   name: git-gateway
-  branch: claude/photo-uploads-reviews-pages-rcfpjb
+  branch: main
 ```
 
-Once this is merged and Netlify is deploying from `main`, that has to say
-`main` instead, or the panel will keep saving somewhere the live site never
-reads. Tell me when you merge and I will change it. Same value goes in the
-`GITHUB_BRANCH` environment variable if you set up the optional bit at the
-bottom of this page.
+That has to be the same branch Netlify builds the live site from. If the two
+ever drift apart, the panel will say it saved, the commit really will be there,
+and the website will not change — which looks exactly like the panel being
+broken. The same value goes in the `GITHUB_BRANCH` environment variable if you
+set up the optional bit at the bottom of this page.
+
+If you ever change the deploy branch in **Netlify → Site configuration → Build
+& deploy → Branches**, change this line to match.
 
 ### Getting the enquiries emailed to you
 

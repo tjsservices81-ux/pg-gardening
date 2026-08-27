@@ -10,7 +10,10 @@
 
 backend:
   name: git-gateway
-  branch: claude/photo-uploads-reviews-pages-rcfpjb
+  # The branch Netlify deploys the live site from. If this ever points at a
+  # branch the site is not built from, the panel will appear to save fine and
+  # nothing will change on the website.
+  branch: main
   commit_messages:
     create: 'Admin: add {{collection}} "{{slug}}"'
     update: 'Admin: update {{collection}} "{{slug}}"'
