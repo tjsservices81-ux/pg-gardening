@@ -79,12 +79,46 @@
      safe to carry: the worst case is the panel looking as it did before.
      ---------------------------------------------------------------------- */
   @media (max-width: 900px) {
-    /* Field labels and help text: the words that tell you what a box is for. */
-    [class*="-FieldLabel"] { font-size: 0.95rem !important; }
+    /* Field labels. Decap prints them in small shouting capitals with wide
+       letter-spacing — "LINK TO YOUR REVIEWS ON GOOGLE (OPTIONAL)" — which is
+       hard work to read and looks like a form at the council. Sentence case,
+       a normal size, and they read like the questions they are. */
+    [class*="-FieldLabel"] {
+      font-size: 1rem !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      font-weight: 700 !important;
+      line-height: 1.35 !important;
+    }
     [class*="-ControlHint"] {
       font-size: 0.92rem !important;
       line-height: 1.5 !important;
       opacity: 1 !important;
+    }
+    /* Room between one question and the next, so a form reads as a list of
+       questions rather than a solid block. */
+    [class*="-ControlContainer"] { margin-bottom: 1.5rem !important; }
+
+    /* The little "=" grip for dragging rows into a different order. Reordering
+       is not something anybody needs to do from a phone, and next to the X it
+       reads as another button to be wary of. */
+    [class*="-DragIconContainer"], [class*="-DragHandle"] { display: none !important; }
+
+    /* The X that deletes a row. It stays — it has to — but it does not need to
+       be the most eye-catching thing on the screen. Muted, with a proper
+       fingertip-sized target so it is never hit by accident either. */
+    [class*="-TopBarButton"] {
+      opacity: .45 !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+    }
+    [class*="-TopBarButton"]:active { opacity: 1 !important; }
+
+    /* Section headings inside a form. */
+    [class*="-ObjectLabel"], [class*="-ObjectWidgetTopBar"] {
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      font-size: 1rem !important;
     }
     /* Typing into a box on iOS zooms the whole page in unless the text is at
        least 16px. That zoom is the single most disorienting thing about
@@ -102,6 +136,12 @@
     }
     /* The list of existing entries: one legible row per item. */
     [class*="-CardHeading"] { font-size: 1.05rem !important; }
+
+    /* With the preview pane switched off in config.yml, the form takes the
+       whole screen. This makes sure nothing is still holding half of it back. */
+    [class*="-EditorContainer"], [class*="-EditorContent"] { display: block !important; }
+    [class*="-ControlPaneContainer"] { max-width: none !important; width: 100% !important; }
+    [class*="-PreviewPaneContainer"] { display: none !important; }
   }
 
   /* A way back to the plain menu that never scrolls away. Decap owns the rest

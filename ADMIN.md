@@ -38,6 +38,29 @@ The buttons are:
 Once you are in the editor there is a small **‹ Menu** button in the
 bottom-left corner that brings you back.
 
+### What was changed about the editor itself
+
+Decap is built for a desktop, and out of the box it shows it. Four things are
+turned off or turned down so a form reads as a list of plain questions on a
+phone:
+
+- **The preview pane is off** (`editor: preview: false` on every collection).
+  On a wide screen it shows the page as you type. On a phone it took half the
+  width and filled it with raw page markup, squeezing the actual form into
+  what was left.
+- **Labels are in sentence case.** Decap sets them in spaced capitals —
+  "LINK TO YOUR REVIEWS ON GOOGLE (OPTIONAL)" — which is hard work to read.
+- **The drag grips are hidden.** Reordering a list by dragging is not something
+  anybody needs to do from a phone, and sitting next to the delete cross it
+  looked like a second button to be careful of.
+- **The delete cross is muted**, and given a fingertip-sized target so it is
+  not hit by accident either.
+
+Those last three are CSS matched on the readable part of Decap's class names.
+If a future version renames them the rules stop matching and simply do
+nothing — the editor would look as it does by default, which is untidy but
+never broken.
+
 The "waiting" badge comes from `admin/status.json`, which the build writes on
 every deploy. It holds two numbers and nothing else — no review text and no
 customer details.
