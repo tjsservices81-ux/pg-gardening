@@ -84,30 +84,38 @@ UK law requires a data controller to identify itself properly:
 
 ## 2. Trust — the things customers actually check
 
-Nothing in this section is on the site yet, because publishing a qualification
-you do not hold is fraud and publishing an insurance figure you do not carry
-is worse. Confirm what is genuinely held and it goes on the About page.
+Publishing a qualification you do not hold is fraud and publishing an insurance
+figure you do not carry is worse, so nothing here goes up until you confirm it.
+Two of them now have: the insurance and the chainsaw certification are live.
 
-### 2.1 Chainsaw and arb qualifications
+### 2.1 Chainsaw qualifications — DONE
 
-Which of these are held, and by whom?
+You confirmed you hold the full set of chainsaw tickets, so the About page now
+says the cutting and climbing is done by an operator holding the NPTC / City &
+Guilds chainsaw units, described in plain English: saw maintenance and
+cross-cutting, felling, climbing and aerial rescue, and aerial cutting.
 
-- [ ] CS30 / City & Guilds NPTC 0020 — chainsaw maintenance and cross-cutting
-- [ ] CS31 / 0021 — felling small trees (up to 380mm)
-- [ ] CS32 — felling medium/large trees
-- [ ] CS38 / 0039 — climbing and aerial rescue
-- [ ] CS39 / 0040 — aerial cutting with a chainsaw
-- [ ] Other tickets: ............................
-- [ ] Arboriculture qualification (Level 2/3, ND Arb, etc.): ....................
+**Deliberately not listed as individual codes.** "All the tickets" is your
+words; CS30, CS31, CS32, CS38 and CS39 would be my guess at which ones that
+means, and a unit code you do not actually hold is a false qualification claim
+on a trading website. If you want them printed individually, read them off the
+cards and send the list — they go on exactly as written.
 
-### 2.2 Insurance
+- Individual unit numbers, if you want them shown: ............................
+- Arboriculture qualification (Level 2/3, ND Arb, etc.), if held: ....................
 
-- Public liability insurer and level of cover: £............ 
+### 2.2 Insurance — DONE
+
+**£2 million public liability**, confirmed by you and now published on the
+About page and in the trust points on the home page. That is the single most
+useful number on the site: it is checkable, most local competitors will not
+print theirs, and it is what a customer with a conservatory under the tree
+actually wants to know.
+
+Still worth adding if they apply:
+
 - Employers' liability, if anyone is employed: £............
-- Renewal date: ............
-
-I will only publish the cover level you confirm. Customers do ask, and being
-able to say "£X public liability" plainly is worth more than any slogan.
+- Insurer and renewal date (not published — just so I know it is current): ............
 
 ### 2.3 Environment Agency waste carrier registration
 
