@@ -8,6 +8,28 @@
   document.documentElement.classList.add('js');
 
   /* ------------------------------------------------------------------
+     Netlify Identity invite and password-reset links
+
+     Those emails point at the site root with the token in the URL hash —
+     https://www.pggardening.com/#invite_token=abc123 — not at /admin. The
+     public pages have no reason to load the Identity widget, so without this
+     the token is ignored, the visitor lands on the ordinary home page and it
+     looks exactly like a broken link. That is what makes "I clicked the email
+     and it just showed me the website" the usual first experience.
+
+     The admin panel already loads the widget, so the token is handed straight
+     across to it and the set-a-password dialog opens there. Nothing
+     third-party is loaded out here to do it — this only reads the URL.
+     ------------------------------------------------------------------ */
+  (function forwardIdentityToken() {
+    var hash = window.location.hash || '';
+    var isToken = /^#(invite_token|confirmation_token|recovery_token|email_change_token|error)=/;
+    if (!isToken.test(hash)) return;
+    if (window.location.pathname.indexOf('/admin') === 0) return;
+    window.location.replace('/admin/' + hash);
+  })();
+
+  /* ------------------------------------------------------------------
      Mobile navigation
      ------------------------------------------------------------------ */
   function initNav() {

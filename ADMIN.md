@@ -267,8 +267,22 @@ It never marks a review as approved. That is always yours to do.
 
 ## If something goes wrong
 
-**The panel shows "Loading the admin panel…" and stays there.**
-Identity or Git Gateway is off. Steps 2 and 4 at the top of this page.
+**I clicked the invite email and it just showed me the ordinary website.**
+This is the one that catches everybody. Netlify sends its invite and
+password-reset emails to the *site root*, not to `/admin`, with a long
+`#invite_token=…` on the end of the address. The public pages had no reason to
+watch for that, so the token was ignored and you landed on the home page as if
+the link were broken.
+
+The site now spots that token on any page and forwards you to `/admin` with it,
+so clicking the link takes you where it should. If you hit this before the fix
+went up, just open the email and click the link again.
+
+**The panel shows "Opening the admin panel…" and stays there.**
+Press the **Log in** button on that page first — it opens the login box
+directly. If nothing happens, Identity or Git Gateway is off: steps 2 and 4 at
+the top of this page. The line at the bottom of that page says which of the two
+pieces failed to load.
 
 **I published something and the site has not changed.**
 Give it two minutes. If it still has not, look at **Deploys** in Netlify — a

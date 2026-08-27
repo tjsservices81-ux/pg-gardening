@@ -8,33 +8,77 @@
 <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png" sizes="any">
 <style>
   :root { color-scheme: light; }
-  body { margin: 0; font-family: "Segoe UI", Roboto, -apple-system, Helvetica, Arial, sans-serif; }
-  .boot {
-    max-width: 34rem;
-    margin: 12vh auto;
-    padding: 2rem;
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, -apple-system, Helvetica, Arial, sans-serif;
+    background: #eef2ee;
     color: #16241d;
     line-height: 1.6;
   }
-  .boot h1 { font-family: Georgia, serif; color: #0f3a26; margin: 0 0 .75rem; }
-  .boot p { color: #4a5a52; }
-  .boot code { background: #eaf5ee; padding: .1em .4em; border-radius: 4px; }
+  .boot {
+    max-width: 34rem;
+    margin: 8vh auto;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #d3dfd6;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(15,58,38,.05), 0 10px 30px rgba(15,58,38,.07);
+  }
+  .boot h1 { font-family: Georgia, serif; color: #0f3a26; margin: 0 0 .5rem; font-size: 1.5rem; }
+  .boot h2 { font-family: Georgia, serif; color: #0f3a26; font-size: 1.05rem; margin: 1.5rem 0 .4rem; }
+  .boot p { color: #35443c; margin: 0 0 .8rem; }
+  .boot ol { color: #35443c; margin: 0 0 .8rem; padding-left: 1.2rem; }
+  .boot li { margin-bottom: .35rem; }
+  .boot code {
+    background: #eaf5ee; padding: .1em .4em; border-radius: 4px;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em;
+  }
   .boot a { color: #1b6f42; }
+  .btn {
+    display: inline-block; border: 0; cursor: pointer;
+    background: #1b6f42; color: #fff; font: inherit; font-weight: 700;
+    padding: .7em 1.3em; border-radius: 999px; text-decoration: none;
+  }
+  .btn:hover { background: #22804f; }
+  .btn--plain { background: transparent; color: #1b6f42; border: 1px solid #c6dbcf; }
+  .row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0 .2rem; }
+  .status {
+    margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid #e2eae4;
+    font-size: .88rem; color: #4a5a52;
+  }
+  .status b { color: #16241d; }
+  .bad { color: #97231d; font-weight: 700; }
+  .good { color: #1b6f42; font-weight: 700; }
 </style>
 </head>
 <body>
 
-<!-- Shown only until the CMS takes over the page -->
+<!-- Replaced by the CMS the moment it mounts. Only ever seen when something
+     has stopped it, so it is written to be useful at that point. -->
 <div class="boot" id="boot">
-  <h1>Loading the admin panel…</h1>
-  <p>If this message stays put, the panel could not start. That is nearly always
-     one of two things, both fixed in the Netlify dashboard and both one-off:</p>
-  <p><strong>1.</strong> Netlify Identity is not enabled &mdash;
-     Site configuration → Identity → Enable.<br>
-     <strong>2.</strong> Git Gateway is not enabled &mdash;
-     Identity → Services → Git Gateway → Enable.</p>
-  <p>See <code>ADMIN.md</code> in the repository for the full walkthrough, or
-     <a href="/">go back to the website</a>.</p>
+  <h1>Opening the admin panel…</h1>
+  <p>If this message is still here after a few seconds, the panel could not
+     start. The button below opens the login box directly — try that first.</p>
+
+  <div class="row">
+    <button class="btn" type="button" id="login">Log in</button>
+    <a class="btn btn--plain" href="/">Back to the website</a>
+  </div>
+
+  <h2>If the login box does not appear</h2>
+  <p>It is one of two switches in the Netlify dashboard, and both are one-off:</p>
+  <ol>
+    <li><b>Site configuration → Identity → Enable Identity</b></li>
+    <li><b>Identity → Services → Git Gateway → Enable</b></li>
+  </ol>
+
+  <h2>If you clicked an invite email and landed on the ordinary website</h2>
+  <p>That is normal and it is now handled — the site forwards you here
+     automatically. If it happened before this fix, open the email again and
+     click the link a second time, or paste the whole address into the bar
+     including the long <code>#invite_token=…</code> part on the end.</p>
+
+  <div class="status" id="status">Checking…</div>
 </div>
 
 <!-- Netlify Identity: handles who is allowed in -->
@@ -43,24 +87,59 @@
 <script src="https://unpkg.com/decap-cms@^3.1.10/dist/decap-cms.js"></script>
 
 <script>
-  // Once the CMS mounts it replaces the page, so this only ever shows on failure.
+(function () {
+  var statusEl = document.getElementById('status');
+  var loginBtn = document.getElementById('login');
+
+  function say(html) { if (statusEl) statusEl.innerHTML = html; }
+
+  /* The invite link puts its token in the hash. The widget reads it on its own,
+     but saying so out loud stops the page looking inert while it works. */
+  var hash = window.location.hash || '';
+  var invited = /^#(invite_token|recovery_token|confirmation_token|email_change_token)=/.test(hash);
+
+  if (/^#error=/.test(hash)) {
+    say('<span class="bad">That link did not work.</span> Invite links expire. ' +
+        'Ask for a fresh invite from Netlify → Identity → Invite users.');
+  } else if (invited) {
+    say('Invite recognised — the box to set your password should be open. ' +
+        'If it is not, press <b>Log in</b> above.');
+  }
+
+  if (loginBtn) {
+    loginBtn.addEventListener('click', function () {
+      if (window.netlifyIdentity) window.netlifyIdentity.open();
+      else say('<span class="bad">Netlify Identity did not load.</span> ' +
+               'Check your internet connection, then check Identity is enabled in Netlify.');
+    });
+  }
+
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', function (user) {
+      if (user) {
+        if (!invited) say('Signed in as <b>' + (user.email || 'you') + '</b>. Loading the panel…');
+      } else if (!invited) {
+        say('Not signed in yet. Press <b>Log in</b> above.');
+      }
+      // Somebody logging in from the public site ends up here rather than on
+      // the page they happened to be reading.
+      window.netlifyIdentity.on('login', function () {
+        document.location.href = '/admin/';
+      });
+    });
+  } else {
+    say('<span class="bad">Netlify Identity did not load.</span> That is ' +
+        'usually Identity not being enabled on the site yet.');
+  }
+
+  // Once the CMS mounts it owns the page, so this panel gets out of the way.
   window.addEventListener('load', function () {
     setTimeout(function () {
       var boot = document.getElementById('boot');
       if (boot && document.querySelector('#nc-root, [class*="AppMainContainer"]')) boot.remove();
     }, 1200);
   });
-
-  // Send anyone who logs in from the public site straight here
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on('init', function (user) {
-      if (!user) {
-        window.netlifyIdentity.on('login', function () {
-          document.location.href = '/admin/';
-        });
-      }
-    });
-  }
+})();
 </script>
 </body>
 </html>
