@@ -126,6 +126,13 @@ scrolls to them.
 files", drag them in, commit. Netlify rebuilds and they are live in a minute
 or two.
 
+**Open the folder first.** GitHub uploads into whichever folder you are
+looking at, and its front page is the top of the repository, not a gallery
+folder. Photos dropped there are stored but never shown on the website —
+nothing scans that folder. Click into
+`assets` → `img` → `gallery` → the service, and check the address bar says so,
+before you press Upload.
+
 **If you work on the files locally:** commit and push as usual.
 
 Either way the scan runs automatically on deploy — that is what
