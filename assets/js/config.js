@@ -29,6 +29,6 @@ window.PG_CONFIG = {
     "number": "07411 648 265",
     "label": ""
   },
-  "email": "",
+  "email": "pggardening1@gmail.com",
   "domain": ""
 };

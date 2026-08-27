@@ -53,12 +53,23 @@ node tools/setup.mjs \
 
 The `--label1` and `--label2` values are what appear beside each number.
 
-### 1.2 Email address
+### 1.2 Email address — DONE
 
-- **Email:** ............................
+**pggardening1@gmail.com** is now live everywhere on the site: the contact
+page, the footer of all 32 pages, the About page and the business data search
+engines read. Every one is a working `mailto:` link.
 
-This is also where the website's enquiry forms get delivered, so it needs to
-be one that is actually read.
+**One thing still to switch on, and it takes four clicks.** Form submissions
+save into Netlify's own inbox automatically and are never lost, but Netlify
+does not email you about them until you ask it to:
+
+> app.netlify.com → your site → **Forms** → **Form notifications** →
+> **Add notification** → **Email notification** → send to
+> pggardening1@gmail.com → leave the form dropdown on *any form* so all three
+> are covered → Save.
+
+Without that step an enquiry sits in a dashboard you have no reason to open.
+`ADMIN.md` has the same instructions.
 
 ### 1.3 Domain name
 

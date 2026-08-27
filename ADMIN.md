@@ -53,6 +53,31 @@ reads. Tell me when you merge and I will change it. Same value goes in the
 `GITHUB_BRANCH` environment variable if you set up the optional bit at the
 bottom of this page.
 
+### Getting the enquiries emailed to you
+
+**Do this one, or you will not know an enquiry has arrived.**
+
+Every form on the site — the quote form on the contact page, the short one on
+the home page and the review form — saves into Netlify's own inbox
+automatically. Nothing is ever lost. But Netlify does not email you about it
+until you tell it to, and nobody wants to log into a dashboard to find out
+whether anybody wanted a hedge cutting.
+
+Four clicks, once:
+
+1. **app.netlify.com** → your site → **Forms**
+2. **Form notifications** → **Add notification** → **Email notification**
+3. Send to **pggardening1@gmail.com**
+4. Leave the form dropdown on **any form**, so all three are covered, and save
+
+From then on every enquiry lands in that inbox within a minute or two.
+
+Two things worth knowing. The email includes the customer's own address from
+the form, so you can reply straight to them. And because Netlify keeps a copy
+in the dashboard regardless, an enquiry is never lost even if the notification
+fails or a message gets caught by Gmail's spam filter — worth checking the
+Forms tab now and then for the first fortnight.
+
 ### Adding somebody else later
 
 Same place: **Identity → Invite users.** Anybody you invite can edit
