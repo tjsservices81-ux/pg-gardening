@@ -717,18 +717,23 @@ a.card:hover .card__more svg { transform: translateX(3px); }
 
 /* Tick list */
 .ticks { list-style: none; padding: 0; margin: 0 0 var(--sp-4); display: grid; gap: var(--sp-2); }
+/* The tick hangs in a left gutter rather than sitting as a flex item. As a
+   flex row the item's own ::before, a leading <strong> and the text after it
+   all became separate flex items, so "£2 million public liability insurance."
+   was squeezed into its own narrow column beside its own sentence. Twenty-nine
+   list items across the site open with a bold lead-in like that. */
 .ticks li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-3);
+  position: relative;
+  padding-left: calc(20px + var(--sp-3));
   font-size: 0.97rem;
 }
 .ticks li::before {
   content: "";
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 3px;
   width: 20px;
   height: 20px;
-  margin-top: 3px;
   border-radius: 50%;
   background: var(--green-050);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b6f42' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
