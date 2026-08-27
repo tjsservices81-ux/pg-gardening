@@ -2,10 +2,10 @@
 
 Everything on the website that changes — reviews, photos, before/after
 sliders, and the links to Bark, MyBuilder and the rest — is edited from one
-page:
+address:
 
 ```
-https://your-domain.co.uk/admin/
+https://pggardening.com/admin/
 ```
 
 There is also an **Owner login** link at the very bottom of every page on the
@@ -13,6 +13,34 @@ site, so you can always get to it from your phone.
 
 You do not need a computer. It works on a phone, and photos can be uploaded
 straight from the camera roll.
+
+## The two halves of it
+
+`/admin/` is a plain menu: five big buttons, one per job, and it opens
+instantly. `/admin/edit/` is the editor those buttons take you into — Decap
+CMS, a four-megabyte download built for a desktop.
+
+Splitting them is deliberate. The menu loads in a moment on a phone, says in
+plain words what each thing does, and then drops you on the exact screen for
+the job rather than in a list of sections you have to work out. The heavy
+editor is only downloaded when you actually pick something.
+
+The buttons are:
+
+| Button | Where it takes you |
+|---|---|
+| **Add a photo** | Straight into a blank photo, ready for the camera roll |
+| **Add a before & after** | Straight into a blank slider |
+| **Reviews** | The list, with a badge on the button when any are waiting |
+| **Links & switches** | Facebook, Google and the thirteen directories |
+| **See the website** | Your live site in a new tab |
+
+Once you are in the editor there is a small **‹ Menu** button in the
+bottom-left corner that brings you back.
+
+The "waiting" badge comes from `admin/status.json`, which the build writes on
+every deploy. It holds two numbers and nothing else — no review text and no
+customer details.
 
 ---
 
@@ -280,7 +308,7 @@ The site now spots that token on any page and forwards you to `/admin` with it,
 so clicking the link takes you where it should. If you hit this before the fix
 went up, just open the email and click the link again.
 
-**The panel shows "Opening the admin panel…" and stays there.**
+**The editor shows "Opening the admin panel…" and stays there.**
 Press the **Log in** button on that page first — it opens the login box
 directly. If nothing happens, Identity or Git Gateway is off: steps 2 and 4 at
 the top of this page. The line at the bottom of that page says which of the two

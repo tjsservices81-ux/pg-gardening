@@ -4,276 +4,288 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Admin — PG Gardening &amp; Tree Surgeon</title>
+<title>Your website — PG Gardening &amp; Tree Surgeon</title>
 <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png" sizes="any">
+<link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#0f3a26">
 <style>
-  :root { color-scheme: light; }
+  /* ------------------------------------------------------------------------
+     The front door of the admin panel.
+
+     The editor itself (Decap) lives at /admin/edit/ and is a four-megabyte
+     download with a dense desktop layout. Putting it behind this page means
+     the owner opens something instant and obvious, taps the one job he came to
+     do, and only then loads the editor — landing directly on the right screen
+     instead of having to find it.
+
+     Written for somebody who is not confident with a phone: one column, one
+     idea per button, nothing under 17px, nothing to tap smaller than a
+     fingertip, and no word that assumes any of this is familiar.
+     --------------------------------------------------------------------- */
+  :root {
+    color-scheme: light;
+    --green: #0f3a26;
+    --green-live: #1b6f42;
+    --ink: #14231b;
+    --ink-soft: #4a5a51;
+    --ground: #eef2ee;
+    --surface: #ffffff;
+    --line: #d3dfd6;
+    --amber: #8a5410;
+    --amber-soft: #fbf0dd;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    font-family: "Segoe UI", Roboto, -apple-system, Helvetica, Arial, sans-serif;
-    background: #eef2ee;
-    color: #16241d;
-    line-height: 1.6;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
   }
-  .boot {
-    max-width: 34rem;
-    margin: 6vh auto;
-    padding: 1.6rem;
-    background: #fff;
-    border: 1px solid #d3dfd6;
-    border-radius: 12px;
-    box-shadow: 0 1px 2px rgba(15,58,38,.05), 0 10px 30px rgba(15,58,38,.07);
-  }
-  .boot h1 { font-family: Georgia, serif; color: #0f3a26; margin: 0 0 .5rem; font-size: 1.4rem; }
-  .boot h2 { font-family: Georgia, serif; color: #0f3a26; font-size: 1.02rem; margin: 1.6rem 0 .4rem; }
-  .boot p { color: #35443c; margin: 0 0 .8rem; }
-  .boot ol, .boot ul { color: #35443c; margin: 0 0 .8rem; padding-left: 1.2rem; }
-  .boot li { margin-bottom: .35rem; }
-  .boot code {
-    background: #eaf5ee; padding: .1em .4em; border-radius: 4px;
-    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .88em;
-    overflow-wrap: anywhere;
-  }
-  .boot a { color: #1b6f42; }
-  .btn {
-    display: inline-block; border: 0; cursor: pointer;
-    background: #1b6f42; color: #fff; font: inherit; font-weight: 700;
-    padding: .75em 1.4em; border-radius: 999px; text-decoration: none;
-    min-height: 44px;
-  }
-  .btn:hover { background: #22804f; }
-  .btn--plain { background: transparent; color: #1b6f42; border: 1px solid #c6dbcf; }
-  .row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.1rem 0 .2rem; }
+  .wrap { max-width: 33rem; margin: 0 auto; padding: 1.5rem 1.15rem 3rem; }
 
-  /* The live progress line. It is the whole point of this page when the panel
-     will not start, so it is given more weight than a footnote. */
-  .status {
-    margin-top: 1.3rem; padding: .8rem 1rem;
-    background: #f4f8f5; border: 1px solid #dbe7df; border-radius: 8px;
-    font-size: .92rem; color: #35443c;
+  header { text-align: center; padding-top: 1.5rem; }
+  header img { width: 200px; max-width: 62%; height: auto; }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.6rem; line-height: 1.2; margin: 1.1rem 0 .35rem; color: var(--green);
   }
-  .status b { color: #16241d; }
-  .bad { color: #97231d; font-weight: 700; }
-  .good { color: #1b6f42; font-weight: 700; }
-  .bar { height: 4px; background: #dbe7df; border-radius: 3px; overflow: hidden; margin-top: .6rem; }
-  .bar i { display: block; height: 100%; width: 30%; background: #1b6f42; border-radius: 3px;
-           animation: slide 1.4s ease-in-out infinite; }
-  @keyframes slide { 0% { margin-left: -30%; } 100% { margin-left: 100%; } }
-  @media (prefers-reduced-motion: reduce) { .bar i { animation: none; width: 100%; } }
-  .hide { display: none; }
+  .sub { color: var(--ink-soft); margin: 0; font-size: 1.02rem; }
+
+  /* ---- the menu: one job per row, all thumb-sized ---- */
+  .menu { display: flex; flex-direction: column; gap: .8rem; margin: 1.8rem 0 0; padding: 0; list-style: none; }
+  .item {
+    display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: center;
+    gap: 0 1rem;
+    min-height: 5.2rem; padding: 1rem 1.1rem;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    text-decoration: none; color: inherit;
+    box-shadow: 0 1px 2px rgba(15,58,38,.05), 0 6px 16px rgba(15,58,38,.06);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .item:active { background: #f4f9f5; transform: scale(.995); }
+  .item__icon {
+    grid-row: span 2; width: 3.2rem; height: 3.2rem; border-radius: 12px;
+    background: #e7f2eb; color: var(--green-live);
+    display: grid; place-items: center;
+  }
+  .item__icon svg { width: 1.65rem; height: 1.65rem; }
+  .item__name { font-size: 1.14rem; font-weight: 700; color: var(--green); }
+  .item__what { font-size: .95rem; color: var(--ink-soft); grid-column: 2 / 4; }
+  .item__go { font-size: 1.5rem; color: #9db3a6; line-height: 1; }
+
+  .badge {
+    display: inline-block; margin-left: .45rem; vertical-align: 2px;
+    background: var(--amber); color: #fff;
+    font-size: .78rem; font-weight: 700; letter-spacing: .02em;
+    padding: .15em .55em; border-radius: 999px;
+  }
+
+  /* ---- login ---- */
+  .gate { text-align: center; padding: 2.5rem 0 1rem; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 3.4rem; padding: 0 2rem;
+    background: var(--green-live); color: #fff;
+    border: 0; border-radius: 999px; cursor: pointer;
+    font: inherit; font-size: 1.1rem; font-weight: 700;
+    text-decoration: none;
+  }
+  .btn:active { background: #17603a; }
+  .btn--quiet {
+    background: transparent; color: var(--green-live);
+    border: 1px solid var(--line); font-size: 1rem; min-height: 2.9rem; padding: 0 1.3rem;
+  }
+
+  .msg {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 1rem 1.1rem; color: var(--ink-soft); font-size: .98rem;
+    text-align: left;
+  }
+  .msg b { color: var(--ink); }
+  .msg--warn { background: var(--amber-soft); border-color: #ecd8b4; }
+  .msg--warn b { color: var(--amber); }
+
+  .foot {
+    margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; justify-content: space-between;
+    font-size: .93rem; color: var(--ink-soft);
+  }
+  .foot a { color: var(--green-live); }
+  .who { font-size: .93rem; color: var(--ink-soft); }
+  .hide { display: none !important; }
+  :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .item:active { transform: none; } }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- Replaced by the CMS the moment it mounts. Only ever seen while it is
-     loading, or when something has stopped it, so it is written to be useful
-     at both those moments. -->
-<div class="boot" id="boot">
-  <h1>Opening the admin panel…</h1>
-  <p>The panel is a fairly large download — on mobile data the first visit can
-     take the best part of a minute. The line below says what is actually
-     happening rather than leaving you guessing.</p>
+  <header>
+    <img src="/assets/img/brand/logo.webp" alt="PG Gardening &amp; Tree Surgeon"
+         width="200" height="86">
+    <h1>Your website</h1>
+    <p class="sub" id="sub">Checking…</p>
+  </header>
 
-  <div class="status" id="status">
-    Starting…
-    <div class="bar" id="bar"><i></i></div>
+  <!-- Shown until Netlify Identity says who this is -------------------- -->
+  <div class="gate" id="gate">
+    <div class="msg" id="gateMsg">Just a moment…</div>
+    <p style="margin:1.3rem 0 0"><button class="btn" type="button" id="login">Log in</button></p>
   </div>
 
-  <div class="row">
-    <button class="btn" type="button" id="login">Log in</button>
-    <a class="btn btn--plain" href="/">Back to the website</a>
+  <!-- The menu. Every link goes straight to the screen for that one job. -->
+  <ul class="menu hide" id="menu">
+    <li><a class="item" href="/admin/edit/#/collections/photos/new">
+      <span class="item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.2-2h8.2l1.2 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/><circle cx="12" cy="13" r="3.6"/></svg></span>
+      <span class="item__name">Add a photo</span>
+      <span class="item__go" aria-hidden="true">›</span>
+      <span class="item__what">One picture of a finished job.</span>
+    </a></li>
+
+    <li><a class="item" href="/admin/edit/#/collections/pairs/new">
+      <span class="item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.8"/><path d="M12 3.5v17"/><path d="m8.6 10.4-2 1.6 2 1.6M15.4 10.4l2 1.6-2 1.6"/></svg></span>
+      <span class="item__name">Add a before &amp; after</span>
+      <span class="item__go" aria-hidden="true">›</span>
+      <span class="item__what">Two pictures of the same spot, to slide across.</span>
+    </a></li>
+
+    <li><a class="item" href="/admin/edit/#/collections/reviews">
+      <span class="item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.6 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.5 9.8l5.9-.9Z"/></svg></span>
+      <span class="item__name">Reviews<span class="badge hide" id="waiting"></span></span>
+      <span class="item__go" aria-hidden="true">›</span>
+      <span class="item__what">Read what customers wrote, and choose what goes on the site.</span>
+    </a></li>
+
+    <li><a class="item" href="/admin/edit/#/collections/settings/entries/links">
+      <span class="item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 13.7a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7L11.7 6.6"/><path d="M13.7 10.3a4 4 0 0 0-5.7 0l-2.8 2.8a4 4 0 0 0 5.7 5.7l1.4-1.4"/></svg></span>
+      <span class="item__name">Links &amp; switches</span>
+      <span class="item__go" aria-hidden="true">›</span>
+      <span class="item__what">Facebook, Google, Bark, MyBuilder and the rest.</span>
+    </a></li>
+
+    <li><a class="item" href="/" target="_blank" rel="noopener">
+      <span class="item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.2 2.4 3.4 5.4 3.4 8.6s-1.2 6.2-3.4 8.6c-2.2-2.4-3.4-5.4-3.4-8.6S9.8 5.8 12 3.4Z"/></svg></span>
+      <span class="item__name">See the website</span>
+      <span class="item__go" aria-hidden="true">›</span>
+      <span class="item__what">Opens your site in a new tab, exactly as a customer sees it.</span>
+    </a></li>
+  </ul>
+
+  <div class="msg hide" id="tip" style="margin-top:1.4rem">
+    <b>Anything you change takes a minute or two to show up</b>, because the
+    website rebuilds itself each time. If it looks the same at first, wait a
+    moment and refresh — it is not broken.
   </div>
 
-  <div id="help" class="hide">
-    <h2>If the login box does not appear</h2>
-    <p>It is one of two switches in the Netlify dashboard, and both are one-off:</p>
-    <ol>
-      <li><b>Site configuration → Identity → Enable Identity</b></li>
-      <li><b>Identity → Services → Git Gateway → Enable</b></li>
-    </ol>
-
-    <h2>If it will not finish loading</h2>
-    <ul>
-      <li><b>Open it in Safari or Chrome properly.</b> If you came here by
-        tapping a link inside Gmail, Facebook or Messages, you are in a
-        cut-down browser those apps run themselves, and it handles big
-        downloads badly. Tap the <b>⋯</b> or share button and choose
-        <b>Open in Safari</b> / <b>Open in Chrome</b>.</li>
-      <li><b>Get on wi-fi if you can.</b> It only has to download once —
-        after that it is cached.</li>
-      <li><b>Pull down to refresh</b> and give it another go. A half-finished
-        download does not resume; a fresh one usually works.</li>
-    </ul>
+  <div class="foot hide" id="foot">
+    <span class="who" id="who"></span>
+    <button class="btn btn--quiet" type="button" id="logout">Log out</button>
   </div>
 
-  <h2>If you clicked an invite email and landed on the ordinary website</h2>
-  <p>That is Netlify sending its invites to the front page rather than here,
-     and the site now forwards you across automatically. If it happened before
-     that fix went up, open the email again and click the link a second time —
-     or paste the whole address in with <code>/admin/</code> before the
-     <code>#invite_token=…</code> part.</p>
 </div>
 
-<script>
-  /* Must come before the tags below. A blocking <script src> fires its onload
-     before the parser reaches the next inline script, so declaring this
-     afterwards would mean the handler ran against an undefined object. */
-  window.__pg = { identity: null, cms: null, source: '' };
-</script>
-
-<!-- Netlify Identity: handles who is allowed in. There is only one source for
-     this one, so it gets a plain tag with a failure flag. -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-        onload="window.__pg.identity = true"
-        onerror="window.__pg.identity = false"></script>
-
-<script>
-/* Decap CMS is a ~4 MB bundle. Loading it from a pinned version rather than a
-   semver range skips a redirect, and having a second CDN to fall back to means
-   one of them being slow or down does not leave the owner locked out of their
-   own website. Previously this was a single unpkg tag on a `^` range: no
-   fallback, no timeout, and no way to tell a slow download from a dead one. */
-(function loadCms() {
-  var sources = [
-    'https://cdn.jsdelivr.net/npm/decap-cms@3.15.1/dist/decap-cms.js',
-    'https://unpkg.com/decap-cms@3.15.1/dist/decap-cms.js'
-  ];
-  var i = 0;
-  (function next() {
-    if (i >= sources.length) { window.__pg.cms = false; return; }
-    var url = sources[i++];
-    var s = document.createElement('script');
-    s.src = url;
-    s.onload = function () { window.__pg.cms = true; window.__pg.source = url; };
-    s.onerror = next;
-    document.head.appendChild(s);
-  })();
-})();
-</script>
-
+        onerror="window.__idFailed = true"></script>
 <script>
 (function () {
-  var statusEl = document.getElementById('status');
-  var barEl = document.getElementById('bar');
-  var helpEl = document.getElementById('help');
+  var sub = document.getElementById('sub');
+  var gate = document.getElementById('gate');
+  var gateMsg = document.getElementById('gateMsg');
   var loginBtn = document.getElementById('login');
-  var started = Date.now();
-  var settled = false;
+  var menu = document.getElementById('menu');
+  var tip = document.getElementById('tip');
+  var foot = document.getElementById('foot');
+  var who = document.getElementById('who');
+  var logoutBtn = document.getElementById('logout');
+  var waitingEl = document.getElementById('waiting');
 
-  function say(html, showBar, showHelp) {
-    if (!statusEl) return;
-    statusEl.innerHTML = html;
-    if (showBar) statusEl.appendChild(barEl);
-    if (showHelp && helpEl) helpEl.classList.remove('hide');
-  }
-  function settle(html, showHelp) {
-    settled = true;
-    say(html, false, showHelp);
-  }
+  function show(el) { el.classList.remove('hide'); }
+  function hide(el) { el.classList.add('hide'); }
 
+  /* Netlify puts the invite and password-reset token in the address of
+     whichever page the email pointed at. The public pages forward it here, and
+     the widget picks it up on its own — this just stops the page looking inert
+     while that happens. */
   var hash = window.location.hash || '';
   var invited = /^#(invite_token|recovery_token|confirmation_token|email_change_token)=/.test(hash);
 
-  function identity() {
-    return window.netlifyIdentity || null;
+  function signedIn(user) {
+    hide(gate);
+    show(menu); show(tip); show(foot);
+    sub.textContent = 'Tap what you want to do.';
+    who.textContent = 'Signed in as ' + (user && user.email ? user.email : 'you');
+    loadCounts();
   }
-  function currentUser() {
-    try { return identity() && identity().currentUser(); } catch (e) { return null; }
+
+  function signedOut(message) {
+    show(gate);
+    hide(menu); hide(tip); hide(foot);
+    sub.textContent = 'Only you can get in here.';
+    gateMsg.innerHTML = message;
+  }
+
+  /* The count of reviews waiting is written by the site build, so the button
+     can say there is something to do without opening the list. */
+  function loadCounts() {
+    fetch('/admin/status.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.waiting) return;
+        waitingEl.textContent = d.waiting + ' waiting';
+        show(waitingEl);
+      })
+      .catch(function () { /* a missing count is not worth mentioning */ });
   }
 
   if (loginBtn) {
     loginBtn.addEventListener('click', function () {
-      var id = identity();
-      if (!id) {
-        settle('<span class="bad">The login code has not downloaded yet.</span> ' +
-               'Give it a moment, or refresh the page.', true);
-        return;
-      }
-      /* Decap normally calls init() itself. If Decap has not arrived, nothing
-         has, so do it here — otherwise the button does nothing at all. */
-      try { if (window.__pg.cms !== true) id.init({}); } catch (e) {}
-      id.open();
+      if (window.netlifyIdentity) window.netlifyIdentity.open();
+      else signedOut('<b>The login could not load.</b> Check you have signal, then try again.');
+    });
+  }
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function () {
+      if (window.netlifyIdentity) window.netlifyIdentity.logout();
     });
   }
 
-  /* The CMS replaces the page when it mounts. Watching for that beats the old
-     one-shot timeout, which fired 1.2s after load and then never looked
-     again — so a panel that took longer than that left this card sitting on
-     top of it for ever. */
-  var boot = document.getElementById('boot');
-  function mounted() {
-    var root = document.querySelector('#nc-root, [class*="AppMainContainer"]');
-    return !!(root && root.childElementCount > 0);
-  }
-  if (window.MutationObserver) {
-    var mo = new MutationObserver(function () {
-      if (mounted() && boot && boot.parentNode) { boot.remove(); mo.disconnect(); }
-    });
-    mo.observe(document.body, { childList: true, subtree: true });
+  if (!window.netlifyIdentity) {
+    signedOut('<b>The login could not load.</b> Either there is no signal, or ' +
+              'the login has not been switched on for this site yet.');
+    return;
   }
 
-  /* One tick, every half second, reporting only what is actually true. */
-  var tick = setInterval(function () {
-    if (mounted()) {
-      if (boot && boot.parentNode) boot.remove();
-      clearInterval(tick);
-      return;
-    }
-    if (settled) return;
+  var id = window.netlifyIdentity;
+  id.on('init', function (user) { user ? signedIn(user) : ready(); });
+  id.on('login', function (user) { id.close(); signedIn(user); });
+  id.on('logout', function () { signedOut('Tap <b>Log in</b> to get back in.'); });
 
-    var secs = Math.round((Date.now() - started) / 1000);
-    var id = window.__pg.identity;
-    var cms = window.__pg.cms;
-
-    if (/^#error=/.test(hash)) {
-      return settle('<span class="bad">That link did not work.</span> Invite links ' +
-        'expire. Ask for a fresh one: Netlify → Identity → Invite users.', true);
-    }
-    if (id === false) {
-      return settle('<span class="bad">Could not download the login code.</span> ' +
-        'Either you are offline, or Identity has not been switched on for this ' +
-        'site yet.', true);
-    }
-    if (cms === false) {
-      return settle('<span class="bad">Could not download the panel.</span> Both ' +
-        'sources failed, which is nearly always the connection rather than the ' +
-        'site.', true);
-    }
-
-    var user = currentUser();
-    if (id === true && cms === true) {
-      say((user ? 'Signed in as <b>' + (user.email || 'you') + '</b>. ' : '') +
-          'Everything downloaded. Starting the panel…', true);
-      /* Downloaded but never mounted: that is a real fault, not slowness. */
-      if (secs > 25) {
-        return settle('<span class="bad">Everything downloaded but the panel did ' +
-          'not start.</span> Refresh once. If it happens again, tell me and send ' +
-          'this line.', true);
-      }
-      return;
-    }
-
+  function ready() {
+    sub.textContent = 'Only you can get in here.';
     if (invited) {
-      return say('Invite recognised. Waiting for the login box… <b>' + secs + 's</b>', true);
+      gateMsg.innerHTML = 'Your invite has been recognised. The box to choose a ' +
+                          'password should be open — if it is not, tap <b>Log in</b>.';
+    } else if (/^#error=/.test(hash)) {
+      gateMsg.innerHTML = '<b>That link has expired.</b> Invite links only last a ' +
+                          'few days. Ask for a new one and it will work.';
+    } else {
+      gateMsg.innerHTML = 'Tap <b>Log in</b> and put in your email address and password.';
     }
+  }
 
-    var waiting = [];
-    if (id !== true) waiting.push('the login code');
-    if (cms !== true) waiting.push('the panel itself');
-    say('Downloading ' + waiting.join(' and ') + '… <b>' + secs + 's</b>' +
-        (secs > 12 ? '<br>On mobile data this is normal. It only downloads once.' : ''), true);
-
-    if (secs > 60) {
-      return settle('<span class="bad">Still not finished after a minute.</span> ' +
-        'This is almost always a slow or blocked connection rather than the site.', true);
-    }
-  }, 500);
-
-  /* After 8 seconds with nothing mounted, put the troubleshooting on screen
-     rather than making somebody scroll looking for it. */
+  /* on('init') has already fired if the widget booted before this script ran,
+     so ask it directly rather than waiting for an event that will not come. */
   setTimeout(function () {
-    if (!mounted() && helpEl) helpEl.classList.remove('hide');
-  }, 8000);
+    if (!gate.classList.contains('hide') && gateMsg.textContent.indexOf('moment') !== -1) {
+      var u = null;
+      try { u = id.currentUser(); } catch (e) {}
+      u ? signedIn(u) : ready();
+    }
+  }, 1200);
 })();
 </script>
 </body>

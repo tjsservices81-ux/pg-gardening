@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin — PG Gardening &amp; Tree Surgeon</title>
+<link rel="icon" href="/assets/img/brand/favicon.png" type="image/png" sizes="any">
+<!-- The config lives one level up, shared with the front page of the panel.
+     Without this Decap looks for ./config.yml beside itself and finds nothing. -->
+<link rel="cms-config-url" type="text/yaml" href="/admin/config.yml">
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, -apple-system, Helvetica, Arial, sans-serif;
+    background: #eef2ee;
+    color: #16241d;
+    line-height: 1.6;
+  }
+  .boot {
+    max-width: 34rem;
+    margin: 6vh auto;
+    padding: 1.6rem;
+    background: #fff;
+    border: 1px solid #d3dfd6;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(15,58,38,.05), 0 10px 30px rgba(15,58,38,.07);
+  }
+  .boot h1 { font-family: Georgia, serif; color: #0f3a26; margin: 0 0 .5rem; font-size: 1.4rem; }
+  .boot h2 { font-family: Georgia, serif; color: #0f3a26; font-size: 1.02rem; margin: 1.6rem 0 .4rem; }
+  .boot p { color: #35443c; margin: 0 0 .8rem; }
+  .boot ol, .boot ul { color: #35443c; margin: 0 0 .8rem; padding-left: 1.2rem; }
+  .boot li { margin-bottom: .35rem; }
+  .boot code {
+    background: #eaf5ee; padding: .1em .4em; border-radius: 4px;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .88em;
+    overflow-wrap: anywhere;
+  }
+  .boot a { color: #1b6f42; }
+  .btn {
+    display: inline-block; border: 0; cursor: pointer;
+    background: #1b6f42; color: #fff; font: inherit; font-weight: 700;
+    padding: .75em 1.4em; border-radius: 999px; text-decoration: none;
+    min-height: 44px;
+  }
+  .btn:hover { background: #22804f; }
+  .btn--plain { background: transparent; color: #1b6f42; border: 1px solid #c6dbcf; }
+  .row { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.1rem 0 .2rem; }
+
+  /* The live progress line. It is the whole point of this page when the panel
+     will not start, so it is given more weight than a footnote. */
+  .status {
+    margin-top: 1.3rem; padding: .8rem 1rem;
+    background: #f4f8f5; border: 1px solid #dbe7df; border-radius: 8px;
+    font-size: .92rem; color: #35443c;
+  }
+  .status b { color: #16241d; }
+  .bad { color: #97231d; font-weight: 700; }
+  .good { color: #1b6f42; font-weight: 700; }
+  .bar { height: 4px; background: #dbe7df; border-radius: 3px; overflow: hidden; margin-top: .6rem; }
+  .bar i { display: block; height: 100%; width: 30%; background: #1b6f42; border-radius: 3px;
+           animation: slide 1.4s ease-in-out infinite; }
+  @keyframes slide { 0% { margin-left: -30%; } 100% { margin-left: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .bar i { animation: none; width: 100%; } }
+  .hide { display: none; }
+
+  /* ----------------------------------------------------------------------
+     Decap on a phone.
+
+     Its own layout is built for a desktop: 14px labels, tight rows, and
+     controls sized for a mouse. None of the below changes how it works — it
+     only gives the type and the tap targets enough size to be used with a
+     thumb by somebody who is not confident with a phone.
+
+     Decap 3 generates its class names, but keeps a readable suffix on each
+     one, so these match on the part that is stable. A selector that stops
+     matching in a future version simply does nothing, which is why this is
+     safe to carry: the worst case is the panel looking as it did before.
+     ---------------------------------------------------------------------- */
+  @media (max-width: 900px) {
+    /* Field labels and help text: the words that tell you what a box is for. */
+    [class*="-FieldLabel"] { font-size: 0.95rem !important; }
+    [class*="-ControlHint"] {
+      font-size: 0.92rem !important;
+      line-height: 1.5 !important;
+      opacity: 1 !important;
+    }
+    /* Typing into a box on iOS zooms the whole page in unless the text is at
+       least 16px. That zoom is the single most disorienting thing about
+       filling a form in on a phone. */
+    input[type="text"], input[type="number"], input[type="date"],
+    input[type="email"], input[type="password"], textarea, select {
+      font-size: 16px !important;
+    }
+    [class*="-ObjectWidgetTopBar"] button,
+    [class*="-ListItemTopBar"] button { min-height: 44px !important; }
+    /* Publish, Save, and the rest of the toolbar. */
+    [class*="-ToolbarButton"], [class*="-PublishButton"], [class*="-DropdownButton"] {
+      min-height: 46px !important;
+      font-size: 1rem !important;
+    }
+    /* The list of existing entries: one legible row per item. */
+    [class*="-CardHeading"] { font-size: 1.05rem !important; }
+  }
+
+  /* A way back to the plain menu that never scrolls away. Decap owns the rest
+     of the screen once it mounts, so this is deliberately small and low. */
+  #pg-back {
+    position: fixed; left: .7rem; bottom: .7rem; z-index: 9999;
+    background: #0f3a26; color: #fff; text-decoration: none;
+    font: 700 0.92rem/1 "Segoe UI", Roboto, -apple-system, Helvetica, Arial, sans-serif;
+    padding: .8em 1.1em; border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.28);
+    opacity: .92;
+  }
+  #pg-back:active { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- Replaced by the CMS the moment it mounts. Only ever seen while it is
+     loading, or when something has stopped it, so it is written to be useful
+     at both those moments. -->
+<div class="boot" id="boot">
+  <h1>Opening the admin panel…</h1>
+  <p>The panel is a fairly large download — on mobile data the first visit can
+     take the best part of a minute. The line below says what is actually
+     happening rather than leaving you guessing.</p>
+
+  <div class="status" id="status">
+    Starting…
+    <div class="bar" id="bar"><i></i></div>
+  </div>
+
+  <div class="row">
+    <button class="btn" type="button" id="login">Log in</button>
+    <a class="btn btn--plain" href="/admin/">Back to the menu</a>
+  </div>
+
+  <div id="help" class="hide">
+    <h2>If the login box does not appear</h2>
+    <p>It is one of two switches in the Netlify dashboard, and both are one-off:</p>
+    <ol>
+      <li><b>Site configuration → Identity → Enable Identity</b></li>
+      <li><b>Identity → Services → Git Gateway → Enable</b></li>
+    </ol>
+
+    <h2>If it will not finish loading</h2>
+    <ul>
+      <li><b>Open it in Safari or Chrome properly.</b> If you came here by
+        tapping a link inside Gmail, Facebook or Messages, you are in a
+        cut-down browser those apps run themselves, and it handles big
+        downloads badly. Tap the <b>⋯</b> or share button and choose
+        <b>Open in Safari</b> / <b>Open in Chrome</b>.</li>
+      <li><b>Get on wi-fi if you can.</b> It only has to download once —
+        after that it is cached.</li>
+      <li><b>Pull down to refresh</b> and give it another go. A half-finished
+        download does not resume; a fresh one usually works.</li>
+    </ul>
+  </div>
+
+  <h2>If you clicked an invite email and landed on the ordinary website</h2>
+  <p>That is Netlify sending its invites to the front page rather than here,
+     and the site now forwards you across automatically. If it happened before
+     that fix went up, open the email again and click the link a second time —
+     or paste the whole address in with <code>/admin/</code> before the
+     <code>#invite_token=…</code> part.</p>
+</div>
+
+<script>
+  /* Must come before the tags below. A blocking <script src> fires its onload
+     before the parser reaches the next inline script, so declaring this
+     afterwards would mean the handler ran against an undefined object. */
+  window.__pg = { identity: null, cms: null, source: '' };
+</script>
+
+<!-- Netlify Identity: handles who is allowed in. There is only one source for
+     this one, so it gets a plain tag with a failure flag. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+        onload="window.__pg.identity = true"
+        onerror="window.__pg.identity = false"></script>
+
+<script>
+/* Decap CMS is a ~4 MB bundle. Loading it from a pinned version rather than a
+   semver range skips a redirect, and having a second CDN to fall back to means
+   one of them being slow or down does not leave the owner locked out of their
+   own website. Previously this was a single unpkg tag on a `^` range: no
+   fallback, no timeout, and no way to tell a slow download from a dead one. */
+(function loadCms() {
+  var sources = [
+    'https://cdn.jsdelivr.net/npm/decap-cms@3.15.1/dist/decap-cms.js',
+    'https://unpkg.com/decap-cms@3.15.1/dist/decap-cms.js'
+  ];
+  var i = 0;
+  (function next() {
+    if (i >= sources.length) { window.__pg.cms = false; return; }
+    var url = sources[i++];
+    var s = document.createElement('script');
+    s.src = url;
+    s.onload = function () { window.__pg.cms = true; window.__pg.source = url; };
+    s.onerror = next;
+    document.head.appendChild(s);
+  })();
+})();
+</script>
+
+<script>
+(function () {
+  var statusEl = document.getElementById('status');
+  var barEl = document.getElementById('bar');
+  var helpEl = document.getElementById('help');
+  var loginBtn = document.getElementById('login');
+  var started = Date.now();
+  var settled = false;
+
+  function say(html, showBar, showHelp) {
+    if (!statusEl) return;
+    statusEl.innerHTML = html;
+    if (showBar) statusEl.appendChild(barEl);
+    if (showHelp && helpEl) helpEl.classList.remove('hide');
+  }
+  function settle(html, showHelp) {
+    settled = true;
+    say(html, false, showHelp);
+  }
+
+  var hash = window.location.hash || '';
+  var invited = /^#(invite_token|recovery_token|confirmation_token|email_change_token)=/.test(hash);
+
+  function identity() {
+    return window.netlifyIdentity || null;
+  }
+  function currentUser() {
+    try { return identity() && identity().currentUser(); } catch (e) { return null; }
+  }
+
+  if (loginBtn) {
+    loginBtn.addEventListener('click', function () {
+      var id = identity();
+      if (!id) {
+        settle('<span class="bad">The login code has not downloaded yet.</span> ' +
+               'Give it a moment, or refresh the page.', true);
+        return;
+      }
+      /* Decap normally calls init() itself. If Decap has not arrived, nothing
+         has, so do it here — otherwise the button does nothing at all. */
+      try { if (window.__pg.cms !== true) id.init({}); } catch (e) {}
+      id.open();
+    });
+  }
+
+  /* The CMS replaces the page when it mounts. Watching for that beats the old
+     one-shot timeout, which fired 1.2s after load and then never looked
+     again — so a panel that took longer than that left this card sitting on
+     top of it for ever. */
+  var boot = document.getElementById('boot');
+  function mounted() {
+    var root = document.querySelector('#nc-root, [class*="AppMainContainer"]');
+    return !!(root && root.childElementCount > 0);
+  }
+  function addBackButton() {
+    if (document.getElementById('pg-back')) return;
+    var a = document.createElement('a');
+    a.id = 'pg-back';
+    a.href = '/admin/';
+    a.textContent = '\u2039 Menu';
+    document.body.appendChild(a);
+  }
+  if (window.MutationObserver) {
+    var mo = new MutationObserver(function () {
+      if (mounted() && boot && boot.parentNode) {
+        boot.remove(); addBackButton(); mo.disconnect();
+      }
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+  }
+
+  /* One tick, every half second, reporting only what is actually true. */
+  var tick = setInterval(function () {
+    if (mounted()) {
+      if (boot && boot.parentNode) boot.remove();
+      addBackButton();
+      clearInterval(tick);
+      return;
+    }
+    if (settled) return;
+
+    var secs = Math.round((Date.now() - started) / 1000);
+    var id = window.__pg.identity;
+    var cms = window.__pg.cms;
+
+    if (/^#error=/.test(hash)) {
+      return settle('<span class="bad">That link did not work.</span> Invite links ' +
+        'expire. Ask for a fresh one: Netlify → Identity → Invite users.', true);
+    }
+    if (id === false) {
+      return settle('<span class="bad">Could not download the login code.</span> ' +
+        'Either you are offline, or Identity has not been switched on for this ' +
+        'site yet.', true);
+    }
+    if (cms === false) {
+      return settle('<span class="bad">Could not download the panel.</span> Both ' +
+        'sources failed, which is nearly always the connection rather than the ' +
+        'site.', true);
+    }
+
+    var user = currentUser();
+    if (id === true && cms === true) {
+      say((user ? 'Signed in as <b>' + (user.email || 'you') + '</b>. ' : '') +
+          'Everything downloaded. Starting the panel…', true);
+      /* Downloaded but never mounted: that is a real fault, not slowness. */
+      if (secs > 25) {
+        return settle('<span class="bad">Everything downloaded but the panel did ' +
+          'not start.</span> Refresh once. If it happens again, tell me and send ' +
+          'this line.', true);
+      }
+      return;
+    }
+
+    if (invited) {
+      return say('Invite recognised. Waiting for the login box… <b>' + secs + 's</b>', true);
+    }
+
+    var waiting = [];
+    if (id !== true) waiting.push('the login code');
+    if (cms !== true) waiting.push('the panel itself');
+    say('Downloading ' + waiting.join(' and ') + '… <b>' + secs + 's</b>' +
+        (secs > 12 ? '<br>On mobile data this is normal. It only downloads once.' : ''), true);
+
+    if (secs > 60) {
+      return settle('<span class="bad">Still not finished after a minute.</span> ' +
+        'This is almost always a slow or blocked connection rather than the site.', true);
+    }
+  }, 500);
+
+  /* After 8 seconds with nothing mounted, put the troubleshooting on screen
+     rather than making somebody scroll looking for it. */
+  setTimeout(function () {
+    if (!mounted() && helpEl) helpEl.classList.remove('hide');
+  }, 8000);
+})();
+</script>
+</body>
+</html>
