@@ -33,22 +33,32 @@ locale: en
 
 collections:
   # ---------------------------------------------------------------- reviews
+  #
+  # Every label and hint below is written for somebody who has never used a
+  # content editor. The rule throughout: say what the box does AND where the
+  # result turns up on the website, because "which service" means nothing on
+  # its own and "shows on the Hedge Cutting page" means everything.
   - name: reviews
     label: Reviews
-    label_singular: Review
+    label_singular: review
+    description: >-
+      Reviews customers leave through the form on your website land here
+      switched OFF, waiting for you. Nothing appears on the site until you
+      switch it on yourself. Once you do, it shows on the Reviews page, and
+      the three newest also show on the home page.
     folder: content/reviews
     create: true
     identifier_field: name
     slug: '{{year}}-{{month}}-{{day}}-{{fields.name}}'
-    summary: '{{fields.name}} · {{fields.area}} · shown on the website: {{fields.approved}}'
+    summary: '{{fields.name}} — {{fields.area}} — on the website: {{fields.approved}}'
     sortable_fields: ['date', 'name', 'approved']
     extension: json
     format: json
     view_filters:
-      - label: Waiting for approval
+      - label: Waiting for you to approve
         field: approved
         pattern: false
-      - label: Approved and live
+      - label: Already on the website
         field: approved
         pattern: true
     fields:
@@ -56,16 +66,20 @@ collections:
         name: approved
         widget: boolean
         default: false
-        hint: 'Off until you tick it. Nothing a customer submits appears on the site until this is on.'
-      - label: Name
+        hint: >-
+          OFF means nobody but you can see it. Switch it ON and press Publish
+          and it appears on the Reviews page within a minute or two — and on
+          the home page too if it is one of the three newest.
+      - label: Their name
         name: name
         widget: string
-        hint: 'First name and surname initial is plenty, e.g. Sarah T.'
-      - label: Town or village
+        hint: 'First name and the initial of the surname is plenty — Sarah T.'
+      - label: Their town or village
         name: area
         widget: string
         required: false
-      - label: Which job was it
+        hint: 'Printed next to the name, like "Sarah T., Wilpshire". Leave empty if you would rather not.'
+      - label: What job did you do for them
         name: service
         widget: select
         required: false
@@ -74,49 +88,67 @@ collections:
           - { label: Hedge cutting, value: hedge-cutting }
           - { label: Garden work, value: garden-work }
           - { label: Power washing, value: power-washing }
-      - label: Rating out of 5
+        hint: 'Printed under the review, and lets visitors filter the Reviews page by job.'
+      - label: How many stars
         name: rating
         widget: number
         value_type: int
         min: 1
         max: 5
         default: 5
-      - label: Date
+        hint: 'A number from 1 to 5. Draws the row of stars.'
+      - label: When was it
         name: date
         widget: date
         format: 'YYYY-MM-DD'
-      - label: What they wrote
+        hint: 'Reviews are listed newest first, so this decides where it sits.'
+      - label: What they said
         name: text
         widget: text
-        hint: 'Publish it as written. Do not tidy up a customer’s words for them.'
-      - label: 'Customer gave permission to publish'
+        hint: >-
+          Type it exactly as they said it. Do not tidy their words up — a
+          review has to be the customer's own words, and that is the law
+          rather than my opinion.
+      - label: 'They are happy for it to be on the website'
         name: consent
         widget: boolean
         default: true
-        hint: 'Leave off if you are not sure. A review with this off is never shown.'
-      - label: Private notes
+        hint: >-
+          Different from the switch at the top. Turn this OFF and the review
+          is never shown no matter what — for when somebody later asks you to
+          take theirs down but you would rather not delete it.
+      - label: Private notes for yourself
         name: notes
         widget: text
         required: false
-        hint: 'Never shown on the website. For your own reference.'
+        hint: 'Never printed on the website. Nobody but you sees this.'
 
   # -------------------------------------------------------- before / after
   - name: pairs
-    label: Before & after pairs
-    label_singular: Before & after pair
+    label: Before & after sliders
+    label_singular: before & after slider
+    description: >-
+      The pictures visitors drag across to see the difference. Add one here and
+      it appears in FOUR places at once — the Gallery page, the page for
+      whichever job you pick, all 17 town pages, and the newest one sits right
+      under the photo at the top of the home page.
     folder: content/pairs
     create: true
     identifier_field: title
     slug: '{{fields.service}}-{{slug}}'
-    summary: '{{fields.title}} · {{fields.service}}'
+    summary: '{{fields.title}} — {{fields.service}} — on the website: {{fields.published}}'
     extension: json
     format: json
     fields:
-      - label: 'Show on the website'
+      - label: 'Show this on the website'
         name: published
         widget: boolean
         default: true
-      - label: Which service
+        hint: >-
+          Leave it ON and it goes live when you press Publish. Turn it OFF to
+          take it off the website without deleting it — you can put it back
+          any time.
+      - label: Which job is it
         name: service
         widget: select
         options:
@@ -124,46 +156,67 @@ collections:
           - { label: Hedge cutting, value: hedge-cutting }
           - { label: Garden work, value: garden-work }
           - { label: Power washing, value: power-washing }
-      - label: Title
+        hint: >-
+          This picks which service page it shows on. Choose Hedge cutting and
+          it appears on the Hedge Cutting page. It goes on the Gallery page
+          and the town pages whichever you pick.
+      - label: Give it a short name
         name: title
         widget: string
-        hint: 'Short. It sits under the slider, e.g. "Conifer hedge reduced".'
-      - label: BEFORE photo
+        hint: >-
+          A few words, printed underneath the slider. "Conifer hedge reduced",
+          "Front drive washed". Not your customer's name or address.
+      - label: The BEFORE photo — the messy one
         name: before
         widget: image
-        hint: 'The messy one. Both photos must be of the same spot or the slider looks wrong.'
-      - label: AFTER photo
+        hint: >-
+          Take this one standing in the same spot as the after photo. The
+          slider wipes one picture across the other, so if you moved a long
+          way between the two it just looks like two unrelated photos.
+      - label: The AFTER photo — the finished one
         name: after
         widget: image
-        hint: 'The finished one, taken from the same place as the before.'
-      - label: Caption
+        hint: 'Same spot, same distance, same direction as the before photo.'
+      - label: A line about the job
         name: caption
         widget: text
         required: false
-      - label: Description for screen readers
+        hint: 'Optional. Printed under the slider. Leave it empty and nothing is shown.'
+      - label: Describe the photo for blind visitors
         name: alt
         widget: string
         required: false
-        hint: 'Optional. Describes the photo for anyone who cannot see it.'
+        hint: >-
+          Optional. Read aloud to anyone using a screen reader, and shown if
+          the picture fails to load. "An overgrown conifer hedge over a
+          driveway" is the sort of thing.
 
   # ---------------------------------------------------------------- photos
   - name: photos
     label: Photos
-    label_singular: Photo
+    label_singular: photo
+    description: >-
+      One-off photos of finished work — no before shot needed. Add one here and
+      it appears in THREE places — the Gallery page, the page for whichever job
+      you pick, and the row of recent photos on the home page. Adding a lot at
+      once is quicker through GitHub; PHOTOS.md explains how.
     folder: content/photos
     create: true
     # Captions are optional on a single photo, so the filename is built from
     # the service and the time it was added rather than from the words in it.
     slug: '{{fields.service}}-{{year}}{{month}}{{day}}-{{hour}}{{minute}}{{second}}'
-    summary: '{{fields.service}} · {{fields.caption}}'
+    summary: '{{fields.service}} — {{fields.caption}} — on the website: {{fields.published}}'
     extension: json
     format: json
     fields:
-      - label: 'Show on the website'
+      - label: 'Show this on the website'
         name: published
         widget: boolean
         default: true
-      - label: Which service
+        hint: >-
+          Leave it ON and it goes live when you press Publish. Turn it OFF to
+          hide it without deleting it.
+      - label: Which job is it
         name: service
         widget: select
         options:
@@ -171,58 +224,93 @@ collections:
           - { label: Hedge cutting, value: hedge-cutting }
           - { label: Garden work, value: garden-work }
           - { label: Power washing, value: power-washing }
-      - label: Photo
+        hint: >-
+          This picks which service page it shows on. Choose Power washing and
+          it appears on the Power Washing page. It goes on the Gallery page
+          either way.
+      - label: The photo
         name: image
         widget: image
-      - label: Caption
+        hint: >-
+          Straight off your phone is fine. Try to keep house numbers, car
+          number plates and people out of the frame — that is a promise the
+          privacy policy makes to your customers.
+      - label: A line about it
         name: caption
         widget: string
         required: false
-      - label: Description for screen readers
+        hint: 'Optional. Printed underneath the photo. "Beech hedge, Wilpshire".'
+      - label: Describe the photo for blind visitors
         name: alt
         widget: string
         required: false
+        hint: >-
+          Optional. Read aloud to anyone using a screen reader, and shown if
+          the picture fails to load.
 
   # -------------------------------------------------------------- settings
   - name: settings
-    label: Settings
+    label: Links & switches
+    description: >-
+      Your Facebook pages, your Google listing, and the trade directories like
+      Bark and MyBuilder. These appear in the footer of every page, and under
+      "Listed elsewhere" on the Reviews page and the Contact page.
     files:
       - name: links
-        label: Links & listings
+        label: Links & switches
         file: content/settings.json
         extension: json
         format: json
         fields:
-          - label: Facebook pages
+          - label: Your Facebook pages
             name: facebook
             widget: list
+            label_singular: Facebook page
+            summary: '{{fields.label}} — on the website: {{fields.enabled}}'
+            hint: >-
+              Shown in the footer of every page and on the Contact page. Turn
+              one off and the button disappears completely rather than sitting
+              there doing nothing.
             fields:
-              - { label: 'Show this one', name: enabled, widget: boolean, default: true }
-              - { label: Button text, name: label, widget: string }
-              - { label: Link, name: url, widget: string }
+              - { label: 'Show this one on the website', name: enabled, widget: boolean, default: true }
+              - { label: 'What the button should say', name: label, widget: string, hint: 'e.g. "PG Gardening on Facebook"' }
+              - { label: 'The address of the page', name: url, widget: string, hint: 'Open the page on a computer and copy what is in the address bar.' }
 
-          - label: Google
+          - label: Your Google listing
             name: google
             widget: object
+            hint: >-
+              Powers every "read our reviews on Google" and "find us on Google
+              Maps" button. Anything left empty is simply not shown. See
+              GOOGLE-SETUP.md for where to find each one.
             fields:
-              - { label: 'Read our reviews link', name: reviewsUrl, widget: string, required: false }
-              - { label: '"Leave a review" short link', name: writeUrl, widget: string, required: false }
-              - { label: Google Maps listing, name: mapsUrl, widget: string, required: false }
-              - { label: Place ID, name: placeId, widget: string, required: false }
+              - { label: 'Link to your reviews on Google', name: reviewsUrl, widget: string, required: false, hint: 'Used by the "Read our Google reviews" buttons.' }
+              - { label: 'One-tap link for leaving a review', name: writeUrl, widget: string, required: false, hint: 'Looks like g.page/r/…/review. Opens the review box straight away — the most valuable link on the whole site.' }
+              - { label: 'Link to you on Google Maps', name: mapsUrl, widget: string, required: false }
+              - { label: 'Google Place ID', name: placeId, widget: string, required: false, hint: 'Only needed if live Google reviews are ever switched on. Safe to leave empty.' }
 
-          - label: Google Analytics measurement ID
+          - label: Google Analytics ID
             name: ga4Id
             widget: string
             required: false
-            hint: 'Looks like G-XXXXXXXXXX. Leave empty and no analytics loads at all.'
+            hint: >-
+              Looks like G-XXXXXXXXXX. Leave it empty and no tracking is loaded
+              at all, which is one less thing the cookie banner has to explain.
 
           - label: Trade directories and review sites
             name: directories
             widget: list
-            summary: '{{fields.name}} · shown on the website: {{fields.enabled}}'
-            hint: 'Switch one on and it appears on the site. Off, and it is not rendered at all.'
+            label_singular: directory
+            summary: '{{fields.name}} — on the website: {{fields.enabled}}'
+            hint: >-
+              Bark, MyBuilder, Checkatrade and the rest. They all start switched
+              OFF. When you sign up to one, paste your profile link in and
+              switch it on — it then appears under "Listed elsewhere" on the
+              Reviews page and the Contact page. Only switch on the ones you are
+              genuinely listed on; a link to a profile that does not exist is
+              worse than no link.
             fields:
-              - { label: 'Show on the website', name: enabled, widget: boolean, default: false }
-              - { label: Name, name: name, widget: string }
-              - { label: Link to your profile, name: url, widget: string, required: false }
-              - { label: Note to self, name: note, widget: string, required: false }
+              - { label: 'Show this one on the website', name: enabled, widget: boolean, default: false }
+              - { label: 'What the button should say', name: name, widget: string }
+              - { label: 'Link to your profile on that site', name: url, widget: string, required: false }
+              - { label: 'Private note for yourself', name: note, widget: string, required: false, hint: 'Never shown on the website.' }
