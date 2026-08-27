@@ -30,5 +30,5 @@ window.PG_CONFIG = {
     "label": ""
   },
   "email": "pggardening1@gmail.com",
-  "domain": ""
+  "domain": "https://www.pggardening.com"
 };

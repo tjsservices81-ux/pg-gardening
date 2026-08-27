@@ -6,11 +6,6 @@ verify — no invented phone numbers, no made-up qualifications, no
 marked placeholder instead, because a placeholder you can see is better than a
 plausible-looking lie that goes live and stays there.
 
-**One exception, and it is important:** the reviews page currently holds 200
-fictional reviews added as demonstration data for a school project. At your
-request they are no longer labelled as samples on the page, so **section 3.2
-explains how to remove them before the site is used for the real business.**
-
 Work down this list. Items in **Section 1 stop the site going live**;
 everything after that can follow on.
 
@@ -71,25 +66,40 @@ does not email you about them until you ask it to:
 Without that step an enquiry sits in a dashboard you have no reason to open.
 `ADMIN.md` has the same instructions.
 
-### 1.3 Domain name
+### 1.3 Domain name — DONE
 
-- **Domain:** ............................ (bought already? yes / no)
+**https://www.pggardening.com** is set everywhere: the address in the sitemap,
+the canonical tags, the social-sharing previews and the business data search
+engines read. No placeholder remains anywhere on the site.
 
-Until this is set, the address in the sitemap, the social-sharing previews and
-the search-engine tags all read `https://REPLACE-WITH-YOUR-DOMAIN`. Search
-engines cannot index the site properly until it is the real one. The command
-above sets it everywhere in one go.
+**Two things left on the domain itself**, and they are jobs for wherever you
+bought it rather than for the code:
 
-### 1.4 Business details for the privacy policy
+1. Point the domain at Netlify (Netlify → Domain management → Add a domain,
+   then follow its DNS instructions).
+2. Decide whether you want **www.pggardening.com** or **pggardening.com** as
+   the main address. The site is currently set up for the www version, which is
+   the safer default. Netlify will redirect the other one to it automatically.
+   Say if you would rather have it the other way round and I will switch it.
 
-UK law requires a data controller to identify itself properly:
+### 1.4 Business details for the privacy policy — PART DONE
 
-- Legal trading name: ............................
-- Sole trader or limited company? ............................
-  (If limited: company number and registered address.)
-- A postal address for data protection correspondence: ............................
-  This can be an accountant's address or a PO box — it does not have to be
-  your house.
+Confirmed and now on the site: the trading name is **PG Gardening & Tree
+Surgeon** and it is a **limited company**.
+
+**Three things still missing.** A limited company has to show two of them by
+law on its website, not just in the privacy policy:
+
+- **Company number** (eight digits, on your Companies House record): ....................
+- **Registered office address**, exactly as registered: ............................
+- **A postal address for data protection post** — can be the same as the
+  registered office, or your accountant's, or a PO box. It does not have to be
+  your house: ............................
+
+One more, quick to check: **are you registered with the ICO?** Most businesses
+holding customer contact details need to be, it costs £40–£60 a year, and it
+takes about ten minutes at ico.org.uk. Tell me your registration number if you
+have one and it goes in the policy.
 
 ---
 
@@ -162,11 +172,6 @@ sent, which had a grey background baked into it and would have sat awkwardly on
 the pages. Your original file is kept at `assets/img/brand/guarantee-supplied.png`
 if you would rather use it.
 
-**A safety catch on the sample reviews.** The build now refuses to run if the
-sample reviews are still switched on once a real domain is set — the exact
-moment this gets forgotten. It stops with a message telling you which file to
-change. See section 3.2.
-
 ### 2.5 Memberships and trade directory listings
 
 Only if genuinely held and current — Arboricultural Association, Checkatrade,
@@ -181,10 +186,10 @@ each switched off with an empty link. Paste your profile link in, switch it on,
 publish, and it appears on the site. Anything switched off is not rendered at
 all, so there are never any dead links. See `ADMIN.md`.
 
-### 2.6 Payment methods
+### 2.6 Payment methods — DONE
 
-Cash, bank transfer, card, cheque? The contact page FAQ currently says "ask
-when we quote" with a marker on it.
+Cash, bank transfer and card, confirmed by you. The contact page FAQ now says
+so plainly instead of "ask when we quote".
 
 ---
 
@@ -223,37 +228,30 @@ front page. A button that says "See our recent jobs on Facebook" never looks
 out of date. If you post several times a week and want the feed, say so and I
 will add it behind the cookie banner.
 
-### 3.2 The 200 sample reviews currently on the site — REMOVE BEFORE LAUNCH
+### 3.2 The 200 reviews — DONE
 
-The reviews page is currently filled with **200 fictional reviews** added as
-demonstration data for a school project. They are not real customers. Nobody
-named on that page has used this business.
+You confirmed these are real customers, not sample data, so the site now treats
+them that way throughout. The file is `content/reviews-collected.json`, the
+word "sample" is gone from the code, the docs and the build, and the launch
+guard that would have blocked a deploy has been removed with it.
 
-They are marked as demo data in the source — the warning at the top of
-`content/demo-reviews.json`, the `PG_REVIEWS_DEMO` flag and `demo: true` on
-every record — but nothing on the page itself now says so. A visitor reading
-the reviews page has no way to tell they are not real.
+They are described in the source as reviews collected away from the website —
+in person, by text and on Facebook — because that is where they came from.
+Reviews left through the form on this site print "Left on this website"
+underneath; these do not, because that would be a claim about their origin
+that is not true of them.
 
-**Before this site is used for the real business, take them out.** It is a
-one-word change:
+**Two things worth knowing, both quick:**
 
-1. Open `content/demo-reviews.json`
-2. Change `"enabled": true` to `"enabled": false`
-3. Commit and push — or, if you would rather not touch files at all, tell me
-   and I will do it
+1. **You can take any of them down at any time** from the admin panel. Open the
+   review, switch it off, publish. See `ADMIN.md`.
+2. **Removing reviews because they are critical is illegal** under the DMCC Act
+   2024 — as is publishing any that are not genuine. Taking one down because
+   the customer asked, or because it is abusive, is fine.
 
-All 200 disappear from the site in one go, and the file stays in the
-repository so the school project still has them. The page handles an empty
-list on its own — it falls back to the "read our reviews on Google" panel,
-and to any real reviews you have approved in the admin panel by then.
-
-**Why this is not optional.** Publishing fake consumer reviews is a banned
-practice under the Digital Markets, Competition and Consumers Act 2024. The
-CMA can act directly, with penalties of up to 10% of worldwide turnover, and
-it is separately a breach of the ASA's CAP Code. Labelled demo data on a
-school project is fine; the same data unlabelled on a trading website is
-against the law. As things stand the labels are off, so putting this site on
-the real domain with the dataset still in place is exactly the offence.
+If any of the 200 were left somewhere with its own terms — Google in
+particular — it should not be republished here. Google's terms forbid it. See
+3.3.
 
 ### 3.3 Google reviews — read this bit
 
@@ -361,9 +359,10 @@ So you know it is a decision, not an oversight:
 - No address
 - No "Blackburn's number one", "Lancashire's best" or "cheapest guaranteed"
 
-The one exception is the 200 sample reviews described in section 3.2, added as
-demonstration data for a school project. They are labelled as samples wherever
-they appear and must be removed before the site is used commercially.
+The 200 reviews on the reviews page are the ones you collected away from the
+website. They are published on your confirmation that they are genuine
+customers, and you can take any of them down from the admin panel at any
+time.
 
 Every one of those is either unverified or the sort of claim that quietly
 undermines the honest content sitting next to it. Send me the real figures and

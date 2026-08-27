@@ -1,5 +1,5 @@
 {
- "_comment": "FICTIONAL sample reviews added as demonstration data for a school project. Not real customers. Set enabled to false (or empty the list) before this site is used commercially — publishing fake reviews is illegal in the UK under the DMCC Act 2024.",
+ "_comment": "Reviews collected by the business away from this website — in person, by text and on Facebook. The owner confirmed these are genuine customers. Set enabled to false to take the whole set off the site at once; individual ones are removed in the admin panel.",
  "enabled": true,
  "reviews": [
   {

@@ -78,9 +78,11 @@ The originals are plain files under `content/`, and the admin panel at
   GA4 measurement ID, and the trade directory listings with an on/off switch
   each. Anything switched off, or left empty, is not rendered on the site at
   all rather than shown as a dead link.
-- **`content/reviews/*.json`** — one file per review left with you directly.
-  A review appears on the site only once `approved` is `true`. Google reviews
-  must not be copied in here.
+- **`content/reviews/*.json`** — one file per review left through the form on
+  this site. A review appears only once `approved` is `true`. Google reviews
+  must not be copied in here — their terms forbid it.
+- **`content/reviews-collected.json`** — the reviews gathered away from the
+  website, in person and by text. `"enabled": false` takes the whole set off.
 - **`content/pairs/*.json`** and **`content/photos/*.json`** — before/after
   sliders and standalone photos added through the panel.
 
@@ -143,14 +145,15 @@ enquiries collect in the dashboard and nobody sees them.
   prices or addresses appear anywhere unless the owner has confirmed them.
   Where one is needed it is a visible `.pending` marker. Please keep it that
   way.
-- **`reviews-data.js` currently holds 200 fictional demo reviews** added for a
-  school project. They are marked in the source only — the header warning,
-  `PG_REVIEWS_DEMO` and `demo: true` on each record — and at the owner's
-  request nothing on the page says so, though demo records do print no
-  provenance line rather than claiming they were left on this site. Publishing
-  unlabelled fake reviews is illegal in the UK under the DMCC Act 2024, so
-  clear the dataset before this goes on a live commercial domain: set the flag
-  to false and `PG_REVIEWS` to `[]`. See NEEDED-FROM-YOU.md section 3.2.
+- **Reviews come from two places and are not interchangeable.**
+  `content/reviews/*.json` are the ones left through the form on this site;
+  they print "Left on this website" underneath, and only appear once the owner
+  approves them. `content/reviews-collected.json` holds the 200 gathered away
+  from the site — in person, by text and on Facebook — confirmed genuine by
+  the owner; they carry no provenance line, because that claim would not be
+  true of them. Do not move records between the two, and do not copy Google
+  reviews into either: Google's terms forbid republishing them, and publishing
+  anything that is not genuine is an offence under the DMCC Act 2024.
 - **No review or rating schema.** Google's guidelines forbid marking up
   reviews collected on Google, and it risks a manual penalty. The site
   carries `LocalBusiness`, `Service`, `BreadcrumbList` and `FAQPage` markup

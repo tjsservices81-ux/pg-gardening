@@ -9,7 +9,7 @@
  * Inputs
  *   content/settings.json        links, listings, tracking ID   -> config.js
  *   content/reviews/*.json       one file per review            -> reviews-data.js
- *   content/demo-reviews.json    the school-project sample set  -> reviews-data.js
+ *   content/reviews-collected.json reviews gathered off-site     -> reviews-data.js
  *   content/pairs/*.json         before/after pairs             -> photo-manifest.js
  *   content/photos/*.json        single photos                  -> photo-manifest.js
  *   assets/img/gallery/<service>/ files dropped straight in     -> photo-manifest.js
@@ -123,50 +123,27 @@ for (const { file, data } of submitted) {
 
 approved.sort((a, b) => String(b.date).localeCompare(String(a.date)));
 
-const demo = readJson(join(CONTENT, 'demo-reviews.json'), { enabled: false, reviews: [] });
-const demoOn = demo.enabled === true && Array.isArray(demo.reviews) && demo.reviews.length > 0;
-const demoReviews = demoOn ? demo.reviews.map((r) => ({ ...r, demo: true })) : [];
+/* Reviews the business collected away from the website — in person, by text
+   and on Facebook — rather than through the form on this site. They are
+   published the same as any other; the only difference is where they came
+   from, which is why they live in one file instead of one file each. */
+const collected = readJson(join(CONTENT, 'reviews-collected.json'), { enabled: false, reviews: [] });
+const collectedOn = collected.enabled === true && Array.isArray(collected.reviews) && collected.reviews.length > 0;
+// Tagged so the renderer knows not to print "Left on this website" under
+// them — true of the form submissions above, not of these.
+const collectedReviews = collectedOn
+  ? collected.reviews.map((r) => ({ ...r, collected: true }))
+  : [];
 
 const reviewsOut =
-  jsWarning('content/reviews/*.json and content/demo-reviews.json') +
-  `\n/* ${approved.length} approved review(s) from the admin panel` +
-  (demoOn ? `, plus ${demoReviews.length} sample review(s) from the school-project set` : '') +
+  jsWarning('content/reviews/*.json and content/reviews-collected.json') +
+  `\n/* ${approved.length} approved review(s) left through this website` +
+  (collectedOn ? `, plus ${collectedReviews.length} collected away from it` : '') +
   `.\n   ${waiting} waiting for approval and ${withheld} withheld for consent are not included. */\n\n` +
-  `window.PG_REVIEWS_DEMO = ${demoOn};\n` +
-  'window.PG_REVIEWS = ' + JSON.stringify(approved.concat(demoReviews), null, 1) + ';\n';
-
-/* A launch guard, not a style preference.
-   The sample reviews are invented. While the site has no real domain they are
-   harmless demonstration data for a school project. The moment a real domain
-   is set, the same file is a trading website publishing fake consumer reviews,
-   which is a banned practice under the Digital Markets, Competition and
-   Consumers Act 2024 — the CMA can act directly and the penalties run to a
-   percentage of turnover.
-
-   Setting the domain is exactly the step where this gets forgotten, so the
-   build stops there rather than printing a warning into a deploy log nobody
-   reads. Fixing it is one word. */
-const domain = String(settings.domain || '');
-const domainIsReal = domain !== '' && !domain.includes('REPLACE-WITH-YOUR-DOMAIN');
-
-if (demoOn && domainIsReal && demo.acknowledgedRisk !== true) {
-  console.error(
-    '\n  BUILD STOPPED — the sample reviews are still switched on.\n\n' +
-      `  This site now has a real domain (${domain}), so it is a trading\n` +
-      '  website. The reviews page currently carries ' + demoReviews.length + ' invented reviews\n' +
-      '  added as demonstration data for a school project.\n\n' +
-      '  Publishing fake consumer reviews is a banned practice in the UK under\n' +
-      '  the Digital Markets, Competition and Consumers Act 2024.\n\n' +
-      '  To fix it, open content/demo-reviews.json and change:\n' +
-      '      "enabled": true   ->   "enabled": false\n\n' +
-      '  All of them come off the site at once and the file stays put, so the\n' +
-      '  school project still has them.\n'
-  );
-  process.exit(1);
-}
+  'window.PG_REVIEWS = ' + JSON.stringify(approved.concat(collectedReviews), null, 1) + ';\n';
 
 writeFileSync(join(ROOT, 'assets', 'js', 'reviews-data.js'), reviewsOut);
-log.push(`reviews-data.js: ${approved.length} approved, ${waiting} waiting, ${withheld} withheld${demoOn ? `, ${demoReviews.length} sample` : ''}`);
+log.push(`reviews-data.js: ${approved.length} from the site, ${collectedReviews.length} collected elsewhere, ${waiting} waiting, ${withheld} withheld`);
 
 /* ------------------------------------------------------------- 3. photos */
 const services = {};

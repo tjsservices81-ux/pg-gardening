@@ -2,7 +2,7 @@
    Edit it in the admin panel at /admin, or in content/, and it rebuilds on deploy.
    Source: content/pairs, content/photos and assets/img/gallery */
 window.PG_PHOTOS = {
-  "generated": "2026-08-27T20:45:13.328Z",
+  "generated": "2026-08-27T21:35:22.909Z",
   "totals": {
     "pairs": 25,
     "singles": 51

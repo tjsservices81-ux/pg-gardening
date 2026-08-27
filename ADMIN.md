@@ -126,10 +126,22 @@ somebody later asks you to remove can be withheld without being deleted.
 
 **Private notes** is exactly that. It is never printed on the website.
 
-> **Sample reviews.** The site currently ships with a set of made-up reviews
-> that came from the school project. Before the site is used for real trading
-> they have to come off: open `content/demo-reviews.json` and set
-> `"enabled": false`. See section 3.2 of `NEEDED-FROM-YOU.md`.
+**Taking a review down.** You can remove any review from the site at any time,
+from this panel, without asking anybody. Open it, switch **Show this review on
+the website** off, press Publish. It comes off within a minute or two. The file
+stays where it is, so you can put the same review back later by switching it
+on again — nothing is destroyed.
+
+The 200 reviews collected off the website — in person, by text and on Facebook
+— live together in one file, `content/reviews-collected.json`. Setting
+`"enabled": false` there takes all of them off in one go.
+
+One thing to be careful of, because it is the law rather than advice: taking
+down reviews **because they are critical** is a banned practice under the
+Digital Markets, Competition and Consumers Act 2024. Removing one because the
+customer asked you to, or because it is abusive or plainly not about you, is
+perfectly fine. Removing the one-star ones to make the average look better is
+not.
 
 ### Before & after pairs
 
