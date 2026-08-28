@@ -107,25 +107,46 @@ Publishing a qualification you do not hold is fraud and publishing an insurance
 figure you do not carry is worse, so nothing here goes up until you confirm it.
 Two of them now have: the insurance and the chainsaw certification are live.
 
-### 2.1 Chainsaw qualifications — DONE
+### 2.1 Chainsaw qualifications — DONE, but read note 2
 
-You confirmed you hold the full set of chainsaw tickets, so the About page now
-says the cutting and climbing is done by an operator holding the NPTC / City &
-Guilds chainsaw units, described in plain English: saw maintenance and
-cross-cutting, felling, climbing and aerial rescue, and aerial cutting.
+Four certificates are now on the About page, printed in full so a customer can
+read them rather than take "fully qualified" on trust:
 
-**Deliberately not listed as individual codes.** "All the tickets" is your
-words; CS30, CS31, CS32, CS38 and CS39 would be my guess at which ones that
-means, and a unit code you do not actually hold is a false qualification claim
-on a trading website. If you want them printed individually, read them off the
-cards and send the list — they go on exactly as written.
+| Certificate | Body | Date | Covers |
+|---|---|---|---|
+| Chainsaw and Related Operations, Level 2 | NPTC | 1 June 2004 | CS30.1 maintenance, CS30.2 on-site preparation and basic crosscutting, CS31 felling and processing small trees 200–380 mm |
+| Climb Trees and Perform Aerial Rescue, Level 2 | NPTC | 7 June 2004 | Climb a tree, conduct aerial rescue. Was CS38 before accreditation. |
+| CS39 — Use of a Chainsaw from a Rope and Harness | NPTC | 28 September 2004 | Cutting while roped into the tree |
+| Risk Assessment for Commercial Arboriculture | Lantra Awards | 19 August 2004 | One-day course — **attendance**, not a competence test |
 
-The invitation to send the individual unit numbers has been taken off the About
-page at your request — it now just says the certification is current and held by
-whoever is doing the work. If you ever do want the codes printed, send the list
-off the cards and they go on exactly as written.
+Between them that is the whole job on a tree: getting up it, cutting from a
+rope once you are there, getting somebody down if it goes wrong, and processing
+what comes off. The only thing the set does not cover is felling trees above
+380 mm (CS32), and the page says so rather than leaving a customer to assume.
+
+The Lantra one is labelled as attendance rather than competence, because that
+is what it says on it, and a customer who checks will find that out anyway.
+
+**Note 1 — the page no longer says "current".** A 2004 certificate is not
+evidence of that. NPTC certificates of competence carry no expiry date, but the
+industry standard, and what most insurers and commercial clients expect, is
+refresher training every five years. **If there are refreshers, send them and
+they go up alongside these.** It would be the strongest thing on the page.
+
+**Note 2 — the name on all four is Connor Parker.** Your two numbers are Jerry
+and Patrick. If Connor is one of the team, nothing needs doing and you can
+ignore this. If he is not currently working with you, they have to come down:
+publishing somebody else's qualifications as the business's own is a false
+qualification claim, and it is worth less than nothing the first time it is
+tested. **Tell me either way.**
+
+One smaller decision: the scans show the certificate numbers and the candidate
+number. That is what makes them checkable, and also what somebody would need to
+impersonate the holder. Most trades publish them. Say the word and I will blur
+the candidate number and leave everything else.
 
 - Arboriculture qualification (Level 2/3, ND Arb, etc.), if held: ....................
+- Refresher or reassessment certificates, if any: ....................
 
 ### 2.2 Insurance — DONE
 
