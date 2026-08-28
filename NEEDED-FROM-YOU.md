@@ -82,34 +82,37 @@ bought it rather than for the code:
 
 ### 1.4 Business details for the privacy policy — PART DONE
 
-Settled: the trading name, the legal status, and now the **postal address**,
-taken from your insurance certificate:
+Settled: the trading name and the legal status.
 
-> PG Gardening & Tree Surgeon
-> 33 Kings Street, Blackburn, BB2 2DH
+**Your address is not on the website anywhere.** You sent the insurance
+certificate with the address stamped PRIVATE, so the redacted version is the
+one published, and I have taken the address back off the privacy policy where I
+had briefly put it. Publishing it in plain text three lines away would have
+made the redaction pointless. Nothing on the site carries it now — checked
+across every page, script and data file.
 
-That is on the privacy policy as the address for data protection
-correspondence, which is the one place UK law requires it.
+For data protection that is fine. UK GDPR asks for the controller's contact
+details, and the email address and phone number already there satisfy it — a
+postal address is not required.
 
-**Two things left, both from Companies House:**
+**The Companies Act is the part still outstanding.** A limited company has to
+show its **company number** and **registered office address** on its website.
+There is no way around that one, but there are three ways to satisfy it without
+your front door going up:
 
-- **Company number** — eight digits, on the incorporation certificate, and free
-  to look up.
-- **Registered office address** — which may or may not be the one above.
+1. **Your accountant's address**, used as the registered office. Most
+   accountants offer this and many include it in the fee.
+2. **A registered office service**, roughly £30–£50 a year.
+3. **Your home address, as it is.** Worth knowing before you rule it out: if
+   your registered office is already your home, it is on the public Companies
+   House register anyway and anyone can look it up in ten seconds. Putting it
+   on the website changes how easy it is to find, not whether it can be found.
 
-A limited company has to publish both on its website. It is the only visible
-gap left on the whole site.
-
-**Also worth deciding, and I have not done it:** the address is currently only
-on the privacy policy. Putting it in the footer and in the business data Google
-reads would help you show up in local map results, which for a Blackburn trade
-is worth real money. But if 33 Kings Street is your home, that is a decision
-about your front door rather than about the website, and it is yours to make.
-Say the word either way.
+Whichever you pick, send me the company number and the address and it goes on
+the privacy policy — that is the last visible gap on the site.
 
 - Company number: ............................
-- Registered office, if different from above: ............................
-- Address in the footer and in the Google business data? yes / no
+- Registered office to publish: ............................
 
 ## 2. Trust — the things customers actually check
 
@@ -153,7 +156,8 @@ the candidate number and leave everything else.
 
 ### 2.2 Insurance — DONE, and now evidenced
 
-The Hiscox certificate is on the About page, alongside the tickets.
+The Hiscox certificate is on the About page, alongside the tickets, in the
+redacted version you sent — address and postcode stamped PRIVATE.
 
 - **Insurer:** Hiscox Insurance Company Limited
 - **Limit of indemnity:** £2,000,000 each and every claim or loss
@@ -167,6 +171,10 @@ is worth more than the figure on its own.
 **Diary note: renew before 6 March 2027.** When you do, send the new
 certificate and I will swap it — an expired certificate on a website is worse
 than none at all.
+
+**The policy number is still visible** on the published certificate. You
+redacted the address but not that, so I have left it as you sent it. Say the
+word if you want it covered too.
 
 **One discrepancy.** The certificate insures "PG Gardening & Tree Surgeon",
 with no "Ltd" or "Limited". The privacy policy says the business is a limited
