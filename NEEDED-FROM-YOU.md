@@ -82,37 +82,31 @@ bought it rather than for the code:
 
 ### 1.4 Business details for the privacy policy — PART DONE
 
-Settled: the trading name and the legal status.
+The site now says **sole trader** rather than limited company. That removes the
+Companies House requirement entirely: **no company number, no registered office
+needed.** Those only ever applied to limited companies.
 
-**Your address is not on the website anywhere.** You sent the insurance
-certificate with the address stamped PRIVATE, so the redacted version is the
-one published, and I have taken the address back off the privacy policy where I
-had briefly put it. Publishing it in plain text three lines away would have
-made the redaction pointless. Nothing on the site carries it now — checked
-across every page, script and data file.
+It does not remove the disclosure requirement altogether, though, and this one
+catches most people. Because you trade as "PG Gardening & Tree Surgeon" rather
+than under your own surname, the trading disclosure rules ask for two things on
+the website:
 
-For data protection that is fine. UK GDPR asks for the controller's contact
-details, and the email address and phone number already there satisfy it — a
-postal address is not required.
+1. **The name of the person trading** — the actual human behind the business
+   name. Jerry? Patrick? Whoever is the sole trader.
+2. **A UK address where post can be sent.** Not necessarily where you live —
+   an accountant's address or a service address is fine, and either keeps your
+   front door off the internet.
 
-**The Companies Act is the part still outstanding.** A limited company has to
-show its **company number** and **registered office address** on its website.
-There is no way around that one, but there are three ways to satisfy it without
-your front door going up:
+That is the last visible placeholder on the site. Send me a name and an address
+and it closes.
 
-1. **Your accountant's address**, used as the registered office. Most
-   accountants offer this and many include it in the fee.
-2. **A registered office service**, roughly £30–£50 a year.
-3. **Your home address, as it is.** Worth knowing before you rule it out: if
-   your registered office is already your home, it is on the public Companies
-   House register anyway and anyone can look it up in ten seconds. Putting it
-   on the website changes how easy it is to find, not whether it can be found.
+- Name of the sole trader: ............................
+- Address for post: ............................
 
-Whichever you pick, send me the company number and the address and it goes on
-the privacy policy — that is the last visible gap on the site.
-
-- Company number: ............................
-- Registered office to publish: ............................
+**One thing this fixed by itself.** The insurance certificate is in the name
+"PG Gardening & Tree Surgeon" with no "Ltd", which I had flagged as a mismatch
+against the site saying limited company. As a sole trader it is exactly right,
+so that concern is gone.
 
 ## 2. Trust — the things customers actually check
 
@@ -199,13 +193,6 @@ than none at all.
 **The policy number is still visible** on the published certificate. You
 redacted the address but not that, so I have left it as you sent it. Say the
 word if you want it covered too.
-
-**One discrepancy.** The certificate insures "PG Gardening & Tree Surgeon",
-with no "Ltd" or "Limited". The privacy policy says the business is a limited
-company. If the company is the thing trading, the policy should normally be in
-the company's name — worth a word with Hiscox, because it is the sort of gap
-that only ever matters at the worst possible moment. Nothing on the website
-needs changing either way.
 
 ### 2.3 Waste carrier registration — REMOVED at your request
 
