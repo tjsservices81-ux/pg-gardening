@@ -134,9 +134,16 @@ the website** off, press Publish. It comes off within a minute or two. The file
 stays where it is, so you can put the same review back later by switching it
 on again — nothing is destroyed.
 
-The 200 reviews collected off the website — in person, by text and on Facebook
-— live together in one file, `content/reviews-collected.json`. Setting
-`"enabled": false` there takes all of them off in one go.
+The reviews you collected off the website — in person, by text and on Facebook
+— live together in one file, `content/reviews-collected.json`, because they
+arrived in one go. They are not treated any differently once they are on the
+site: a review left through the form here joins the same list, in the same
+date order, printed the same way. Setting `"enabled": false` in that file takes
+that whole batch off at once.
+
+The reviews page counts itself, so the number shown always matches what is
+actually on it. Nothing anywhere states a fixed total — it goes up on its own
+as reviews come in.
 
 One thing to be careful of, because it is the law rather than advice: taking
 down reviews **because they are critical** is a banned practice under the

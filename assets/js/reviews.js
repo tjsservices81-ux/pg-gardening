@@ -39,17 +39,17 @@
 
   function reviewMarkup(review) {
     var meta = [review.area, SERVICE_LABELS[review.service] || review.service].filter(Boolean).join(' · ');
-    // "Left on this website" is a claim about where a review came from, so it
-    // is printed only for the ones that actually arrived through the form here.
-    // Reviews collected in person, by text or on Facebook carry no such line.
-    var fromThisSite = review.consent === true && !review.collected;
+    // Every review is printed the same. There used to be a "Left on this
+    // website" line under the ones submitted through the form here, which
+    // split one set of reviews into two classes on the page for a difference
+    // no customer cares about. They are all the owner's reviews; this is
+    // where they all go.
     return '' +
       '<article class="review reveal" data-service="' + esc(review.service || '') + '">' +
         stars(review.rating) +
         '<p class="review__text">' + esc(review.text) + '</p>' +
         '<p class="review__meta"><strong>' + esc(review.name || 'Customer') + '</strong>' +
           esc(meta) + (review.date ? ' · ' + ukDate(review.date) : '') + '</p>' +
-        (fromThisSite ? '<span class="review__source">Left on this website</span>' : '') +
       '</article>';
   }
 

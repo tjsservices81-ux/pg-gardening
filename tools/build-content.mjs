@@ -121,29 +121,34 @@ for (const { file, data } of submitted) {
   });
 }
 
-approved.sort((a, b) => String(b.date).localeCompare(String(a.date)));
-
 /* Reviews the business collected away from the website — in person, by text
-   and on Facebook — rather than through the form on this site. They are
-   published the same as any other; the only difference is where they came
-   from, which is why they live in one file instead of one file each. */
+   and on Facebook — rather than through the form on this site. They live in
+   one file instead of one file each simply because they arrived in one go.
+
+   From here on they are not treated differently in any way. The owner's
+   reviews are one set: a review left through the form on this site joins the
+   same list, sorted into the same order by date, and printed identically. It
+   is where all his reviews go. Nothing on the page distinguishes them,
+   because nothing about them differs that a customer would care about. */
 const collected = readJson(join(CONTENT, 'reviews-collected.json'), { enabled: false, reviews: [] });
 const collectedOn = collected.enabled === true && Array.isArray(collected.reviews) && collected.reviews.length > 0;
-// Tagged so the renderer knows not to print "Left on this website" under
-// them — true of the form submissions above, not of these.
-const collectedReviews = collectedOn
-  ? collected.reviews.map((r) => ({ ...r, collected: true }))
-  : [];
+const collectedReviews = collectedOn ? collected.reviews : [];
+
+/* One list, newest first. Sorting after the two sources are joined is what
+   makes a review left on the site this morning appear above one collected
+   last year, rather than the two sets sitting in separate blocks. */
+const allReviews = approved.concat(collectedReviews);
+allReviews.sort((a, b) => String(b.date).localeCompare(String(a.date)));
 
 const reviewsOut =
   jsWarning('content/reviews/*.json and content/reviews-collected.json') +
-  `\n/* ${approved.length} approved review(s) left through this website` +
-  (collectedOn ? `, plus ${collectedReviews.length} collected away from it` : '') +
-  `.\n   ${waiting} waiting for approval and ${withheld} withheld for consent are not included. */\n\n` +
-  'window.PG_REVIEWS = ' + JSON.stringify(approved.concat(collectedReviews), null, 1) + ';\n';
+  `\n/* ${allReviews.length} published review(s): ${approved.length} left through the form on` +
+  ` this website and ${collectedReviews.length} collected away from it, in one list.` +
+  `\n   ${waiting} waiting for approval and ${withheld} withheld for consent are not included. */\n\n` +
+  'window.PG_REVIEWS = ' + JSON.stringify(allReviews, null, 1) + ';\n';
 
 writeFileSync(join(ROOT, 'assets', 'js', 'reviews-data.js'), reviewsOut);
-log.push(`reviews-data.js: ${approved.length} from the site, ${collectedReviews.length} collected elsewhere, ${waiting} waiting, ${withheld} withheld`);
+log.push(`reviews-data.js: ${allReviews.length} published (${approved.length} from the form, ${collectedReviews.length} collected), ${waiting} waiting, ${withheld} withheld`);
 
 /* ------------------------------------------------------------- 3. photos */
 const services = {};

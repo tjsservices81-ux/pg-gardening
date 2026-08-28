@@ -145,15 +145,18 @@ enquiries collect in the dashboard and nobody sees them.
   prices or addresses appear anywhere unless the owner has confirmed them.
   Where one is needed it is a visible `.pending` marker. Please keep it that
   way.
-- **Reviews come from two places and are not interchangeable.**
-  `content/reviews/*.json` are the ones left through the form on this site;
-  they print "Left on this website" underneath, and only appear once the owner
-  approves them. `content/reviews-collected.json` holds the 200 gathered away
-  from the site — in person, by text and on Facebook — confirmed genuine by
-  the owner; they carry no provenance line, because that claim would not be
-  true of them. Do not move records between the two, and do not copy Google
-  reviews into either: Google's terms forbid republishing them, and publishing
-  anything that is not genuine is an offence under the DMCC Act 2024.
+- **Reviews come from two files but are one set.**
+  `content/reviews/*.json` are the ones left through the form on this site, one
+  file each, and they appear only once the owner approves them.
+  `content/reviews-collected.json` holds the batch gathered away from the site —
+  in person, by text and on Facebook — confirmed genuine by the owner. The build
+  joins them and sorts the lot by date, and the page prints every review
+  identically: no provenance line, no separate blocks, no fixed total stated
+  anywhere. This is deliberate and the owner asked for it — they are all his
+  reviews and this is where they all go. Do not reintroduce a distinction on
+  the page, and do not copy Google reviews into either file: Google's terms
+  forbid republishing them, and publishing anything that is not genuine is an
+  offence under the DMCC Act 2024.
 - **No review or rating schema.** Google's guidelines forbid marking up
   reviews collected on Google, and it risks a manual penalty. The site
   carries `LocalBusiness`, `Service`, `BreadcrumbList` and `FAQPage` markup

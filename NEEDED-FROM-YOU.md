@@ -234,7 +234,7 @@ front page. A button that says "See our recent jobs on Facebook" never looks
 out of date. If you post several times a week and want the feed, say so and I
 will add it behind the cookie banner.
 
-### 3.2 The 200 reviews — DONE
+### 3.2 Your existing reviews — DONE
 
 You confirmed these are real customers, not sample data, so the site now treats
 them that way throughout. The file is `content/reviews-collected.json`, the
@@ -255,7 +255,7 @@ that is not true of them.
    2024 — as is publishing any that are not genuine. Taking one down because
    the customer asked, or because it is abusive, is fine.
 
-If any of the 200 were left somewhere with its own terms — Google in
+If any of them were left somewhere with its own terms — Google in
 particular — it should not be republished here. Google's terms forbid it. See
 3.3.
 
@@ -365,7 +365,7 @@ So you know it is a decision, not an oversight:
 - No address
 - No "Blackburn's number one", "Lancashire's best" or "cheapest guaranteed"
 
-The 200 reviews on the reviews page are the ones you collected away from the
+The reviews on the reviews page are the ones you collected away from the
 website. They are published on your confirmation that they are genuine
 customers, and you can take any of them down from the admin panel at any
 time.
