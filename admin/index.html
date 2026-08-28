@@ -61,6 +61,63 @@
   @keyframes slide { 0% { margin-left: -30%; } 100% { margin-left: 100%; } }
   @media (prefers-reduced-motion: reduce) { .bar i { animation: none; width: 100%; } }
   .hide { display: none; }
+
+  /* ----------------------------------------------------------------------
+     Decap on a phone.
+
+     Nothing here changes how the panel works or where anything is stored.
+     Every rule below sets a size, a colour or a capital letter, and every
+     selector matches on the readable part of Decap's generated class names.
+     A selector that stops matching in a future version simply does nothing,
+     so the worst case is the panel looking exactly as it does by default.
+
+     Deliberately NOT here: anything that moves or hides a layout container.
+     That is the kind of change that can leave a blank screen, and there is
+     no version of this worth breaking the panel for.
+     ---------------------------------------------------------------------- */
+  @media (max-width: 900px) {
+    /* The big one. Tapping a text box on iOS zooms the whole page in unless
+       the text is at least 16px, and then you are stranded halfway across a
+       form you can no longer see the edges of. */
+    input[type="text"], input[type="number"], input[type="date"],
+    input[type="email"], input[type="password"], input[type="url"],
+    textarea, select {
+      font-size: 16px !important;
+    }
+
+    /* Decap sets field labels in small spaced capitals, so a plain question
+       arrives as "LINK TO YOUR REVIEWS ON GOOGLE (OPTIONAL)". Sentence case
+       at a readable size and it reads like the question it is. */
+    [class*="-FieldLabel"] {
+      font-size: 1rem !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      line-height: 1.35 !important;
+    }
+    /* The grey help text under each box — the part that says where the thing
+       ends up on the website. It is the most useful writing on the screen and
+       it was the faintest. */
+    [class*="-ControlHint"] {
+      font-size: 0.92rem !important;
+      line-height: 1.5 !important;
+      opacity: 1 !important;
+    }
+
+    /* Fingertips, not mouse pointers. */
+    [class*="-ToolbarButton"], [class*="-PublishButton"],
+    [class*="-DropdownButton"], [class*="-TopBarButton"] {
+      min-height: 44px !important;
+    }
+    [class*="-ToolbarButton"], [class*="-PublishButton"] { font-size: 1rem !important; }
+
+    /* The delete cross on a list row. It has to stay, but it does not need to
+       be the most eye-catching thing on the screen. */
+    [class*="-TopBarButton"] { opacity: .5 !important; }
+    [class*="-TopBarButton"]:active { opacity: 1 !important; }
+
+    /* The rows in a list of existing photos, reviews or pairs. */
+    [class*="-CardHeading"] { font-size: 1.05rem !important; }
+  }
 </style>
 </head>
 <body>
