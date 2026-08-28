@@ -296,6 +296,21 @@ The site now spots that token on any page and forwards you to `/admin` with it,
 so clicking the link takes you where it should. If you hit this before the fix
 went up, just open the email and click the link again.
 
+**I published something and it never appeared — no error, nothing.**
+Almost certainly Git Gateway. Identity and Git Gateway are two separate
+switches in Netlify, and only the first one is visible from inside the panel.
+With Identity on and Git Gateway off you can log in, fill a review in and press
+Publish, and the panel will say it saved — because it did, into your own
+browser. The commit that makes it real never happens.
+
+The way to tell for certain is GitHub. Open the repository and look at the
+commit list: every save from the panel appears there as a commit beginning
+`Admin:`. If there are none, nothing has ever been written and the fix is
+**Netlify → Identity → Services → Git Gateway → Enable**.
+
+The panel now checks this for itself when you log in and puts a red bar across
+the top if it cannot write. No bar means publishing works.
+
 **The panel shows "Opening the admin panel…" and stays there.**
 Press the **Log in** button on that page first — it opens the login box
 directly. If nothing happens, Identity or Git Gateway is off: steps 2 and 4 at

@@ -333,5 +333,86 @@
   }, 8000);
 })();
 </script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   Is Git Gateway actually working?
+
+   Netlify Identity and Git Gateway are two separate switches, and only the
+   first one is visible from inside the panel. With Identity on and Git Gateway
+   off you can log in, open a review, type it out and press Publish, and the
+   panel will tell you it saved — because it did, into your own browser. The
+   commit that makes it real never happens, and nothing on screen says so. Days
+   of work can go into a panel in that state.
+
+   So: once somebody is logged in, ask Git Gateway for a branch. It is a read,
+   it changes nothing, and it answers the only question that matters — can this
+   browser talk to the repository or not.
+
+   Nothing is added to the page when the answer is yes. The banner below exists
+   only in the failure case, which is the case nobody would otherwise notice.
+   --------------------------------------------------------------------------- */
+(function () {
+  var GATEWAY = '/.netlify/git/github/branches/main';
+
+  function banner(html) {
+    if (document.getElementById('pg-gw')) return;
+    var d = document.createElement('div');
+    d.id = 'pg-gw';
+    d.setAttribute('role', 'alert');
+    d.style.cssText =
+      'position:fixed;left:0;right:0;top:0;z-index:99999;' +
+      'background:#7d1b16;color:#fff;padding:.85rem 1rem;' +
+      'font:600 0.95rem/1.45 "Segoe UI",Roboto,-apple-system,Helvetica,Arial,sans-serif;' +
+      'box-shadow:0 2px 12px rgba(0,0,0,.3);text-align:left;';
+    d.innerHTML = html;
+    document.body.appendChild(d);
+  }
+
+  function check(token) {
+    fetch(GATEWAY, { headers: { Authorization: 'Bearer ' + token } })
+      .then(function (r) {
+        if (r.ok) return;                       // all well — say nothing
+        if (r.status === 404) {
+          banner('<b>Nothing you publish here will be saved.</b> Git Gateway is ' +
+                 'switched off for this site, so the panel cannot write to the ' +
+                 'website. Netlify → Identity → Services → Git Gateway → Enable. ' +
+                 'Until then, anything you type is only stored in this browser.');
+        } else {
+          banner('<b>Nothing you publish here will be saved.</b> The panel cannot ' +
+                 'reach the website to write to it (error ' + r.status + '). ' +
+                 'Check Git Gateway under Netlify → Identity → Services.');
+        }
+      })
+      .catch(function () {
+        banner('<b>Could not check whether publishing will work.</b> If you have ' +
+               'signal and this stays, tell me — publishing may not be saving.');
+      });
+  }
+
+  function watch() {
+    var id = window.netlifyIdentity;
+    if (!id) return;
+    function fromUser(user) {
+      if (!user) return;
+      // The JWT is short-lived; jwt() refreshes it if needed.
+      if (typeof user.jwt === 'function') user.jwt().then(check).catch(function () {});
+      else if (user.token && user.token.access_token) check(user.token.access_token);
+    }
+    id.on('login', fromUser);
+    id.on('init', fromUser);
+    // init may already have fired before this script ran.
+    setTimeout(function () {
+      try { fromUser(id.currentUser()); } catch (e) {}
+    }, 2500);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', watch, { once: true });
+  } else {
+    watch();
+  }
+})();
+</script>
 </body>
 </html>
