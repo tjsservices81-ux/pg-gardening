@@ -103,7 +103,7 @@
   "_contact_note": "Written by tools/setup.mjs, not by the admin panel. The phone numbers are printed into every page's HTML as tel: links, which the panel cannot rewrite, so they are deliberately not editable there.",
   "phone1": {
     "number": "07443 356 651",
-    "label": "Jerry"
+    "label": "Gerry"
   },
   "phone2": {
     "number": "07411 648 265",

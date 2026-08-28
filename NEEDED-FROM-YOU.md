@@ -24,13 +24,13 @@ done once. `ADMIN.md` walks through it.
 Both numbers are live everywhere on the site — header, footer, contact page,
 thank-you page and the sticky mobile call bar — and both are now named:
 
-- **Jerry** — 07443 356 651
+- **Gerry** — 07443 356 651
 - **Patrick** — 07411 648 265
 
 The names appear beside each number wherever it is printed, and the mobile call
-bar reads "Jerry" and "Patrick" rather than "Call us" and "Second line", so
+bar reads "Gerry" and "Patrick" rather than "Call us" and "Second line", so
 somebody ringing knows who they are getting. Screen readers announce "Call
-Jerry" and "Call Patrick" rather than reading the digits out. Every one is a
+Gerry" and "Call Patrick" rather than reading the digits out. Every one is a
 working `tel:` link and both are in the business data search engines read — tap
 them on a phone to check they dial.
 
@@ -38,7 +38,7 @@ To change either number or name later:
 
 ```bash
 node tools/setup.mjs \
-  --phone1 "07443 356 651" --label1 "Jerry" \
+  --phone1 "07443 356 651" --label1 "Gerry" \
   --phone2 "07411 648 265" --label2 "Patrick" \
   --email  "pggardening1@gmail.com" \
   --domain "https://www.pggardening.com"
@@ -92,7 +92,7 @@ than under your own surname, the trading disclosure rules ask for two things on
 the website:
 
 1. **The name of the person trading** — the actual human behind the business
-   name. Jerry? Patrick? Whoever is the sole trader.
+   name. Gerry? Patrick? Whoever is the sole trader.
 2. **A UK address where post can be sent.** Not necessarily where you live —
    an accountant's address or a service address is fine, and either keeps your
    front door off the internet.
