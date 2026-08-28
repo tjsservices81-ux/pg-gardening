@@ -26,22 +26,37 @@
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
-# Long cache on fingerprint-free static assets is safe here because images are
-# added rather than replaced. Drop max-age if you ever overwrite a filename.
+# Long cache on images is safe only because they are added rather than
+# replaced. A replaced file keeps serving from a visitor's cache for a month,
+# which stopped being theoretical when the insurance certificate was swapped
+# for a redacted copy with the address stamped out — anyone holding the old one
+# would have kept it. The fix is to change the filename, never the contents:
+# the insurance certificate is now named for its policy period, so next year's
+# renewal gets a new name for free.
 [[headers]]
   for = "/assets/img/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
+# CSS and JS change often and carry no fingerprint in their filenames, so a
+# long cache means a returning visitor gets today's HTML with yesterday's
+# stylesheet — which is not "slightly stale", it is a broken-looking page.
+# That is exactly what happened when the certificates button went up: correct
+# markup, no matching styles, unstyled text sat across the hero.
+#
+# max-age=0 with must-revalidate does not mean "download every time". The
+# browser asks whether its copy is still good, Netlify answers with a 304 and
+# no body when nothing has changed. The cost is one small round trip; the
+# benefit is that a fix is never a day late.
 [[headers]]
   for = "/assets/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/assets/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # photo-manifest.js is regenerated on every deploy — never cache it hard.
 [[headers]]
