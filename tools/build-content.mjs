@@ -136,9 +136,26 @@ const collectedReviews = collectedOn ? collected.reviews : [];
 
 /* One list, newest first. Sorting after the two sources are joined is what
    makes a review left on the site this morning appear above one collected
-   last year, rather than the two sets sitting in separate blocks. */
+   last year, rather than the two sets sitting in separate blocks.
+
+   A review with no date sorts to the TOP, not the bottom. This matters more
+   than it looks: a plain date comparison puts an empty string last, so a
+   review typed in without a date landed at the very end of a list hundreds
+   long — published, correct, and somewhere nobody would ever scroll to. It
+   read exactly like the panel had failed to save it. A review with no date is
+   almost always one just added, so the top is both the safer guess and the
+   place where a mistake is visible instead of hidden. */
+const sortKey = (r) => (r.date ? String(r.date) : '9999-99-99');
 const allReviews = approved.concat(collectedReviews);
-allReviews.sort((a, b) => String(b.date).localeCompare(String(a.date)));
+allReviews.sort((a, b) => sortKey(b).localeCompare(sortKey(a)));
+
+const undated = allReviews.filter((r) => !r.date).length;
+if (undated) {
+  warnings.push(
+    `${undated} published review(s) have no date. They are shown at the top of the ` +
+    `list and print without one. Add a date in the admin panel to place them properly.`
+  );
+}
 
 const reviewsOut =
   jsWarning('content/reviews/*.json and content/reviews-collected.json') +

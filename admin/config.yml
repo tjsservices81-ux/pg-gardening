@@ -104,9 +104,20 @@ collections:
         hint: 'A number from 1 to 5. Draws the row of stars.'
       - label: When was it
         name: date
-        widget: date
+        # Decap 3 has no "date" widget — it was removed, and asking for one
+        # renders no field at all, which is why this box was missing. The
+        # datetime widget with the time switched off is the replacement.
+        # picker_utc stops a late-evening entry being stored as the day before.
+        widget: datetime
+        date_format: 'DD/MM/YYYY'
+        time_format: false
         format: 'YYYY-MM-DD'
-        hint: 'Reviews are listed newest first, so this decides where it sits.'
+        picker_utc: true
+        hint: >-
+          Defaults to today, which is right if you are typing it in as they tell
+          you. Reviews are listed newest first, so this is what decides where it
+          sits on the page.
+        required: true
       - label: What they said
         name: text
         widget: text

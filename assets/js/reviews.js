@@ -37,6 +37,10 @@
     return '<p class="review__stars" role="img" aria-label="' + n + ' out of 5 stars">' + filled + '</p>';
   }
 
+  function sortKey(review) {
+    return review.date ? String(review.date) : '9999-99-99';
+  }
+
   function reviewMarkup(review) {
     var meta = [review.area, SERVICE_LABELS[review.service] || review.service].filter(Boolean).join(' · ');
     // Every review is printed the same. There used to be a "Left on this
@@ -62,7 +66,10 @@
       if (filter && filter !== 'all') {
         list = list.filter(function (r) { return r.service === filter; });
       }
-      list.sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
+      // Same rule as the build: a review with no date goes to the TOP, not the
+      // bottom. An empty string sorts last, which buried a newly added review
+      // at the end of a list hundreds long and made it look unsaved.
+      list.sort(function (a, b) { return sortKey(b).localeCompare(sortKey(a)); });
       if (limit > 0) list = list.slice(0, limit);
 
       if (!list.length) {

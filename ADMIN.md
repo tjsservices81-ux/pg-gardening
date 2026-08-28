@@ -112,6 +112,15 @@ A minute or two later it is on the site. To take one down again, switch the
 same box off and publish — it comes off the site but the file stays, so you
 can put it back.
 
+**If a review does not seem to appear, check two things before anything else.**
+First, **Show this review on the website** — if that is off, it is saved but
+deliberately hidden, which is the whole point of the queue. Second, the
+**date**: reviews are listed newest first, so a wrong date puts it wherever
+that date belongs rather than at the top. The date box fills itself in with
+today, which is right if you are typing the review in as somebody tells it to
+you. A review saved with no date at all is shown at the top of the list and
+prints without one, and the deploy log says how many are in that state.
+
 You can also type a review in yourself, for somebody who told you in person or
 sent it by text. Two things to be careful about, because they are the law and
 not a suggestion:
