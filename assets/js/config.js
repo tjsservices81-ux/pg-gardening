@@ -23,11 +23,11 @@ window.PG_CONFIG = {
   "directories": [],
   "phone1": {
     "number": "07443 356 651",
-    "label": ""
+    "label": "Jerry"
   },
   "phone2": {
     "number": "07411 648 265",
-    "label": ""
+    "label": "Patrick"
   },
   "email": "pggardening1@gmail.com",
   "domain": "https://www.pggardening.com"

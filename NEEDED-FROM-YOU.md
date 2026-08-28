@@ -19,31 +19,29 @@ done once. `ADMIN.md` walks through it.
 
 ## 1. Blockers — the site should not launch without these
 
-### 1.1 The two phone numbers — DONE, labels still to come
+### 1.1 The two phone numbers — DONE
 
-Both numbers are now live everywhere on the site — header, footer, contact
-page, thank-you page and the sticky mobile call bar — taken from the van in
-your photos:
+Both numbers are live everywhere on the site — header, footer, contact page,
+thank-you page and the sticky mobile call bar — and both are now named:
 
-- **07443 356 651**
-- **07411 648 265**
+- **Jerry** — 07443 356 651
+- **Patrick** — 07411 648 265
 
-Every one is a working `tel:` link and both are in the business data search
-engines read. Tap them on a phone to check they dial.
+The names appear beside each number wherever it is printed, and the mobile call
+bar reads "Jerry" and "Patrick" rather than "Call us" and "Second line", so
+somebody ringing knows who they are getting. Screen readers announce "Call
+Jerry" and "Call Patrick" rather than reading the digits out. Every one is a
+working `tel:` link and both are in the business data search engines read — tap
+them on a phone to check they dial.
 
-**Still needed: which is which.** They are unlabelled at the moment, and the
-mobile call bar simply reads "Call us" and "Second line". Tell me what each one
-is — a name, "office" and "mobile", "quotes" and "emergencies", whatever is
-true — and I will label them properly so people know who they are ringing.
-
-To change either number, or to add the labels:
+To change either number or name later:
 
 ```bash
 node tools/setup.mjs \
-  --phone1 "01254 123456" --label1 "Office" \
-  --phone2 "07700 900123" --label2 "Mobile" \
-  --email  "you@yourdomain.co.uk" \
-  --domain "https://www.yourdomain.co.uk"
+  --phone1 "07443 356 651" --label1 "Jerry" \
+  --phone2 "07411 648 265" --label2 "Patrick" \
+  --email  "pggardening1@gmail.com" \
+  --domain "https://www.pggardening.com"
 ```
 
 The `--label1` and `--label2` values are what appear beside each number.
