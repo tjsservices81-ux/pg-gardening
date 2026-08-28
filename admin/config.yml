@@ -50,12 +50,8 @@ collections:
     create: true
     identifier_field: name
     slug: '{{year}}-{{month}}-{{day}}-{{fields.name}}'
-    summary: '{{fields.name}} — {{fields.area}}'
+    summary: '{{fields.name}} — {{fields.area}} — on the website: {{fields.approved}}'
     sortable_fields: ['date', 'name', 'approved']
-    # No preview pane. It is meant for a wide screen; on a phone it squeezes
-    # the form into half the width and fills the rest with raw page markup.
-    editor:
-      preview: false
     extension: json
     format: json
     view_filters:
@@ -140,9 +136,7 @@ collections:
     create: true
     identifier_field: title
     slug: '{{fields.service}}-{{slug}}'
-    summary: '{{fields.title}}'
-    editor:
-      preview: false
+    summary: '{{fields.title}} — {{fields.service}} — on the website: {{fields.published}}'
     extension: json
     format: json
     fields:
@@ -211,9 +205,7 @@ collections:
     # Captions are optional on a single photo, so the filename is built from
     # the service and the time it was added rather than from the words in it.
     slug: '{{fields.service}}-{{year}}{{month}}{{day}}-{{hour}}{{minute}}{{second}}'
-    summary: '{{fields.caption}}'
-    editor:
-      preview: false
+    summary: '{{fields.service}} — {{fields.caption}} — on the website: {{fields.published}}'
     extension: json
     format: json
     fields:
@@ -259,8 +251,6 @@ collections:
   # -------------------------------------------------------------- settings
   - name: settings
     label: Links & switches
-    editor:
-      preview: false
     description: >-
       Your Facebook pages, your Google listing, and the trade directories like
       Bark and MyBuilder. These appear in the footer of every page, and under
@@ -269,16 +259,14 @@ collections:
       - name: links
         label: Links & switches
         file: content/settings.json
-        editor:
-          preview: false
         extension: json
         format: json
         fields:
-          - label: Facebook pages
+          - label: Your Facebook pages
             name: facebook
             widget: list
             label_singular: Facebook page
-            summary: '{{fields.label}}'
+            summary: '{{fields.label}} — on the website: {{fields.enabled}}'
             hint: >-
               Shown in the footer of every page and on the Contact page. Turn
               one off and the button disappears completely rather than sitting
@@ -288,7 +276,7 @@ collections:
               - { label: 'What the button should say', name: label, widget: string, hint: 'e.g. "PG Gardening on Facebook"' }
               - { label: 'The address of the page', name: url, widget: string, hint: 'Open the page on a computer and copy what is in the address bar.' }
 
-          - label: Google
+          - label: Your Google listing
             name: google
             widget: object
             hint: >-
@@ -313,7 +301,7 @@ collections:
             name: directories
             widget: list
             label_singular: directory
-            summary: '{{fields.name}}'
+            summary: '{{fields.name}} — on the website: {{fields.enabled}}'
             hint: >-
               Bark, MyBuilder, Checkatrade and the rest. They all start switched
               OFF. When you sign up to one, paste your profile link in and

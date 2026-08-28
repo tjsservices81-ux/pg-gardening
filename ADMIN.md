@@ -2,7 +2,7 @@
 
 Everything on the website that changes — reviews, photos, before/after
 sliders, and the links to Bark, MyBuilder and the rest — is edited from one
-address:
+page:
 
 ```
 https://pggardening.com/admin/
@@ -13,57 +13,6 @@ site, so you can always get to it from your phone.
 
 You do not need a computer. It works on a phone, and photos can be uploaded
 straight from the camera roll.
-
-## The two halves of it
-
-`/admin/` is a plain menu: five big buttons, one per job, and it opens
-instantly. `/admin/edit/` is the editor those buttons take you into — Decap
-CMS, a four-megabyte download built for a desktop.
-
-Splitting them is deliberate. The menu loads in a moment on a phone, says in
-plain words what each thing does, and then drops you on the exact screen for
-the job rather than in a list of sections you have to work out. The heavy
-editor is only downloaded when you actually pick something.
-
-The buttons are:
-
-| Button | Where it takes you |
-|---|---|
-| **Add a photo** | Straight into a blank photo, ready for the camera roll |
-| **Add a before & after** | Straight into a blank slider |
-| **Reviews** | The list, with a badge on the button when any are waiting |
-| **Links & switches** | Facebook, Google and the thirteen directories |
-| **See the website** | Your live site in a new tab |
-
-Once you are in the editor there is a small **‹ Menu** button in the
-bottom-left corner that brings you back.
-
-### What was changed about the editor itself
-
-Decap is built for a desktop, and out of the box it shows it. Four things are
-turned off or turned down so a form reads as a list of plain questions on a
-phone:
-
-- **The preview pane is off** (`editor: preview: false` on every collection).
-  On a wide screen it shows the page as you type. On a phone it took half the
-  width and filled it with raw page markup, squeezing the actual form into
-  what was left.
-- **Labels are in sentence case.** Decap sets them in spaced capitals —
-  "LINK TO YOUR REVIEWS ON GOOGLE (OPTIONAL)" — which is hard work to read.
-- **The drag grips are hidden.** Reordering a list by dragging is not something
-  anybody needs to do from a phone, and sitting next to the delete cross it
-  looked like a second button to be careful of.
-- **The delete cross is muted**, and given a fingertip-sized target so it is
-  not hit by accident either.
-
-Those last three are CSS matched on the readable part of Decap's class names.
-If a future version renames them the rules stop matching and simply do
-nothing — the editor would look as it does by default, which is untidy but
-never broken.
-
-The "waiting" badge comes from `admin/status.json`, which the build writes on
-every deploy. It holds two numbers and nothing else — no review text and no
-customer details.
 
 ---
 
@@ -331,7 +280,7 @@ The site now spots that token on any page and forwards you to `/admin` with it,
 so clicking the link takes you where it should. If you hit this before the fix
 went up, just open the email and click the link again.
 
-**The editor shows "Opening the admin panel…" and stays there.**
+**The panel shows "Opening the admin panel…" and stays there.**
 Press the **Log in** button on that page first — it opens the login box
 directly. If nothing happens, Identity or Git Gateway is off: steps 2 and 4 at
 the top of this page. The line at the bottom of that page says which of the two

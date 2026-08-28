@@ -60,9 +60,7 @@ assets/js/reviews-data.js   Auto-generated — do not edit
 assets/js/photo-manifest.js Auto-generated — do not edit
 assets/img/gallery/     Job photos go here (see PHOTOS.md)
 
-admin/                  The plain menu served at /admin (see ADMIN.md)
-admin/edit/             The editor itself, Decap CMS
-admin/status.json       Auto-generated — review counts for the menu badge
+admin/                  The admin panel served at /admin (see ADMIN.md)
 content/                Everything the admin panel edits, as plain files
 netlify/functions/      Turns a submitted review into a pending file
 

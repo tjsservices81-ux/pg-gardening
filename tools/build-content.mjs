@@ -145,15 +145,6 @@ const reviewsOut =
 writeFileSync(join(ROOT, 'assets', 'js', 'reviews-data.js'), reviewsOut);
 log.push(`reviews-data.js: ${approved.length} from the site, ${collectedReviews.length} collected elsewhere, ${waiting} waiting, ${withheld} withheld`);
 
-/* Counts for the front page of the admin panel, so it can say "2 reviews
-   waiting for you" on the button rather than making somebody open the list to
-   find out whether there is anything to do. Counts only — no review text, no
-   names, nothing about a customer. */
-writeFileSync(
-  join(ROOT, 'admin', 'status.json'),
-  JSON.stringify({ waiting, published: approved.length + collectedReviews.length, built: new Date().toISOString() }, null, 2) + '\n'
-);
-
 /* ------------------------------------------------------------- 3. photos */
 const services = {};
 for (const [slug, label] of Object.entries(SERVICES)) {
