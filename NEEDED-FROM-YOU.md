@@ -82,24 +82,34 @@ bought it rather than for the code:
 
 ### 1.4 Business details for the privacy policy — PART DONE
 
-Confirmed and now on the site: the trading name is **PG Gardening & Tree
-Surgeon** and it is a **limited company**.
+Settled: the trading name, the legal status, and now the **postal address**,
+taken from your insurance certificate:
 
-**Three things still missing.** A limited company has to show two of them by
-law on its website, not just in the privacy policy:
+> PG Gardening & Tree Surgeon
+> 33 Kings Street, Blackburn, BB2 2DH
 
-- **Company number** (eight digits, on your Companies House record): ....................
-- **Registered office address**, exactly as registered: ............................
-- **A postal address for data protection post** — can be the same as the
-  registered office, or your accountant's, or a PO box. It does not have to be
-  your house: ............................
+That is on the privacy policy as the address for data protection
+correspondence, which is the one place UK law requires it.
 
-One more, quick to check: **are you registered with the ICO?** Most businesses
-holding customer contact details need to be, it costs £40–£60 a year, and it
-takes about ten minutes at ico.org.uk. Tell me your registration number if you
-have one and it goes in the policy.
+**Two things left, both from Companies House:**
 
----
+- **Company number** — eight digits, on the incorporation certificate, and free
+  to look up.
+- **Registered office address** — which may or may not be the one above.
+
+A limited company has to publish both on its website. It is the only visible
+gap left on the whole site.
+
+**Also worth deciding, and I have not done it:** the address is currently only
+on the privacy policy. Putting it in the footer and in the business data Google
+reads would help you show up in local map results, which for a Blackburn trade
+is worth real money. But if 33 Kings Street is your home, that is a decision
+about your front door rather than about the website, and it is yours to make.
+Say the word either way.
+
+- Company number: ............................
+- Registered office, if different from above: ............................
+- Address in the footer and in the Google business data? yes / no
 
 ## 2. Trust — the things customers actually check
 
@@ -141,18 +151,29 @@ the candidate number and leave everything else.
 - Arboriculture qualification (Level 2/3, ND Arb, etc.), if held: ....................
 - Refresher or reassessment certificates, if any: ....................
 
-### 2.2 Insurance — DONE
+### 2.2 Insurance — DONE, and now evidenced
 
-**£2 million public liability**, confirmed by you and now published on the
-About page and in the trust points on the home page. That is the single most
-useful number on the site: it is checkable, most local competitors will not
-print theirs, and it is what a customer with a conservatory under the tree
-actually wants to know.
+The Hiscox certificate is on the About page, alongside the tickets.
 
-Still worth adding if they apply:
+- **Insurer:** Hiscox Insurance Company Limited
+- **Limit of indemnity:** £2,000,000 each and every claim or loss
+- **In force:** 7 March 2026 to 6 March 2027
+- **Insured name:** PG Gardening & Tree Surgeon
 
-- Employers' liability, if anyone is employed: £............
-- Insurer and renewal date (not published — just so I know it is current): ............
+Because the certificate carries an end date, the About page can now say the
+cover is *in force to 6 March 2027* rather than just asserting it exists. That
+is worth more than the figure on its own.
+
+**Diary note: renew before 6 March 2027.** When you do, send the new
+certificate and I will swap it — an expired certificate on a website is worse
+than none at all.
+
+**One discrepancy.** The certificate insures "PG Gardening & Tree Surgeon",
+with no "Ltd" or "Limited". The privacy policy says the business is a limited
+company. If the company is the thing trading, the policy should normally be in
+the company's name — worth a word with Hiscox, because it is the sort of gap
+that only ever matters at the worst possible moment. Nothing on the website
+needs changing either way.
 
 ### 2.3 Waste carrier registration — REMOVED at your request
 
