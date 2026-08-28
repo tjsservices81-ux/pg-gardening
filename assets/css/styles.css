@@ -1111,6 +1111,55 @@ a.card:hover .card__more svg { transform: translateX(3px); }
   flex-direction: column;
   gap: var(--sp-3);
 }
+/* "See my certificates" in the hero. The claim about insurance and tickets
+   sits in the list above; this is the invitation to go and check it, and it was
+   previously an inline link inside a bullet where nobody was going to find it.
+   Given its own row, on the pale gold used for the guarantee mark so it reads
+   as proof rather than as a third call to action competing with the quote
+   button. */
+.hero__proof { margin: var(--sp-5) 0 0; }
+.btn--proof {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--r-pill);
+  background: var(--bark-300);
+  color: var(--green-900);
+  text-decoration: none;
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-sm);
+  min-height: 56px;
+}
+.btn--proof:hover, .btn--proof:focus-visible { background: #f6d590; color: var(--green-900); }
+.btn--proof svg { flex-shrink: 0; }
+.btn--proof span { display: flex; flex-direction: column; line-height: 1.25; }
+.btn--proof strong { font-size: 1.06rem; font-weight: 700; }
+.btn--proof small { font-size: 0.86rem; color: var(--bark-800); }
+
+/* The certificate video. Filmed on a phone, so it is portrait — capped by
+   height rather than width, or a 9:16 clip becomes a column of video with the
+   page scrolled away either side of it on a desktop. */
+.cert-video { margin: 0 0 var(--sp-6); display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); }
+.cert-video video {
+  /* Match the clip's own 9:16 exactly. Sizing by width alone and capping the
+     height leaves the player wider than the picture, which shows as black bars
+     down both sides. */
+  aspect-ratio: 576 / 1024;
+  height: min(72vh, 620px);
+  width: auto;
+  max-width: 100%;
+  border-radius: var(--r-md);
+  background: #000;
+  box-shadow: var(--shadow-md);
+}
+.cert-video figcaption {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 46ch;
+}
+
 .review__stars { color: var(--bark-600); letter-spacing: 2px; font-size: 1.05rem; }
 .review__text { font-size: 1rem; color: var(--ink-700); margin: 0; flex: 1; }
 .review__meta { font-size: 0.88rem; color: var(--ink-500); margin: 0; }

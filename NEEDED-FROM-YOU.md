@@ -154,6 +154,30 @@ the candidate number and leave everything else.
 - Arboriculture qualification (Level 2/3, ND Arb, etc.), if held: ....................
 - Refresher or reassessment certificates, if any: ....................
 
+### 2.1a The certificates video — DONE, one thing to know
+
+Your 56-second video is on the About page, at the top of the paperwork
+section, with a play button and a still frame — it does not start on its own.
+
+**The subtitles are clipped at both edges.** They are burned into the picture
+rather than a separate track, so this came in with the file and cannot be fixed
+here: "GOOD AFTERNOON, P / G O. HOLICS", "ABILITY INSURANCE UP / O 2 MILLION",
+"HIS IS EVERY / ERTIFICATE YOU WOULD". Every line loses a letter or two off
+each end. It is readable, but it looks like a mistake rather than a choice.
+
+Whatever you edited it in exported the captions wider than the frame. If you
+still have the project, re-export with the captions inside the safe area and
+send it again — I will swap the file and nothing else needs touching. If not,
+it is fine as it is.
+
+Two other things I checked so you do not have to:
+
+- **Your address is never legible.** The insurance certificate is on screen
+  around 33–35 seconds, but greyscale, motion-blurred and small — only the
+  Hiscox logo and the title read. Nothing to redact.
+- **The auto-captions have mis-heard a few words** ("P G O. HOLICS"), which is
+  normal for automatic subtitles and not worth re-recording over.
+
 ### 2.2 Insurance — DONE, and now evidenced
 
 The Hiscox certificate is on the About page, alongside the tickets, in the
