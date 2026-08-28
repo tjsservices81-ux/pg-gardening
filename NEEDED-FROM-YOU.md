@@ -122,7 +122,11 @@ means, and a unit code you do not actually hold is a false qualification claim
 on a trading website. If you want them printed individually, read them off the
 cards and send the list — they go on exactly as written.
 
-- Individual unit numbers, if you want them shown: ............................
+The invitation to send the individual unit numbers has been taken off the About
+page at your request — it now just says the certification is current and held by
+whoever is doing the work. If you ever do want the codes printed, send the list
+off the cards and they go on exactly as written.
+
 - Arboriculture qualification (Level 2/3, ND Arb, etc.), if held: ....................
 
 ### 2.2 Insurance — DONE
@@ -148,29 +152,31 @@ fly-tips it, the *householder* can be prosecuted. Publishing the number is a
 genuine competitive advantage because most local competitors do not. It is
 free to check on the Environment Agency's public register.
 
-### 2.4 The guarantee — confirm the wording
+### 2.4 The guarantee — SET, but read it
 
-The 100% satisfaction seal is now on the home page, all four service pages and
-the About page. Underneath it the site currently says:
+You asked me to put something concrete on rather than leave a blank, so I have.
+The seal on the home page, all four service pages and the About page now reads:
 
 > If you are not happy with any part of the work, tell us before we leave — or
-> ring us afterwards — and we will come back and put it right.
+> ring within **14 days** — and we will come back and put it right at no charge.
+> That covers the work we carried out. It does not cover new growth, storm
+> damage after we have left, or plants that fail to take. This is on top of your
+> legal rights, not instead of them.
 
-**Confirm that is what you actually offer, and tell me two things:**
+**This is my wording, not yours.** It is a promise your business has to keep, so
+read it and tell me if any of it is wrong. Three choices are in there:
 
-1. **How long it runs.** A guarantee with no time limit is read as open-ended.
-   Say "within 14 days", "within a month", whatever you are happy to stand by.
-2. **What it does not cover.** Storm damage after you have left, plants that
-   fail to take, that sort of thing.
+1. **14 days.** Long enough to be worth something, short enough that a hedge is
+   not back to where it was. Say the word for 7, 28, or "before we leave" only.
+2. **What it excludes.** New growth, weather after the visit, and plants that
+   fail to take. Those are the three things a customer might reasonably come
+   back on that are not your workmanship. Add or remove any.
+3. **"On top of your legal rights, not instead of them."** This one stays. A
+   guarantee that looks like it replaces a customer's statutory rights is a
+   banned practice under the Consumer Protection from Unfair Trading
+   Regulations, whatever it actually says in the small print.
 
-Under the Consumer Protection from Unfair Trading Regulations a guarantee has
-to be honoured as a customer would reasonably understand it, so it is worth
-being specific. A short, real guarantee beats a vague badge.
-
-The seal is drawn in the site's own colours rather than the stock image you
-sent, which had a grey background baked into it and would have sat awkwardly on
-the pages. Your original file is kept at `assets/img/brand/guarantee-supplied.png`
-if you would rather use it.
+Tell me the wording you want and it goes on exactly as you say it.
 
 ### 2.5 Memberships and trade directory listings
 
