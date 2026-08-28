@@ -107,7 +107,7 @@ Publishing a qualification you do not hold is fraud and publishing an insurance
 figure you do not carry is worse, so nothing here goes up until you confirm it.
 Two of them now have: the insurance and the chainsaw certification are live.
 
-### 2.1 Chainsaw qualifications — DONE, but read note 2
+### 2.1 Chainsaw qualifications — DONE
 
 Four certificates are now on the About page, printed in full so a customer can
 read them rather than take "fully qualified" on trust:
@@ -127,18 +127,11 @@ what comes off. The only thing the set does not cover is felling trees above
 The Lantra one is labelled as attendance rather than competence, because that
 is what it says on it, and a customer who checks will find that out anyway.
 
-**Note 1 — the page no longer says "current".** A 2004 certificate is not
+**One note — the page no longer says "current".** A 2004 certificate is not
 evidence of that. NPTC certificates of competence carry no expiry date, but the
 industry standard, and what most insurers and commercial clients expect, is
 refresher training every five years. **If there are refreshers, send them and
 they go up alongside these.** It would be the strongest thing on the page.
-
-**Note 2 — the name on all four is Connor Parker.** Your two numbers are Jerry
-and Patrick. If Connor is one of the team, nothing needs doing and you can
-ignore this. If he is not currently working with you, they have to come down:
-publishing somebody else's qualifications as the business's own is a false
-qualification claim, and it is worth less than nothing the first time it is
-tested. **Tell me either way.**
 
 One smaller decision: the scans show the certificate numbers and the candidate
 number. That is what makes them checkable, and also what somebody would need to
@@ -161,15 +154,23 @@ Still worth adding if they apply:
 - Employers' liability, if anyone is employed: £............
 - Insurer and renewal date (not published — just so I know it is current): ............
 
-### 2.3 Environment Agency waste carrier registration
+### 2.3 Waste carrier registration — REMOVED at your request
 
-- **Registration number:** ............................
+Every mention has come off the website: the About page section, the green-waste
+bullet on the home page, the line on the services hub, the garden work page and
+three FAQ answers (each of which also had a duplicate inside the structured
+data search engines read).
 
-This one matters more than most people realise. Anyone taking green waste off
-a customer's property must be registered, and if an unregistered contractor
-fly-tips it, the *householder* can be prosecuted. Publishing the number is a
-genuine competitive advantage because most local competitors do not. It is
-free to check on the Environment Agency's public register.
+Two of those were claiming you *are* Environment Agency registered — on the
+services hub and the garden work page — which was never something you had
+confirmed, so they should not have been there whatever you decided.
+
+What is left is the plain promise, which needs no registration to make and is
+what a customer actually cares about: everything we cut leaves with us, nothing
+is bagged up and left at the side of the house.
+
+If you are registered and ever want the number published, say so and it goes
+back on.
 
 ### 2.4 The guarantee — SET, but read it
 
