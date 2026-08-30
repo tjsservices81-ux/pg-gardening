@@ -336,6 +336,67 @@
 
 <script>
 /* ---------------------------------------------------------------------------
+   Is Netlify Identity reachable at THIS address?
+
+   The Git Gateway check below only runs once somebody is logged in. If they
+   cannot get logged in at all, it never fires — which is exactly the state the
+   owner hit: press Log in, get bounced back to the login screen, never offered
+   a box to type an email into.
+
+   The widget works out where Identity lives from the address of the page it is
+   on, and asks /.netlify/identity/settings which sign-in methods to offer.
+   That request needs no login, so it can be made here, on page load, before
+   anybody has typed anything. If it does not come back as JSON, the widget has
+   nothing to build a login form from and shows an empty box or none at all.
+   The usual cause is Identity being enabled against one address while the site
+   is being visited on another — a custom domain added after Identity was
+   switched on.
+   --------------------------------------------------------------------------- */
+(function () {
+  function bar(html) {
+    if (document.getElementById('pg-id')) return;
+    var d = document.createElement('div');
+    d.id = 'pg-id';
+    d.setAttribute('role', 'alert');
+    d.style.cssText =
+      'position:fixed;left:0;right:0;top:0;z-index:99999;' +
+      'background:#7d1b16;color:#fff;padding:.85rem 1rem;' +
+      'font:600 0.95rem/1.45 "Segoe UI",Roboto,-apple-system,Helvetica,Arial,sans-serif;' +
+      'box-shadow:0 2px 12px rgba(0,0,0,.3);text-align:left;';
+    d.innerHTML = html;
+    document.body.appendChild(d);
+  }
+
+  fetch('/.netlify/identity/settings', { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) {
+        bar('<b>The login cannot start.</b> This address has no Netlify Identity ' +
+            'behind it (error ' + r.status + '), so there is nothing to type an ' +
+            'email into. Identity is switched on for a different address than the ' +
+            'one you are visiting. In Netlify, check Identity is enabled on this ' +
+            'site and that ' + window.location.hostname + ' is its primary domain.');
+        return null;
+      }
+      return r.json();
+    })
+    .then(function (cfg) {
+      if (!cfg) return;
+      // Identity answered. If it will not accept a password, say so — that is
+      // the other way to end up staring at a login box with no fields.
+      if (cfg.disable_signup === undefined && !cfg.external) {
+        bar('<b>Identity answered but sent nothing useful.</b> Tell me what this ' +
+            'says: ' + window.location.origin + '/.netlify/identity/settings');
+      }
+    })
+    .catch(function () {
+      bar('<b>Could not reach the login service.</b> If you have signal and this ' +
+          'stays, Identity is probably not enabled for this address.');
+    });
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
    Is Git Gateway actually working?
 
    Netlify Identity and Git Gateway are two separate switches, and only the
