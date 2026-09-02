@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Manage your website — PG Gardening &amp; Tree Surgeon</title>
+<link rel="icon" href="/assets/img/brand/favicon.png" type="image/png" sizes="any">
+<link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#0f3a26">
+<style>
+  /* ------------------------------------------------------------------------
+     Built for one person, on a phone, who is not confident with a phone.
+     One idea per screen, nothing under 17px, nothing to tap under 48px, and
+     no word on it that assumes any of this is familiar.
+     ------------------------------------------------------------------------ */
+  :root {
+    color-scheme: light;
+    --green: #0f3a26;
+    --live: #1b6f42;
+    --live-dark: #17603a;
+    --ink: #14231b;
+    --soft: #4a5a51;
+    --ground: #eef2ee;
+    --white: #fff;
+    --line: #d3dfd6;
+    --gold: #8a5410;
+    --gold-bg: #fbf0dd;
+    --red: #97231d;
+    --red-bg: #fae6e4;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 33rem; margin: 0 auto; padding: 1.2rem 1.1rem 5rem; }
+
+  h1 { font-family: Georgia, serif; font-size: 1.55rem; color: var(--green); margin: .2rem 0 .3rem; line-height: 1.2; }
+  h2 { font-family: Georgia, serif; font-size: 1.3rem; color: var(--green); margin: 0 0 .2rem; }
+  p  { margin: 0 0 .9rem; color: var(--soft); }
+  .muted { color: var(--soft); font-size: .95rem; }
+
+  /* ---- top bar, once you are in ---- */
+  .top {
+    display: flex; align-items: center; gap: .7rem;
+    padding: .7rem 1.1rem; background: var(--green); color: #fff;
+    position: sticky; top: 0; z-index: 20;
+  }
+  .top strong { font-size: 1.02rem; font-weight: 700; flex: 1; }
+  .top button {
+    background: rgba(255,255,255,.16); color: #fff; border: 0; border-radius: 999px;
+    font: inherit; font-size: .95rem; font-weight: 700; padding: .5em 1.05em; min-height: 44px; cursor: pointer;
+  }
+  .top button:active { background: rgba(255,255,255,.3); }
+
+  /* ---- the menu ---- */
+  .menu { display: flex; flex-direction: column; gap: .8rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
+  .tile {
+    display: grid; grid-template-columns: 3rem 1fr auto; align-items: center; gap: 0 1rem;
+    width: 100%; min-height: 5rem; padding: 1rem 1.1rem; text-align: left;
+    background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(15,58,38,.05), 0 6px 16px rgba(15,58,38,.06);
+    font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
+  .tile:active { background: #f4f9f5; }
+  .tile__icon {
+    grid-row: span 2; width: 3rem; height: 3rem; border-radius: 12px;
+    background: #e7f2eb; color: var(--live); display: grid; place-items: center;
+  }
+  .tile__icon svg { width: 1.6rem; height: 1.6rem; }
+  .tile__name { font-size: 1.12rem; font-weight: 700; color: var(--green); }
+  .tile__what { font-size: .93rem; color: var(--soft); grid-column: 2 / 4; }
+  .tile__go { font-size: 1.5rem; color: #9db3a6; line-height: 1; }
+  .pill {
+    display: inline-block; margin-left: .4rem; vertical-align: 2px;
+    background: var(--gold); color: #fff; font-size: .76rem; font-weight: 700;
+    padding: .14em .55em; border-radius: 999px;
+  }
+
+  /* ---- forms ---- */
+  label { display: block; font-weight: 700; margin: 1.3rem 0 .35rem; color: var(--ink); font-size: 1rem; }
+  .hint { font-weight: 400; color: var(--soft); font-size: .92rem; margin: -.2rem 0 .45rem; }
+  input[type=text], input[type=password], input[type=date], input[type=number], textarea, select {
+    width: 100%; font: inherit; font-size: 16px; /* 16px or iOS zooms the page */
+    padding: .8rem .85rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--white); color: var(--ink); min-height: 50px;
+  }
+  textarea { min-height: 8rem; resize: vertical; }
+  input:focus, textarea:focus, select:focus { outline: 3px solid #d9a441; outline-offset: 1px; border-color: var(--live); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 54px; padding: 0 1.6rem; width: 100%;
+    background: var(--live); color: #fff; border: 0; border-radius: 999px;
+    font: inherit; font-size: 1.08rem; font-weight: 700; cursor: pointer; text-decoration: none;
+  }
+  .btn:active { background: var(--live-dark); }
+  .btn[disabled] { opacity: .55; cursor: default; }
+  .btn--quiet { background: transparent; color: var(--live); border: 1px solid var(--line); }
+  .btn--danger { background: transparent; color: var(--red); border: 1px solid #e6c9c7; }
+  .btn-row { display: flex; flex-direction: column; gap: .7rem; margin-top: 1.6rem; }
+
+  /* ---- the on/off switch ---- */
+  .switch {
+    display: flex; align-items: center; gap: .9rem; width: 100%;
+    background: var(--white); border: 1px solid var(--line); border-radius: 12px;
+    padding: .9rem 1rem; margin: 1.2rem 0 0; cursor: pointer; text-align: left;
+    font: inherit; color: inherit; min-height: 62px;
+  }
+  .switch__track {
+    flex-shrink: 0; width: 58px; height: 34px; border-radius: 999px;
+    background: #c3d2c8; position: relative; transition: background .15s;
+  }
+  .switch__track::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 28px; height: 28px;
+    border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    transition: transform .15s;
+  }
+  .switch[aria-pressed="true"] .switch__track { background: var(--live); }
+  .switch[aria-pressed="true"] .switch__track::after { transform: translateX(24px); }
+  .switch__text b { display: block; font-size: 1rem; }
+  .switch__text span { font-size: .9rem; color: var(--soft); }
+
+  /* ---- lists ---- */
+  .rows { display: flex; flex-direction: column; gap: .7rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+  .row {
+    display: grid; grid-template-columns: 1fr auto; gap: .3rem 1rem; align-items: center;
+    width: 100%; padding: .95rem 1.05rem; text-align: left;
+    background: var(--white); border: 1px solid var(--line); border-radius: 12px;
+    font: inherit; color: inherit; cursor: pointer; min-height: 68px;
+  }
+  .row:active { background: #f4f9f5; }
+  .row__title { font-weight: 700; color: var(--green); }
+  .row__sub { grid-column: 1 / 2; font-size: .9rem; color: var(--soft); }
+  .tag { font-size: .78rem; font-weight: 700; padding: .2em .6em; border-radius: 999px; white-space: nowrap; }
+  .tag--on { background: #e7f2eb; color: var(--live); }
+  .tag--off { background: var(--gold-bg); color: var(--gold); }
+
+  /* ---- messages ---- */
+  .note { border-radius: 10px; padding: .9rem 1rem; margin: 1rem 0; font-size: .96rem; }
+  .note--info { background: var(--white); border: 1px solid var(--line); color: var(--soft); }
+  .note--good { background: #e7f2eb; border: 1px solid #bfe0cd; color: #14512f; }
+  .note--bad  { background: var(--red-bg); border: 1px solid #e6c9c7; color: var(--red); }
+  .note b { color: inherit; }
+
+  .thumb { width: 100%; max-width: 220px; border-radius: 10px; margin-top: .6rem; display: block; }
+  .hide { display: none !important; }
+  .spin { display: inline-block; width: 1em; height: 1em; border: 2px solid rgba(255,255,255,.4);
+          border-top-color: #fff; border-radius: 50%; animation: sp .7s linear infinite; }
+  @keyframes sp { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spin { animation: none; } .switch__track, .switch__track::after { transition: none; } }
+</style>
+</head>
+<body>
+
+<!-- ============================ LOG IN ============================ -->
+<div id="screen-login">
+  <div class="wrap" style="padding-top:2.5rem;text-align:center">
+    <img src="/assets/img/brand/logo.webp" alt="PG Gardening &amp; Tree Surgeon" width="200" height="86" style="width:200px;max-width:62%;height:auto;margin:0 auto">
+    <h1>Manage your website</h1>
+    <p>Put your password in and press Log in.</p>
+    <form id="loginForm" style="text-align:left;margin-top:1.5rem">
+      <label for="pw">Password</label>
+      <input type="password" id="pw" autocomplete="current-password" enterkeyhint="go" required>
+      <div class="btn-row">
+        <button class="btn" type="submit" id="loginBtn">Log in</button>
+        <a class="btn btn--quiet" href="/">Back to the website</a>
+      </div>
+    </form>
+    <div id="loginMsg"></div>
+  </div>
+</div>
+
+<!-- ============================ THE PANEL ============================ -->
+<div id="app" class="hide">
+  <div class="top">
+    <button type="button" id="backBtn" class="hide">‹ Back</button>
+    <strong id="topTitle">Your website</strong>
+    <button type="button" id="outBtn">Log out</button>
+  </div>
+  <div class="wrap" id="body"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var API = '/api/admin';
+  var KEY = 'pg-manage-ticket';
+  var SERVICES = [
+    ['tree-surgery', 'Tree surgery'],
+    ['hedge-cutting', 'Hedge cutting'],
+    ['garden-work', 'Garden work'],
+    ['power-washing', 'Power washing'],
+  ];
+  var serviceName = function (slug) {
+    for (var i = 0; i < SERVICES.length; i++) if (SERVICES[i][0] === slug) return SERVICES[i][1];
+    return slug || '';
+  };
+
+  var el = function (id) { return document.getElementById(id); };
+  var body = el('body'), topTitle = el('topTitle'), backBtn = el('backBtn');
+  var ticket = null, store = null, stack = [];
+
+  /* ---------------------------------------------------------------- helpers */
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function api(payload) {
+    return fetch(API, {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' },
+                             ticket ? { Authorization: 'Bearer ' + ticket } : {}),
+      body: JSON.stringify(payload),
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (res.status === 401 && data.error === 'signedout') { signOut('Your login timed out. Please log in again.'); throw new Error('signedout'); }
+        /* A 404 here is not a bad password or a bad link — it means the site
+           has not been deployed since the panel was added, so there is nothing
+           answering at /api/admin yet. Say that, rather than a bare number. */
+        if (res.status === 404) throw new Error('The panel is not on the live site yet. In Netlify, go to Deploys and trigger a deploy, then try again.');
+        if (!res.ok) throw new Error(data.message || data.error || ('Something went wrong (' + res.status + ')'));
+        return data;
+      });
+    });
+  }
+
+  function stamp() {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + p(d.getHours()) + p(d.getMinutes()) + p(d.getSeconds());
+  }
+  function today() {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+  }
+  function ukDate(iso) {
+    if (!iso) return '';
+    var b = String(iso).slice(0, 10).split('-');
+    return b.length === 3 ? b[2] + '/' + b[1] + '/' + b[0] : iso;
+  }
+
+  /* Phone photos are 3–6 MB. Shrink in the browser: it keeps the site quick,
+     and keeps the upload inside what the server will take. */
+  function shrink(file, maxEdge) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error('Could not read that photo.')); };
+      reader.onload = function () {
+        var img = new Image();
+        img.onerror = function () { reject(new Error('That file is not a photo the browser can read.')); };
+        img.onload = function () {
+          var w = img.width, h = img.height, scale = Math.min(1, maxEdge / Math.max(w, h));
+          var c = document.createElement('canvas');
+          c.width = Math.round(w * scale); c.height = Math.round(h * scale);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+          var dataUrl = c.toDataURL('image/jpeg', 0.82);
+          resolve({ base64: dataUrl.split(',')[1], preview: dataUrl });
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function say(kind, html) {
+    return '<div class="note note--' + kind + '">' + html + '</div>';
+  }
+
+  function busy(button, text) {
+    button.disabled = true;
+    button.dataset.was = button.innerHTML;
+    button.innerHTML = '<span class="spin"></span> ' + text;
+  }
+  function unbusy(button) {
+    button.disabled = false;
+    if (button.dataset.was) button.innerHTML = button.dataset.was;
+  }
+
+  /* ------------------------------------------------------------------ login */
+
+  function signOut(message) {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    ticket = null; store = null; stack = [];
+    // Empty the screen as well as hiding it. Otherwise the last person's
+    // reviews and links sit in the page for whoever picks the phone up next.
+    body.innerHTML = '';
+    el('app').classList.add('hide');
+    el('screen-login').classList.remove('hide');
+    el('loginMsg').innerHTML = message ? say('bad', esc(message)) : '';
+    el('pw').value = '';
+  }
+
+  el('outBtn').addEventListener('click', function () { signOut(''); });
+
+  el('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = el('loginBtn');
+    el('loginMsg').innerHTML = '';
+    busy(btn, 'Checking…');
+    api({ action: 'login', password: el('pw').value })
+      .then(function (data) {
+        ticket = data.ticket;
+        try { localStorage.setItem(KEY, ticket); } catch (e) {}
+        el('pw').value = '';
+        return start();
+      })
+      .catch(function (err) {
+        el('loginMsg').innerHTML = say('bad', esc(err.message));
+      })
+      .then(function () { unbusy(btn); });
+  });
+
+  function start() {
+    el('screen-login').classList.add('hide');
+    el('app').classList.remove('hide');
+    body.innerHTML = say('info', 'Fetching your website…');
+    return api({ action: 'load' }).then(function (data) {
+      store = data;
+      go(menu, 'Your website');
+    }).catch(function (err) {
+      if (err.message === 'signedout') return;
+      body.innerHTML = say('bad', '<b>Could not load your website.</b><br>' + esc(err.message));
+    });
+  }
+
+  /* --------------------------------------------------------------- routing */
+
+  function go(render, title, keepStack) {
+    if (!keepStack) stack.push({ render: render, title: title });
+    topTitle.textContent = title;
+    backBtn.classList.toggle('hide', stack.length <= 1);
+    window.scrollTo(0, 0);
+    render();
+  }
+  backBtn.addEventListener('click', function () {
+    stack.pop();
+    var prev = stack[stack.length - 1];
+    if (prev) { topTitle.textContent = prev.title; backBtn.classList.toggle('hide', stack.length <= 1); window.scrollTo(0, 0); prev.render(); }
+  });
+
+  /* Reload from GitHub, then land on a screen. The menu is always the bottom
+     of the stack, so there is never a screen with no way back to it — which is
+     exactly what happened when this emptied the stack and dropped somebody on
+     the reviews list with the Back button hidden. */
+  function refreshThenGo(render, title) {
+    body.innerHTML = say('info', 'Just a moment…');
+    return api({ action: 'load' }).then(function (data) {
+      store = data;
+      stack = render === menu ? [] : [{ render: menu, title: 'Your website' }];
+      go(render, title);
+    });
+  }
+
+  /* ------------------------------------------------------------------ menu */
+
+  var ICON = {
+    photo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.2l1.2-2h8.2l1.2 2h2.2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/><circle cx="12" cy="13" r="3.6"/></svg>',
+    pair:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.8"/><path d="M12 3.5v17"/><path d="m8.6 10.4-2 1.6 2 1.6M15.4 10.4l2 1.6-2 1.6"/></svg>',
+    star:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.6 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.5 9.8l5.9-.9Z"/></svg>',
+    link:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 13.7a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7L11.7 6.6"/><path d="M13.7 10.3a4 4 0 0 0-5.7 0l-2.8 2.8a4 4 0 0 0 5.7 5.7l1.4-1.4"/></svg>',
+    globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.2 2.4 3.4 5.4 3.4 8.6s-1.2 6.2-3.4 8.6c-2.2-2.4-3.4-5.4-3.4-8.6S9.8 5.8 12 3.4Z"/></svg>',
+  };
+
+  function tile(icon, name, what, badge) {
+    return '<button class="tile" type="button">' +
+      '<span class="tile__icon" aria-hidden="true">' + icon + '</span>' +
+      '<span class="tile__name">' + name + (badge ? '<span class="pill">' + badge + '</span>' : '') + '</span>' +
+      '<span class="tile__go" aria-hidden="true">›</span>' +
+      '<span class="tile__what">' + what + '</span></button>';
+  }
+
+  function menu() {
+    var waiting = store.reviews.filter(function (r) { return r.data.approved !== true; }).length;
+    body.innerHTML =
+      '<p class="muted">Tap what you want to do. Anything you change is on the website a minute or two later.</p>' +
+      '<ul class="menu">' +
+        '<li>' + tile(ICON.photo, 'Add a photo', 'One picture of a finished job.') + '</li>' +
+        '<li>' + tile(ICON.pair, 'Add a before &amp; after', 'Two pictures of the same spot, to slide across.') + '</li>' +
+        '<li>' + tile(ICON.star, 'Reviews', 'Read them and choose what goes on the site.', waiting ? waiting + ' waiting' : '') + '</li>' +
+        '<li>' + tile(ICON.link, 'Links &amp; switches', 'Facebook, Google, Bark, MyBuilder.') + '</li>' +
+        '<li>' + tile(ICON.globe, 'See the website', 'Opens your site in a new tab.') + '</li>' +
+      '</ul>';
+    var tiles = body.querySelectorAll('.tile');
+    tiles[0].onclick = function () { go(photoForm, 'Add a photo'); };
+    tiles[1].onclick = function () { go(pairForm, 'Add a before & after'); };
+    tiles[2].onclick = function () { go(reviewList, 'Reviews'); };
+    tiles[3].onclick = function () { go(linksForm, 'Links & switches'); };
+    tiles[4].onclick = function () { window.open('/', '_blank', 'noopener'); };
+  }
+
+  function serviceOptions(selected) {
+    return SERVICES.map(function (s) {
+      return '<option value="' + s[0] + '"' + (s[0] === selected ? ' selected' : '') + '>' + s[1] + '</option>';
+    }).join('');
+  }
+
+  /* ------------------------------------------------------------ add a photo */
+
+  function photoForm() {
+    body.innerHTML =
+      '<h2>Add a photo</h2>' +
+      '<p class="muted">It appears in your Gallery, on the page for the job you pick, and in the recent photos on the home page.</p>' +
+      '<label for="pService">Which job is it</label>' +
+      '<select id="pService">' + serviceOptions('tree-surgery') + '</select>' +
+      '<label for="pFile">The photo</label>' +
+      '<div class="hint">Straight off your phone is fine. Keep number plates, house numbers and people out of shot.</div>' +
+      '<input type="file" id="pFile" accept="image/*" style="font-size:16px">' +
+      '<img id="pPrev" class="thumb hide" alt="">' +
+      '<label for="pCaption">A line about it <span style="font-weight:400;color:#4a5a51">(optional)</span></label>' +
+      '<input type="text" id="pCaption" placeholder="Beech hedge, Wilpshire">' +
+      '<div class="btn-row"><button class="btn" type="button" id="pSave">Save and put it on the website</button></div>' +
+      '<div id="pMsg"></div>';
+
+    var picked = null;
+    el('pFile').addEventListener('change', function (e) {
+      var f = e.target.files && e.target.files[0];
+      if (!f) return;
+      el('pMsg').innerHTML = say('info', 'Getting the photo ready…');
+      shrink(f, 1600).then(function (out) {
+        picked = out;
+        var img = el('pPrev'); img.src = out.preview; img.classList.remove('hide');
+        el('pMsg').innerHTML = '';
+      }).catch(function (err) { el('pMsg').innerHTML = say('bad', esc(err.message)); });
+    });
+
+    el('pSave').addEventListener('click', function () {
+      if (!picked) { el('pMsg').innerHTML = say('bad', 'Choose a photo first.'); return; }
+      var btn = this, service = el('pService').value, caption = el('pCaption').value.trim();
+      var name = service + '-' + stamp();
+      busy(btn, 'Saving…');
+      el('pMsg').innerHTML = '';
+      api({ action: 'upload', path: 'assets/img/uploads/' + name + '.jpg', base64: picked.base64,
+            message: 'Panel: add a ' + serviceName(service).toLowerCase() + ' photo' })
+        .then(function () {
+          return api({ action: 'save', path: 'content/photos/' + name + '.json',
+            data: { published: true, service: service, image: '/assets/img/uploads/' + name + '.jpg',
+                    caption: caption, alt: caption || (serviceName(service) + ' carried out by PG Gardening & Tree Surgeon') },
+            message: 'Panel: add a ' + serviceName(service).toLowerCase() + ' photo' });
+        })
+        .then(function () {
+          unbusy(btn);
+          body.innerHTML = say('good', '<b>Saved.</b> Your photo is on the website in a minute or two.') +
+            '<div class="btn-row">' +
+            '<button class="btn" type="button" id="again">Add another photo</button>' +
+            '<button class="btn btn--quiet" type="button" id="done">Back to the menu</button></div>';
+          el('again').onclick = function () { go(photoForm, 'Add a photo', true); };
+          el('done').onclick = function () { refreshThenGo(menu, 'Your website'); };
+        })
+        .catch(function (err) {
+          unbusy(btn);
+          if (err.message !== 'signedout') el('pMsg').innerHTML = say('bad', '<b>It did not save.</b><br>' + esc(err.message));
+        });
+    });
+  }
+
+  /* ------------------------------------------------------ add before/after */
+
+  function pairForm() {
+    body.innerHTML =
+      '<h2>Add a before &amp; after</h2>' +
+      '<p class="muted">It appears in your Gallery, on the page for the job you pick, on all 17 town pages, and the newest one goes under the big photo on the home page.</p>' +
+      say('info', '<b>Both photos have to be of the same spot.</b> Same distance, same angle, same direction &mdash; the slider wipes one across the other, so if you moved a long way it just looks like two unrelated pictures.') +
+      '<label for="qService">Which job is it</label>' +
+      '<select id="qService">' + serviceOptions('tree-surgery') + '</select>' +
+      '<label for="qTitle">Give it a short name</label>' +
+      '<div class="hint">A few words, printed under the slider. Not a customer name or address.</div>' +
+      '<input type="text" id="qTitle" placeholder="Conifer hedge reduced">' +
+      '<label for="qBefore">The BEFORE photo &mdash; the messy one</label>' +
+      '<input type="file" id="qBefore" accept="image/*" style="font-size:16px">' +
+      '<img id="qBeforePrev" class="thumb hide" alt="">' +
+      '<label for="qAfter">The AFTER photo &mdash; the finished one</label>' +
+      '<input type="file" id="qAfter" accept="image/*" style="font-size:16px">' +
+      '<img id="qAfterPrev" class="thumb hide" alt="">' +
+      '<div class="btn-row"><button class="btn" type="button" id="qSave">Save and put it on the website</button></div>' +
+      '<div id="qMsg"></div>';
+
+    var shots = {};
+    ['Before', 'After'].forEach(function (which) {
+      el('q' + which).addEventListener('change', function (e) {
+        var f = e.target.files && e.target.files[0];
+        if (!f) return;
+        el('qMsg').innerHTML = say('info', 'Getting the ' + which.toLowerCase() + ' photo ready…');
+        shrink(f, 1600).then(function (out) {
+          shots[which.toLowerCase()] = out;
+          var img = el('q' + which + 'Prev'); img.src = out.preview; img.classList.remove('hide');
+          el('qMsg').innerHTML = '';
+        }).catch(function (err) { el('qMsg').innerHTML = say('bad', esc(err.message)); });
+      });
+    });
+
+    el('qSave').addEventListener('click', function () {
+      var title = el('qTitle').value.trim();
+      if (!shots.before || !shots.after) { el('qMsg').innerHTML = say('bad', 'Both photos are needed &mdash; a before on its own is never put on the website.'); return; }
+      if (!title) { el('qMsg').innerHTML = say('bad', 'Give it a short name first.'); return; }
+      var btn = this, service = el('qService').value;
+      var name = service + '-' + stamp();
+      busy(btn, 'Saving…');
+      el('qMsg').innerHTML = '';
+      api({ action: 'upload', path: 'assets/img/uploads/' + name + '-before.jpg', base64: shots.before.base64, message: 'Panel: before photo for "' + title + '"' })
+        .then(function () { return api({ action: 'upload', path: 'assets/img/uploads/' + name + '-after.jpg', base64: shots.after.base64, message: 'Panel: after photo for "' + title + '"' }); })
+        .then(function () {
+          return api({ action: 'save', path: 'content/pairs/' + name + '.json',
+            data: { published: true, service: service, title: title,
+                    before: '/assets/img/uploads/' + name + '-before.jpg',
+                    after: '/assets/img/uploads/' + name + '-after.jpg',
+                    caption: '', alt: title },
+            message: 'Panel: add before & after "' + title + '"' });
+        })
+        .then(function () {
+          unbusy(btn);
+          body.innerHTML = say('good', '<b>Saved.</b> The slider is on the website in a minute or two.') +
+            '<div class="btn-row">' +
+            '<button class="btn" type="button" id="again2">Add another</button>' +
+            '<button class="btn btn--quiet" type="button" id="done2">Back to the menu</button></div>';
+          el('again2').onclick = function () { go(pairForm, 'Add a before & after', true); };
+          el('done2').onclick = function () { refreshThenGo(menu, 'Your website'); };
+        })
+        .catch(function (err) {
+          unbusy(btn);
+          if (err.message !== 'signedout') el('qMsg').innerHTML = say('bad', '<b>It did not save.</b><br>' + esc(err.message));
+        });
+    });
+  }
+
+  /* --------------------------------------------------------------- reviews */
+
+  function reviewList() {
+    var items = store.reviews.slice().sort(function (a, b) {
+      return String(b.data.date || '').localeCompare(String(a.data.date || ''));
+    });
+    var waiting = items.filter(function (r) { return r.data.approved !== true; });
+    var live = items.filter(function (r) { return r.data.approved === true; });
+
+    var rows = function (list) {
+      return list.map(function (item, i) {
+        var d = item.data;
+        var on = d.approved === true;
+        return '<li><button class="row" type="button" data-key="' + esc(item.path) + '">' +
+          '<span class="row__title">' + esc(d.name || 'No name') + '</span>' +
+          '<span class="tag ' + (on ? 'tag--on' : 'tag--off') + '">' + (on ? 'On the site' : 'Waiting') + '</span>' +
+          '<span class="row__sub">' + esc([d.area, serviceName(d.service), ukDate(d.date)].filter(Boolean).join(' · ')) + '</span>' +
+          '</button></li>';
+      }).join('');
+    };
+
+    body.innerHTML =
+      '<h2>Reviews</h2>' +
+      '<p class="muted">Nothing a customer writes goes on your website until you switch it on.</p>' +
+      '<div class="btn-row" style="margin-top:1rem"><button class="btn" type="button" id="rNew">Write one in yourself</button></div>' +
+      (waiting.length ? '<h2 style="margin-top:1.8rem;font-size:1.1rem">Waiting for you (' + waiting.length + ')</h2><ul class="rows">' + rows(waiting) + '</ul>' : '') +
+      (live.length ? '<h2 style="margin-top:1.8rem;font-size:1.1rem">On the website (' + live.length + ')</h2><ul class="rows">' + rows(live) + '</ul>' : '') +
+      (items.length ? '' : say('info', 'No reviews have come through the website form yet. The 200 you collected already are on the site &mdash; they live in one file rather than here.'));
+
+    el('rNew').onclick = function () { go(function () { reviewForm(null); }, 'New review'); };
+    Array.prototype.forEach.call(body.querySelectorAll('.row'), function (btn) {
+      btn.onclick = function () {
+        var found = null;
+        for (var i = 0; i < store.reviews.length; i++) if (store.reviews[i].path === btn.dataset.key) found = store.reviews[i];
+        go(function () { reviewForm(found); }, 'Review');
+      };
+    });
+  }
+
+  function reviewForm(item) {
+    var d = item ? item.data : { approved: false, name: '', area: '', service: '', rating: 5, date: today(), text: '', consent: true, notes: '' };
+    body.innerHTML =
+      '<h2>' + (item ? 'Review' : 'Write a review in') + '</h2>' +
+      (item ? '' : '<p class="muted">For somebody who told you in person or sent it by text. Type it as they said it &mdash; do not tidy their words up.</p>') +
+      say('bad', '<b>Never write reviews yourself</b>, and do not have friends or family write them. Fake reviews on a trading website are a criminal matter in the UK.') +
+      '<button class="switch" type="button" id="rOn" aria-pressed="' + (d.approved === true) + '">' +
+        '<span class="switch__track" aria-hidden="true"></span>' +
+        '<span class="switch__text"><b>Show this review on the website</b><span id="rOnWhat"></span></span></button>' +
+      '<label for="rName">Their name</label>' +
+      '<div class="hint">First name and the initial of the surname is plenty.</div>' +
+      '<input type="text" id="rName" value="' + esc(d.name) + '" placeholder="Sarah T.">' +
+      '<label for="rArea">Their town or village</label>' +
+      '<input type="text" id="rArea" value="' + esc(d.area) + '" placeholder="Wilpshire">' +
+      '<label for="rService">What job did you do</label>' +
+      '<select id="rService"><option value="">Not saying</option>' + serviceOptions(d.service) + '</select>' +
+      '<label for="rRating">How many stars</label>' +
+      '<select id="rRating">' + [5,4,3,2,1].map(function (n) { return '<option value="' + n + '"' + (Number(d.rating) === n ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select>' +
+      '<label for="rDate">When was it</label>' +
+      '<input type="date" id="rDate" value="' + esc(String(d.date || today()).slice(0, 10)) + '">' +
+      '<label for="rText">What they said</label>' +
+      '<textarea id="rText" placeholder="Type it exactly as they said it">' + esc(d.text) + '</textarea>' +
+      '<label for="rNotes">Private notes <span style="font-weight:400;color:#4a5a51">(never on the website)</span></label>' +
+      '<input type="text" id="rNotes" value="' + esc(d.notes || '') + '">' +
+      '<div class="btn-row">' +
+        '<button class="btn" type="button" id="rSave">Save</button>' +
+        (item ? '<button class="btn btn--danger" type="button" id="rDel">Delete this review</button>' : '') +
+      '</div><div id="rMsg"></div>';
+
+    var on = d.approved === true;
+    var paint = function () {
+      el('rOn').setAttribute('aria-pressed', String(on));
+      el('rOnWhat').textContent = on ? 'It is on the website' : 'Nobody but you can see it';
+    };
+    paint();
+    el('rOn').onclick = function () { on = !on; paint(); };
+
+    el('rSave').onclick = function () {
+      var name = el('rName').value.trim(), text = el('rText').value.trim();
+      if (!name || !text) { el('rMsg').innerHTML = say('bad', 'A name and what they said are both needed.'); return; }
+      var btn = this;
+      busy(btn, 'Saving…');
+      el('rMsg').innerHTML = '';
+      var data = {
+        approved: on, name: name, area: el('rArea').value.trim(), service: el('rService').value,
+        rating: Number(el('rRating').value) || 5, date: el('rDate').value || today(),
+        text: text, consent: d.consent !== false, notes: el('rNotes').value.trim(),
+      };
+      var path = item ? item.path : 'content/reviews/' + (data.date) + '-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.json';
+      api({ action: 'save', path: path, data: data, sha: item ? item.sha : null,
+            message: 'Panel: ' + (item ? 'update' : 'add') + ' review from ' + name })
+        .then(function () { return refreshThenGo(reviewList, 'Reviews'); })
+        .catch(function (err) { unbusy(btn); if (err.message !== 'signedout') el('rMsg').innerHTML = say('bad', '<b>It did not save.</b><br>' + esc(err.message)); });
+    };
+
+    if (item) el('rDel').onclick = function () {
+      if (!window.confirm('Delete this review for good? Switching it off instead keeps it, so you can put it back later.')) return;
+      var btn = this; busy(btn, 'Deleting…');
+      api({ action: 'remove', path: item.path, sha: item.sha, message: 'Panel: delete review from ' + (d.name || '') })
+        .then(function () { return refreshThenGo(reviewList, 'Reviews'); })
+        .catch(function (err) { unbusy(btn); if (err.message !== 'signedout') el('rMsg').innerHTML = say('bad', esc(err.message)); });
+    };
+  }
+
+  /* ------------------------------------------------------- links & switches */
+
+  function linksForm() {
+    if (!store.settings) { body.innerHTML = say('bad', 'The settings file is missing.'); return; }
+    var s = JSON.parse(JSON.stringify(store.settings.data));
+    s.facebook = s.facebook || []; s.directories = s.directories || []; s.google = s.google || {};
+
+    var switchRow = function (id, on, title, sub) {
+      return '<button class="switch" type="button" data-toggle="' + id + '" aria-pressed="' + !!on + '">' +
+        '<span class="switch__track" aria-hidden="true"></span>' +
+        '<span class="switch__text"><b>' + esc(title) + '</b><span>' + esc(sub) + '</span></span></button>';
+    };
+
+    body.innerHTML =
+      '<h2>Links &amp; switches</h2>' +
+      '<p class="muted">These show in the footer of every page, and under "Listed elsewhere" on your Reviews and Contact pages. Anything switched off is not on the website at all &mdash; never a dead link.</p>' +
+
+      '<h2 style="margin-top:1.8rem;font-size:1.1rem">Google</h2>' +
+      '<label for="gWrite">One-tap "leave a review" link</label>' +
+      '<div class="hint">Maps app → your business → Ask for reviews → copy the link. This is the one that actually earns you reviews.</div>' +
+      '<input type="text" id="gWrite" value="' + esc(s.google.writeUrl || '') + '" placeholder="https://g.page/r/…/review">' +
+      '<label for="gReviews">Link to your reviews on Google</label>' +
+      '<input type="text" id="gReviews" value="' + esc(s.google.reviewsUrl || '') + '">' +
+      '<label for="gMaps">Link to you on Google Maps</label>' +
+      '<input type="text" id="gMaps" value="' + esc(s.google.mapsUrl || '') + '">' +
+
+      '<h2 style="margin-top:1.8rem;font-size:1.1rem">Facebook</h2>' +
+      s.facebook.map(function (f, i) {
+        return switchRow('fb' + i, f.enabled !== false, f.label || 'Facebook page', f.url || 'No link yet') +
+          '<label for="fbu' + i + '">Link</label><input type="text" id="fbu' + i + '" value="' + esc(f.url || '') + '">' +
+          '<label for="fbl' + i + '">What the button says</label><input type="text" id="fbl' + i + '" value="' + esc(f.label || '') + '">';
+      }).join('') +
+
+      '<h2 style="margin-top:1.8rem;font-size:1.1rem">Trade directories</h2>' +
+      '<p class="muted">Only switch on the ones you are genuinely listed on. A link to a profile that does not exist is worse than no link.</p>' +
+      s.directories.map(function (dir, i) {
+        return switchRow('dir' + i, dir.enabled === true, dir.name || 'Directory', dir.url || 'No link yet') +
+          '<label for="diru' + i + '">Your profile link</label><input type="text" id="diru' + i + '" value="' + esc(dir.url || '') + '" placeholder="Paste it here, then switch it on">';
+      }).join('') +
+
+      '<div class="btn-row"><button class="btn" type="button" id="lSave">Save</button></div><div id="lMsg"></div>';
+
+    Array.prototype.forEach.call(body.querySelectorAll('[data-toggle]'), function (btn) {
+      btn.onclick = function () { btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') !== 'true'); };
+    });
+
+    el('lSave').onclick = function () {
+      var btn = this; busy(btn, 'Saving…'); el('lMsg').innerHTML = '';
+      s.google.writeUrl = el('gWrite').value.trim();
+      s.google.reviewsUrl = el('gReviews').value.trim();
+      s.google.mapsUrl = el('gMaps').value.trim();
+      s.facebook.forEach(function (f, i) {
+        f.enabled = body.querySelector('[data-toggle="fb' + i + '"]').getAttribute('aria-pressed') === 'true';
+        f.url = el('fbu' + i).value.trim();
+        f.label = el('fbl' + i).value.trim();
+      });
+      s.directories.forEach(function (dir, i) {
+        dir.enabled = body.querySelector('[data-toggle="dir' + i + '"]').getAttribute('aria-pressed') === 'true';
+        dir.url = el('diru' + i).value.trim();
+      });
+
+      /* A switch turned on with no link puts a button on the site that goes
+         nowhere. Catch it here rather than letting it deploy. */
+      var empty = [];
+      s.facebook.forEach(function (f) { if (f.enabled && !f.url) empty.push(f.label || 'a Facebook page'); });
+      s.directories.forEach(function (d) { if (d.enabled && !d.url) empty.push(d.name || 'a directory'); });
+      if (empty.length) {
+        unbusy(btn);
+        el('lMsg').innerHTML = say('bad', '<b>Switched on with no link: ' + esc(empty.join(', ')) +
+          '.</b><br>Paste the link in, or switch it back off. A button that goes nowhere looks worse than no button.');
+        return;
+      }
+
+      api({ action: 'save', path: 'content/settings.json', data: s, sha: store.settings.sha, message: 'Panel: update links and switches' })
+        .then(function () { return refreshThenGo(menu, 'Your website'); })
+        .catch(function (err) { unbusy(btn); if (err.message !== 'signedout') el('lMsg').innerHTML = say('bad', '<b>It did not save.</b><br>' + esc(err.message)); });
+    };
+  }
+
+  /* ------------------------------------------------------------------ boot */
+
+  try { ticket = localStorage.getItem(KEY); } catch (e) { ticket = null; }
+  if (ticket) {
+    start().catch(function () { signOut(''); });
+  }
+})();
+</script>
+</body>
+</html>
