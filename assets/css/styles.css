@@ -788,7 +788,16 @@ a.card:hover .card__more svg { transform: translateX(3px); }
 }
 .step h3 { font-size: var(--step-1); margin-bottom: var(--sp-2); padding-top: 6px; }
 .step p { font-size: 0.97rem; color: var(--ink-700); margin: 0; }
-.section--dark .step::before { background: var(--bark-600); }
+
+/* On the dark green band the step text was unreadable: .step p sets --ink-700,
+   a near-black meant for cream backgrounds, and it is declared after
+   `.section--dark p` at the same specificity, so it won. That put #35443c on
+   #0f3a26 — a contrast ratio of 1.24:1, where 4.5:1 is the floor for body
+   text. Not dim, invisible. Cream takes it to 12:1.
+   The number badge gets the palette's gold, which reads at 7.9:1 against the
+   dark green and separates the badge from the band behind it. */
+.section--dark .step p { color: var(--cream-100); }
+.section--dark .step::before { background: var(--bark-300); color: var(--green-900); }
 
 /* Notice / callout */
 .notice {

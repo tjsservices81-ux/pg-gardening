@@ -108,11 +108,11 @@
         el.hidden = false;
         return;
       }
-      // Not configured yet — replace the link with an honest placeholder.
-      var note = document.createElement('span');
-      note.className = 'pending';
-      note.textContent = entry ? entry.need : 'Link needed';
-      el.replaceWith(note);
+      /* Not set up yet. Show the visitor nothing at all — a note saying
+         "Google write-a-review link needed" is a message to the owner, and it
+         has no business on a page a customer is reading. The owner sees what
+         is missing in the panel at /manage, and the deploy log says so too. */
+      el.remove();
     });
   }
 
@@ -127,7 +127,7 @@
       var style = el.dataset.facebookLinks; // "icons" | "buttons"
 
       if (!pages.length) {
-        el.innerHTML = '<span class="pending">Facebook page URLs needed (both pages)</span>';
+        el.remove(); // same reasoning: no Facebook page means no Facebook section
         return;
       }
 
