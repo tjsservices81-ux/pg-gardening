@@ -2,16 +2,241 @@
    Edit it at /manage, or in content/, and it rebuilds on deploy.
    Source: content/pairs, content/photos and assets/img/gallery */
 window.PG_PHOTOS = {
-  "generated": "2026-11-02T18:41:34.408Z",
+  "generated": "2026-11-02T18:44:40.423Z",
   "totals": {
-    "pairs": 25,
-    "singles": 51
+    "pairs": 53,
+    "singles": 54
   },
   "services": {
     "tree-surgery": {
       "slug": "tree-surgery",
       "label": "Tree surgery",
       "pairs": [
+        {
+          "id": "tree-surgery-20260903-191408",
+          "before": "/assets/img/uploads/tree-surgery-20260903-191408-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260903-191408-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260903-191552",
+          "before": "/assets/img/uploads/tree-surgery-20260903-191552-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260903-191552-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102519",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102519-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102519-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102554",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102554-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102554-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102626",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102626-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102626-after.jpg",
+          "altBefore": "Og",
+          "altAfter": "Og",
+          "title": "Og",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102659",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102659-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102659-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102731",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102731-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102731-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102757",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102757-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102757-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102832",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102832-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102832-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102900",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102900-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102900-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102925",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102925-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102925-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-102952",
+          "before": "/assets/img/uploads/tree-surgery-20260905-102952-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-102952-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-103026",
+          "before": "/assets/img/uploads/tree-surgery-20260905-103026-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-103026-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-103054",
+          "before": "/assets/img/uploads/tree-surgery-20260905-103054-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-103054-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-103125",
+          "before": "/assets/img/uploads/tree-surgery-20260905-103125-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-103125-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260905-103214",
+          "before": "/assets/img/uploads/tree-surgery-20260905-103214-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260905-103214-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260920-081220",
+          "before": "/assets/img/uploads/tree-surgery-20260920-081220-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260920-081220-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260920-081306",
+          "before": "/assets/img/uploads/tree-surgery-20260920-081306-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260920-081306-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20260930-162026",
+          "before": "/assets/img/uploads/tree-surgery-20260930-162026-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20260930-162026-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20261021-182308",
+          "before": "/assets/img/uploads/tree-surgery-20261021-182308-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20261021-182308-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20261023-065746",
+          "before": "/assets/img/uploads/tree-surgery-20261023-065746-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20261023-065746-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20261023-065828",
+          "before": "/assets/img/uploads/tree-surgery-20261023-065828-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20261023-065828-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20261023-065934",
+          "before": "/assets/img/uploads/tree-surgery-20261023-065934-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20261023-065934-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20261023-070019",
+          "before": "/assets/img/uploads/tree-surgery-20261023-070019-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20261023-070019-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
+        {
+          "id": "tree-surgery-20261023-070100",
+          "before": "/assets/img/uploads/tree-surgery-20261023-070100-before.jpg",
+          "after": "/assets/img/uploads/tree-surgery-20261023-070100-after.jpg",
+          "altBefore": "Pg",
+          "altAfter": "Pg",
+          "title": "Pg",
+          "caption": ""
+        },
         {
           "id": "tree-surgery-01",
           "before": "/assets/img/gallery/tree-surgery/before-01.jpg",
@@ -50,6 +275,21 @@ window.PG_PHOTOS = {
         }
       ],
       "singles": [
+        {
+          "src": "/assets/img/uploads/tree-surgery-20260920-075758.jpg",
+          "alt": "Happy customer",
+          "caption": "Happy customer"
+        },
+        {
+          "src": "/assets/img/uploads/tree-surgery-20260920-075834.jpg",
+          "alt": "Happy customer",
+          "caption": "Happy customer"
+        },
+        {
+          "src": "/assets/img/uploads/tree-surgery-20260920-075930.jpg",
+          "alt": "Happy customer",
+          "caption": "Happy customer"
+        },
         {
           "src": "/assets/img/gallery/tree-surgery/photo-01.jpg",
           "alt": "Tree surgery carried out by PG Gardening & Tree Surgeon",
@@ -216,6 +456,15 @@ window.PG_PHOTOS = {
       "slug": "garden-work",
       "label": "Garden work",
       "pairs": [
+        {
+          "id": "garden-work-20260903-191314",
+          "before": "/assets/img/uploads/garden-work-20260903-191314-before.jpg",
+          "after": "/assets/img/uploads/garden-work-20260903-191314-after.jpg",
+          "altBefore": "Pg garden happy customer",
+          "altAfter": "Pg garden happy customer",
+          "title": "Pg garden happy customer",
+          "caption": ""
+        },
         {
           "id": "garden-work-01",
           "before": "/assets/img/gallery/garden-work/before-01.jpg",
@@ -431,6 +680,24 @@ window.PG_PHOTOS = {
       "slug": "power-washing",
       "label": "Power washing",
       "pairs": [
+        {
+          "id": "power-washing-20260930-162127",
+          "before": "/assets/img/uploads/power-washing-20260930-162127-before.jpg",
+          "after": "/assets/img/uploads/power-washing-20260930-162127-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
+        {
+          "id": "power-washing-20260930-162214",
+          "before": "/assets/img/uploads/power-washing-20260930-162214-before.jpg",
+          "after": "/assets/img/uploads/power-washing-20260930-162214-after.jpg",
+          "altBefore": "Happy customer",
+          "altAfter": "Happy customer",
+          "title": "Happy customer",
+          "caption": ""
+        },
         {
           "id": "power-washing-01",
           "before": "/assets/img/gallery/power-washing/before-01.jpg",

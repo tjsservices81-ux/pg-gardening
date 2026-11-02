@@ -2,10 +2,289 @@
    Edit it at /manage, or in content/, and it rebuilds on deploy.
    Source: content/reviews/*.json and content/reviews-collected.json */
 
-/* 200 published review(s): 0 left through the form on this website and 200 collected away from it, in one list.
+/* 231 published review(s): 31 left through the form on this website and 200 collected away from it, in one list.
    0 waiting for approval and 0 withheld for consent are not included. */
 
 window.PG_REVIEWS = [
+ {
+  "name": "Martin",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-12",
+  "text": "Great experience all round. Needed some overgrown trees and branches sorting out, and the difference is fantastic. Reliable service, good workmanship and excellent results.",
+  "consent": true
+ },
+ {
+  "name": "Joe",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-10",
+  "text": "Good communication from the first message to the finished job. Everything was explained clearly, the work was done to a high standard, and no mess was left behind.",
+  "consent": true
+ },
+ {
+  "name": "Daniel",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-09",
+  "text": "Had a tree removed that was getting too close to the house. The job was handled professionally, and care was taken around the property. Very pleased with the result.",
+  "consent": true
+ },
+ {
+  "name": "Terry",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-08",
+  "text": "Couldn’t fault the service. Turned up when promised, got straight to work and did a cracking job. The garden looks much better now. Would happily recommend.",
+  "consent": true
+ },
+ {
+  "name": "Stphen",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-07",
+  "text": "Really impressed with the work. The trees were cut back exactly how we wanted, and everything was cleared away before leaving. Great service and a very fair price.",
+  "consent": true
+ },
+ {
+  "name": "Sarah",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-06",
+  "text": "Fantastic job removing an unwanted tree from our garden. Professional equipment, tidy workmanship and excellent communication throughout. Would highly recommend to anyone needing a tree surgeon.",
+  "consent": true
+ },
+ {
+  "name": "James",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-05",
+  "text": "Great experience from getting the quote to finishing the work. Very knowledgeable about trees, worked safely and removed all the branches and waste. Couldn’t ask for more.",
+  "consent": true
+ },
+ {
+  "name": "Mike",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-10-03",
+  "text": "Really pleased with the service. Had a few trees that needed cutting back, and the whole job was completed to a high standard. Friendly, reliable and great value for money.",
+  "consent": true
+ },
+ {
+  "name": "David",
+  "area": "",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-10-02",
+  "text": "Excellent tree-surgery work. Turned up on time, worked efficiently and did a fantastic job cutting back our trees. Everything was cleaned up afterwards. Would definitely use again.",
+  "consent": true
+ },
+ {
+  "name": "Jay",
+  "area": "",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-10-01",
+  "text": "Brilliant service from start to finish. The tree was removed safely, all the waste was taken away, and the garden was left spotless. Very professional and reasonably priced. Highly recommend!",
+  "consent": true
+ },
+ {
+  "name": "Emma Roberts",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-20",
+  "text": "Brilliant job from PG Garden and Tree Surgeon. They completely transformed my garden and paid great attention to detail. Friendly, hardworking and reasonably priced. Highly recommended.",
+  "consent": true
+ },
+ {
+  "name": "Tom Whalley",
+  "area": "Warton",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-09-20",
+  "text": "I have just used PG Gardening and Tree Surgeon to tidy up a very overgrown Conifer that needed 10 feet off the height and reshaping. They have done a fantastic job and were professional and courteous from start to finish. They respected us and our property and did a thorough cleanup at the end. A really friendly hard working bunch of guys. I will definitely use them again and recommend them 100%.",
+  "consent": true
+ },
+ {
+  "name": "Kathleen",
+  "area": "",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-09-19",
+  "text": "Excellent workmanship and a very reliable service. The lads were polite, tidy and clearly knew what they were doing. The garden looks completely different now. Highly recommended.",
+  "consent": true
+ },
+ {
+  "name": "Jim",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-18",
+  "text": "Really pleased with the work. The team were friendly, professional and worked extremely hard. Everything was cleared away afterwards and the garden was left looking brilliant. Would definitely use them again.",
+  "consent": true
+ },
+ {
+  "name": "Jason",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-17",
+  "text": "Really impressed with the service. From the initial quotation through to completion, everything was handled professionally. The garden looks fantastic. Thank you!",
+  "consent": true
+ },
+ {
+  "name": "David Harris",
+  "area": "",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-09-16",
+  "text": "Fantastic service. The team were polite, efficient and left the property spotless once the job was finished. I wouldn’t hesitate to use them again.",
+  "consent": true
+ },
+ {
+  "name": "Jamie",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-15",
+  "text": "Very professional and reliable company. The quote was clear, the work was completed to a high standard and all the waste was removed afterwards. Great communication throughout",
+  "consent": true
+ },
+ {
+  "name": "Tammy",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-14",
+  "text": "Excellent service from start to finish. The team arrived on time, worked professionally and left everything clean and tidy. Really happy with the quality of the work and would definitely recommend PG Garden and Tree Surgeon",
+  "consent": true
+ },
+ {
+  "name": "Tina",
+  "area": "Blackburn",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-13",
+  "text": "Brilliant job from start to finish. The driveway came up absolutely spotless and looks like new again. Very professional, friendly and left everything clean and tidy. Highly recommend!",
+  "consent": true
+ },
+ {
+  "name": "John",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-12",
+  "text": "Really impressed with the jet washing service. The patio and paths were covered in dirt and moss, but the difference is unbelievable. Great price, reliable service and a fantastic finish. Would definitely use again.",
+  "consent": true
+ },
+ {
+  "name": "Michael",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-11",
+  "text": "Excellent service! Arrived on time, worked hard and completely transformed the garden and driveway. Everything was cleaned up afterwards and the results speak for themselves. 10/10 service — highly recommended.",
+  "consent": true
+ },
+ {
+  "name": "Mark",
+  "area": "Blackburn",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-09-03",
+  "text": "I’d highly recommend PG Gardening & Tree Surgery. They came out today and removed a large tree for me, and I’m really pleased with the work. Very professional, hardworking and left everything clean and tidy afterwards. Brilliant service from start to finish. Would definitely use them again! 🌳👏",
+  "consent": true
+ },
+ {
+  "name": "Sarha",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-02",
+  "text": "Brilliant service from PG Garden & Tree Surgery. They removed our tree quickly and safely and did a fantastic job cleaning everything up afterwards. Very happy with the work and would highly recommend them.",
+  "consent": true
+ },
+ {
+  "name": "James",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-09-01",
+  "text": "Very impressed with PG Garden & Tree Surgery. They made removing a large tree look easy and took great care around the property. Everything was cleared away afterwards and the garden was left looking great. Highly recommend!",
+  "consent": true
+ },
+ {
+  "name": "Kathleen",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-08-22",
+  "text": "Excellent service from PG Garden & Tree Surgery. The tree removal was completed to a very high standard and the whole area was left spotless. Friendly, reliable and professional. Would definitely recommend them.",
+  "consent": true
+ },
+ {
+  "name": "Mohammed",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-08-22",
+  "text": "Great job by PG Garden & Tree Surgery removing our tree. They arrived on time, worked safely and cleaned up all the waste before leaving. Really happy with the finished result. Highly recommended!",
+  "consent": true
+ },
+ {
+  "name": "Harry",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-08-21",
+  "text": "Highly recommend PG Garden & Tree Surgery. The team did a fantastic job removing a tree from our property. Very professional, hardworking and tidy from start to finish. Would definitely use them again.",
+  "consent": true
+ },
+ {
+  "name": "Tom",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-08-20",
+  "text": "Absolutely brilliant service from PG Garden & Tree Surgery. They removed a large tree from our garden safely and professionally, leaving everything clean and tidy afterwards. Highly recommend PG Garden & Tree Surgery to anyone needing tree work done.",
+  "consent": true
+ },
+ {
+  "name": "Lizzy",
+  "area": "",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-08-18",
+  "text": "Really pleased with the tree removal carried out by PG Garden & Tree Surgery. They were reliable, efficient and took great care while working around the property. Everything was cleared away and the finished job looks brilliant. Would definitely use them again.",
+  "consent": true
+ },
+ {
+  "name": "Chris",
+  "area": "",
+  "service": "tree-surgery",
+  "rating": 5,
+  "date": "2026-08-17",
+  "text": "Fantastic job removing a large tree from our garden. The lads worked really hard and made sure everything was left neat and tidy when they finished. Great price and great service. Highly recommend PG Garden & Tree Surgery.",
+  "consent": true
+ },
+ {
+  "name": "Adam",
+  "area": "",
+  "service": "",
+  "rating": 5,
+  "date": "2026-08-15",
+  "text": "Couldn’t fault PG Garden & Tree Surgery. From the first contact through to finishing the job, they were professional and friendly. The tree was removed exactly as agreed and all the waste was taken away. Highly recommended.",
+  "consent": true
+ },
  {
   "name": "Theo",
   "area": "Darwen",
